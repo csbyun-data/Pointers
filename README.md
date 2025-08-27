@@ -12,7 +12,7 @@
 * 1.2 [단일 포인터 선언 및 초기화](https://github.com/csbyun-data/Pointers/blob/main/PART1_02.md)  
 * 1.3 [포인터 연산과 산술 작업](https://github.com/csbyun-data/Pointers/blob/main/PART1_03.md)  
 * 1.4 [이중 포인터 이해](https://github.com/csbyun-data/Pointers/blob/main/PART1_04.md)  
-* 1.5 포인터와 함수 매개변수 전달 (Call by Value & Call by Reference 개념)  
+* 1.5 [포인터와 함수 매개변수 전달 (Call by Value & Call by Reference 개념)](https://github.com/csbyun-data/Pointers/blob/main/PART1_05.md)  
 * 1.6 포인터 유형  
   * 1.6.1 NULL 포인터  
   * 1.6.2 Void 포인터  
