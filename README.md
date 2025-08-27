@@ -17,7 +17,7 @@
   * 1.6.1 NULL 포인터  
   * 1.6.2 Void 포인터  
   * 1.6.3 Wild 포인터와 Dangling 포인터  
-* 1.7 포인터와 배열  
+* 1.7 [포인터와 배열](https://github.com/csbyun-data/Pointers/blob/main/PART1_07.md)  
   * 1.7.1 1차원 배열과 포인터  
   * 1.7.2 2차원 배열과 포인터  
   * 1.7.3 배열 포인터 및 포인터 배열  
