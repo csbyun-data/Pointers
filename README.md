@@ -8,9 +8,9 @@
 * 0.6 포인터와 메모리 레이아웃 이해  
 
 ### Part 1. C언어 포인터 기본과 활용
-* 1.1 [변수 주소 구하기(&), 간접 참조(*)](https://github.com/csbyun-data/Pointers/blob/main/PART1_01.md)
+* 1.1 [변수 주소 구하기(&), 간접 참조(*)](https://github.com/csbyun-data/Pointers/blob/main/PART1_01.md)  
 * 1.2 [단일 포인터 선언 및 초기화](https://github.com/csbyun-data/Pointers/blob/main/PART1_02.md)  
-* 1.3 포인터 연산과 산술 작업  
+* 1.3 [포인터 연산과 산술 작업](https://github.com/csbyun-data/Pointers/blob/main/PART1_03.md)  
 * 1.4 이중 포인터 이해  
 * 1.5 포인터와 함수 매개변수 전달 (Call by Value & Call by Reference 개념)  
 * 1.6 포인터 유형  
