@@ -1,5 +1,5 @@
 # Pointers in C/C++
-### Part 0. 포인터 기본 개념
+### Part 0. [포인터 기본 개념](https://github.com/csbyun-data/Pointers/blob/main/PART01.md)
 * 0.1 포인터란 무엇인가  
 * 0.2 메모리와 변수, 주소 개념  
 * 0.3 변수와 포인터 관계  
