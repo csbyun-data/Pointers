@@ -99,7 +99,7 @@
 * 4.7 [다중 포인터 사용 시 주의점](https://github.com/csbyun-data/Pointers/blob/main/PART4_07.md)  
 * 4.8 [배열과 포인터 혼동 문제](https://github.com/csbyun-data/Pointers/blob/main/PART4_08.md)  
 * 4.9 [동적 메모리 할당 후 크기 계산 문제](https://github.com/csbyun-data/Pointers/blob/main/PART4_09.md)  
-* 4.10 ]스마트 포인터 사용 시 주의점 (C++ 파트 연계)](https://github.com/csbyun-data/Pointers/blob/main/PART4_10.md)  
+* 4.10 [스마트 포인터 사용 시 주의점 (C++ 파트 연계)](https://github.com/csbyun-data/Pointers/blob/main/PART4_10.md)  
 
 ### 부록
 * A. 포인터 관련 주요 함수 요약  
