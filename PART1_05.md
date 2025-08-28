@@ -156,7 +156,7 @@ int main() {
     return 0;
 }
 ```
-* int& ref는 num의 별칭(alias) 역할을 하며 직접 수정 가능
+* int &ref는 num의 별칭(alias) 역할을 하며 직접 수정 가능
   
 
 ✅ 연습 문제
