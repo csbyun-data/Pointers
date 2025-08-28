@@ -67,7 +67,7 @@ int main() {
 | Call by Value     | 값만 전달  | ❌ 원본 변경 없음 |
 | Call by Reference(Call by Pointer이용) | 주소를 전달 | ✅ 원본 변경 가능 |
 
-🧪 예제: 두 수를 교환하는 함수
+🧪 예제: 두 수를 교환하는 함수  
 ❌ Call by Value 실패 예제
 ```c
 #include <stdio.h>
