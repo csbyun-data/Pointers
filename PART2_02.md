@@ -1,13 +1,14 @@
-🔹 2.2 스택과 큐 구현
+🔹 2.2 스택과 큐 구현  
 📌 스택(Stack) – 후입선출(LIFO)
 
 개념 요약:
 
-나중에 들어온 데이터가 먼저 나가는 구조.
+* 나중에 들어온 데이터가 먼저 나가는 구조.
 
-기본 연산: push (삽입), pop (삭제), peek (맨 위 확인)
+* 기본 연산: push (삽입), pop (삭제), peek (맨 위 확인)
 
 ✅ 연결 리스트 기반 스택 구현
+```C
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -52,10 +53,10 @@ void print_stack(struct StackNode* top) {
     }
     printf("NULL\n");
 }
-
+```
 
 사용 예제:
-
+```C
 int main() {
     struct StackNode* stack = NULL;
 
@@ -71,16 +72,17 @@ int main() {
 
     return 0;
 }
-
+```
 📌 큐(Queue) – 선입선출(FIFO)
 
 개념 요약:
 
-먼저 들어온 데이터가 먼저 나가는 구조.
+* 먼저 들어온 데이터가 먼저 나가는 구조.
 
-기본 연산: enqueue (삽입), dequeue (삭제), front, rear 확인
+* 기본 연산: enqueue (삽입), dequeue (삭제), front, rear 확인
 
 ✅ 연결 리스트 기반 큐 구현
+```C
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -140,10 +142,10 @@ void print_queue(struct Queue* q) {
     }
     printf("NULL\n");
 }
-
+```
 
 사용 예제:
-
+```C
 int main() {
     struct Queue q;
     init_queue(&q);
@@ -159,8 +161,9 @@ int main() {
 
     return 0;
 }
-
+```
 💡 요약 정리
-자료구조	연산	특징
-스택	push, pop, peek	LIFO (Last-In First-Out)
-큐	enqueue, dequeue, front	FIFO (First-In First-Out)
+| 자료구조 | 연산                      | 특징                        |
+| ---- | ----------------------- | ------------------------- |
+| 스택   | push, pop, peek         | LIFO (Last-In First-Out)  |
+| 큐    | enqueue, dequeue, front | FIFO (First-In First-Out) |
