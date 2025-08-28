@@ -102,6 +102,6 @@
 * 4.10 [스마트 포인터 사용 시 주의점 (C++ 파트 연계)](https://github.com/csbyun-data/Pointers/blob/main/PART4_10.md)  
 
 ### 부록
-* A. 포인터 관련 주요 함수 요약  
+* A. [포인터 관련 주요 함수 요약](https://github.com/csbyun-data/Pointers/blob/main/Appendix_A.md)  
 * B. 실습 문제 및 예제 코드  
 * C. 참고 문헌 및 추가 학습 자료  
