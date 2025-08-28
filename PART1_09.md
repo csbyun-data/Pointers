@@ -2,7 +2,7 @@
 
 C 언어는 정적 메모리(static memory) 외에도 동적 메모리(dynamic memory) 를 사용할 수 있도록 다양한 함수들을 제공합니다. 이 기능을 통해 실행 중 필요한 만큼 메모리를 확보하거나 해제할 수 있습니다.
 
-🔍 1.9.1 malloc(), calloc(), realloc(), free 개요
+🔍 1.9.1 malloc(), calloc(), realloc(), free 개요  
 ✅ malloc()
 
 * 원하는 바이트 크기의 메모리 공간을 힙 영역에 할당.
