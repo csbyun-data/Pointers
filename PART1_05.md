@@ -46,7 +46,7 @@ int main() {
 
 * C에서는 포인터를 이용해 Call by Reference처럼 동작시킴.
 
-🧪 예제: Call by Reference (포인터 이용)
+🧪 예제: Call by Reference (포인터 이용, Call by Pointer)
 ```c
 #include <stdio.h>
 
