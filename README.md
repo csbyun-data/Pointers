@@ -27,7 +27,7 @@
   * 1.8.2 문자열과 포인터 관계  
   * 1.8.3 문자열 함수 구현 (strlen, strcpy, strcmp 등)  
   * 1.8.4 동적 메모리 할당과 문자열 조작  
-* 1.9 [동적 메모리 할당과 해제 (malloc, calloc, realloc, free)](https://github.com/csbyun-data/Pointers/blob/main/PART1_09.md)  
+* 1.9 [동적 메모리 할당과 해제](https://github.com/csbyun-data/Pointers/blob/main/PART1_09.md)  
 * 1.10 [메모리 할당 실수 방지와 안전한 포인터 사용](https://github.com/csbyun-data/Pointers/blob/main/PART1_10.md)  
   * 1.10.1 Null 포인터 점검  
   * 1.10.2 할당 후 초기화 누락  
@@ -42,7 +42,7 @@
   * 1.11.5 중첩 구조체와 포인터 멤버  
 * 1.12 [파일 입출력과 포인터](https://github.com/csbyun-data/Pointers/blob/main/PART1_12.md)  
   * 1.12.1 파일 포인터 개념  
-  * 1.12.2 텍스트 파일과 바이너리 파일 입출력  
+  * 1.12.2 텍스트와 바이너리 파일 입출력  
   * 1.12.3 구조체 배열과 파일 연동  
   * 1.12.4 파일 입출력 오류 처리  
 
