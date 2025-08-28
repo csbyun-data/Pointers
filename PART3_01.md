@@ -3,7 +3,7 @@
 
 C++에서 참조자(reference)는 **다른 변수의 별명(alias)**입니다.
 포인터처럼 메모리 주소를 직접 다루지 않고도, 원본 데이터를 수정하거나 참조할 수 있게 해줍니다.
-```C
+```cpp
 int a = 10;
 int& ref = a;  // ref는 a의 별명
 
@@ -14,7 +14,7 @@ ref = 20;      // a도 20으로 바뀜
 타입& 별명 = 원본변수;
 
 예제
-```C
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -50,7 +50,7 @@ x: 10, ref: 10
 | 메모리 사용     | 실제 별명 (간접적)          | 주소값 저장 변수          |
 
 예시 비교:
-```C
+```cpp
 int a = 5, b = 10;
 int& ref = a;
 ref = b;      // a = b; 와 같음 (참조 대상 변경 X)
@@ -63,7 +63,7 @@ ptr = &b;     // 포인터 대상 변경 가능
 C++에서는 참조자를 함수 인자로 사용하여 원본 수정이 가능합니다.
 
 예제: 값 전달 vs 참조 전달
-```C
+```cpp
 void modify_by_value(int n) {
     n = 100;
 }
@@ -99,7 +99,7 @@ After by reference: 100
 | 참조 배열 불가       | 참조자의 배열 선언은 불가능 (포인터 배열로 대체) |
 
 ⚠️ 특이한 예시: 반환값으로 참조 사용
-```C
+```cpp
 int& get_element(int arr[], int index) {
     return arr[index]; // 원본 배열 요소 참조 반환
 }
