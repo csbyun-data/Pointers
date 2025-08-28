@@ -85,7 +85,7 @@ int main() {
     return 0;
 }
 ```
-✅ Call by Reference 성공 예제
+✅ Call by Reference(Pointer 이용) 성공 예제
 ```c
 #include <stdio.h>
 
@@ -138,7 +138,7 @@ int main() {
 
 ✅ 연습 문제
 
-1. int x = 5, y = 10;을 교환하는 swap 함수를 Call by Reference로 작성하세요.
+1. int x = 5, y = 10;을 교환하는 swap 함수를 Call by Reference(Pointer 이용)로 작성하세요.
 
 2. int *p를 함수에 넘겨 20을 저장하도록 하세요.
 
