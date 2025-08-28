@@ -90,7 +90,7 @@
   * 3.6.4 Raw 포인터 vs Iterator 비교  
 
 ### Part 4. 포인터 사용 시 주의사항과 실수 방지
-* 4.1 초기화 누락 문제  
+* 4.1 [초기화 누락 문제](https://github.com/csbyun-data/Pointers/blob/main/PART4_01.md)  
 * 4.2 유효하지 않은 주소 참조  
 * 4.3 이중 해제 문제  
 * 4.4 메모리 누수 문제  
