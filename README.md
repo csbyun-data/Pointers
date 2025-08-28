@@ -75,7 +75,7 @@
   * 3.3.3 C++ 함수 객체 (Functor) 개념 및 구현  
   * 3.3.4 람다 표현식 소개
   * 3.3.5 람다와 캡쳐 방식
-* 3.4 C++ 동적 메모리 관리  
+* 3.4 [C++ 동적 메모리 관리](https://github.com/csbyun-data/Pointers/blob/main/PART3_04.md)  
   * 3.4.1 new/delete 연산자  
   * 3.4.2 객체 배열 동적 할당  
   * 3.4.3 생성자와 소멸자와 동적 메모리  
