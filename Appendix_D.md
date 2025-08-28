@@ -117,7 +117,7 @@ void insert(Node** head, int value) {
 
 다음 중 unique_ptr의 특징으로 옳지 않은 것은?
 
-a) 복사가 가능하다
-b) std::move()를 사용해 소유권 이전이 가능하다
-c) delete를 사용하지 않아도 자동으로 메모리가 해제된다
+a) 복사가 가능하다  
+b) std::move()를 사용해 소유권 이전이 가능하다  
+c) delete를 사용하지 않아도 자동으로 메모리가 해제된다  
 d) STL 컨테이너와 함께 사용할 수 있다
