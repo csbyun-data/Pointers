@@ -55,7 +55,7 @@
 * 2.3 [동적 2D 배열과 다차원 배열 관리](https://github.com/csbyun-data/Pointers/blob/main/PART2_03.md)  
 * 2.4 [문자열 처리 라이브러리 예제](https://github.com/csbyun-data/Pointers/blob/main/PART2_04.md)  
 * 2.5 [포인터 기반 버퍼 및 네트워크 데이터 처리](https://github.com/csbyun-data/Pointers/blob/main/PART2_05.md)  
-* 2.6 메모리 맵 탐색 및 구조체 메모리 관리
+* 2.6 [메모리 맵 탐색 및 구조체 메모리 관리](https://github.com/csbyun-data/Pointers/blob/main/PART2_06.md)  
   * 2.6.1 구조체 메모리 시각화 예제
 
 ### Part 3. C++ 포인터와 참조자 확장
