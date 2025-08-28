@@ -7,7 +7,7 @@ C 언어에서는 함수에 인자를 전달할 때 기본적으로 Call by Valu
 📘 C 언어: Call by Reference vs Call by Pointer
 📌 핵심 요약
 
-| 구분 | Call by Value | Call by Pointer | Call by Reference |
+| 구분 | Call by Value | Call by Reference(Call by Pointer) | Call by Reference |
 |------|----------------|------------------|--------------------|
 | C 언어 지원 | ✅ 지원 | ✅ 지원 | ❌ 직접 지원 안 함 |
 | 전달 방식 | 값 복사 | 주소 전달 | 참조 전달 (C++에서만 가능) |
