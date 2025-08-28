@@ -64,7 +64,7 @@
   * 3.1.2 참조자와 포인터 차이점  
   * 3.1.3 함수 매개변수로서의 참조자 (Call by Reference)  
   * 3.1.4 참조자의 한계와 제약  
-* 3.2 스마트 포인터  
+* 3.2 [스마트 포인터](https://github.com/csbyun-data/Pointers/blob/main/PART3_02.md)  
   * 3.2.1 std::unique_ptr  
   * 3.2.2 std::shared_ptr  
   * 3.2.3 std::weak_ptr  
