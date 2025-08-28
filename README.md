@@ -69,7 +69,7 @@
   * 3.2.2 std::shared_ptr  
   * 3.2.3 std::weak_ptr  
   * 3.2.4 스마트 포인터의 장단점과 사용법  
-* 3.3 함수 포인터와 함수 객체(Functors)  
+* 3.3 [함수 포인터와 함수 객체(Functors)](https://github.com/csbyun-data/Pointers/blob/main/PART3_03.md)  
   * 3.3.1 함수 포인터 정의와 활용  
   * 3.3.2 콜백 함수 구현  
   * 3.3.3 C++ 함수 객체 (Functor) 개념 및 구현  
