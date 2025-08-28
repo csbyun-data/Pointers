@@ -93,7 +93,7 @@
 * 4.1 [초기화 누락 문제](https://github.com/csbyun-data/Pointers/blob/main/PART4_01.md)  
 * 4.2 [유효하지 않은 주소 참조](https://github.com/csbyun-data/Pointers/blob/main/PART4_02.md)  
 * 4.3 [이중 해제 문제](https://github.com/csbyun-data/Pointers/blob/main/PART4_03.md)  
-* 4.4 [메모리 누수 문제](https://github.com/csbyun-data/Pointers/blob/main/PART4_04.md]  
+* 4.4 [메모리 누수 문제](https://github.com/csbyun-data/Pointers/blob/main/PART4_04.md)  
 * 4.5 [Dangling 포인터와 Wild 포인터](https://github.com/csbyun-data/Pointers/blob/main/PART4_05.md)  
 * 4.6 포인터 산술과 경계 검사 누락  
 * 4.7 다중 포인터 사용 시 주의점  
