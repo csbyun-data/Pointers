@@ -59,7 +59,7 @@
   * 2.6.1 구조체 메모리 시각화 예제
 
 ### Part 3. C++ 포인터와 참조자 확장
-* 3.1 C++ 참조자(Reference) 개념  
+* 3.1 [C++ 참조자(Reference) 개념](https://github.com/csbyun-data/Pointers/blob/main/PART3_01.md)  
   * 3.1.1 참조자 선언과 초기화  
   * 3.1.2 참조자와 포인터 차이점  
   * 3.1.3 함수 매개변수로서의 참조자 (Call by Reference)  
