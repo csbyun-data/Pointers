@@ -1,13 +1,12 @@
 # Pointers in C/C++
-### Part 0. [포인터 기본 개념](https://github.com/csbyun-data/Pointers/blob/main/PART0.md)
-* 0.1 포인터란 무엇인가  
-* 0.2 메모리와 변수, 주소 개념  
-* 0.3 변수와 포인터 관계  
-* 0.4 포인터가 필요한 이유  
-* 0.5 포인터 크기와 자료형  
-* 0.6 포인터와 메모리 레이아웃 이해  
-
 ### Part 1. C언어 포인터 기본과 활용
+* 1.0 [포인터 기본 개념](https://github.com/csbyun-data/Pointers/blob/main/PART1_00.md)
+  * 1.0.1 포인터란 무엇인가  
+  * 1.0.2 메모리와 변수, 주소 개념  
+  * 1.0.3 변수와 포인터 관계  
+  * 1.0.4 포인터가 필요한 이유  
+  * 1.0.5 포인터 크기와 자료형  
+  * 1.0.6 포인터와 메모리 레이아웃 이해  
 * 1.1 [변수 주소 구하기(&), 간접 참조(*)](https://github.com/csbyun-data/Pointers/blob/main/PART1_01.md)  
 * 1.2 [단일 포인터 선언 및 초기화](https://github.com/csbyun-data/Pointers/blob/main/PART1_02.md)  
 * 1.3 [포인터 연산과 산술 작업](https://github.com/csbyun-data/Pointers/blob/main/PART1_03.md)  
