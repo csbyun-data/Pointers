@@ -32,11 +32,14 @@ printf("%d, %p\n", *p, (void*)p);
 예제 1: 포인터를 이용한 값 출력
 ```c
 #include <stdio.h>
+
 int main() {
-    int x = 42;
-    int *ptr = &x;
-    printf("x의 값: %d, %p\n", *ptr, (void*)ptr); // 42
-    return 0;
+  int x = 42;
+  int *ptr = &x;
+
+  printf("x의 값: %d, %p\n", *ptr, (void*)ptr); // 42
+
+  return 0;
 }
 ```
 ###  1.0.2 메모리와 변수, 주소 개념
@@ -53,12 +56,15 @@ printf("x의 주소: %p\n", (void*)&x);
 예제 2: 변수의 주소 확인
 ```c
 #include <stdio.h>
+
 int main() {
-    int a = 7;
-    float b = 3.14;
-    printf("a의 주소: %p\n", (void*)&a);
-    printf("b의 주소: %p\n", (void*)&b);
-    return 0;
+  int a = 7;
+  float b = 3.14;
+
+  printf("a의 주소: %p\n", (void*)&a);
+  printf("b의 주소: %p\n", (void*)&b);
+
+  return 0;
 }
 ```
 
@@ -69,27 +75,34 @@ int main() {
 예제 3: 포인터를 이용한 값 변경
 ```c
 #include <stdio.h>
-int main() {
-    int a = 10;
-    int *p = &a;
 
-    printf("Before: a = %d\n", a);
-    *p = 20;  // p가 가리키는 주소의 값 변경
-    printf("After: a = %d\n", a);  // 20
-    return 0;
+int main() {
+  int a = 10;
+  int *p = &a;
+
+  printf("Before: a = %d\n", a);
+
+  *p = 20;  // p가 가리키는 주소의 값 변경
+
+  printf("After: a = %d\n", a);  // 20
+
+  return 0;
 }
 ```
 ### 1.0.4 포인터가 필요한 이유
 1. 함수 간 데이터 공유 (Call by Reference, 포인터 이용)
 ```c
 void modify(int *p) {
-    *p = 100;
+  *p = 100;
 }
 
 int main() {
-    int a = 5;
-    modify(&a);
-    printf("%d\n", a);  // 100
+  int a = 5;
+  
+  modify(&a);
+  printf("%d\n", a);  // 100
+
+  return 0;  
 }
 ```
 2. 동적 메모리 할당  
@@ -122,15 +135,17 @@ char arr[] = "Hello";    // 배열 (수정 가능)
 예제 4: 포인터 크기 확인
 ```c
 #include <stdio.h>
-int main() {
-    int *ip;
-    double *dp;
-    char *cp;
 
-    printf("int * 크기: %zu\n", sizeof(ip));
-    printf("double * 크기: %zu\n", sizeof(dp));
-    printf("char * 크기: %zu\n", sizeof(cp));
-    return 0;
+int main() {
+  int *ip;
+  double *dp;
+  char *cp;
+  
+  printf("int * 크기: %zu\n", sizeof(ip));
+  printf("double * 크기: %zu\n", sizeof(dp));
+  printf("char * 크기: %zu\n", sizeof(cp));
+  
+  return 0;
 }
 ```
 📌 sizeof(ip)는 포인터 자체의 크기, 즉 주소값의 크기를 나타냅니다.
@@ -181,6 +196,7 @@ int main() {
   printf("heap, heap_var  : %p\n", (void*)heap_var);
 
   free(heap_var);
+
   return 0;
 }
 ```
