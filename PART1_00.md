@@ -193,8 +193,10 @@ int main() {
 ```c
 // 함수 정의
 void add(int a, int b, int *result) {
-    // 구현
+    *result = a + b;
 }
+
+add( a, b, &result);
 ```
 3. 포인터를 이용해 문자열을 출력하는 코드를 작성하시오.
   (힌트: char *p = "Hello"; → while (*p) 루프 사용 가능)
