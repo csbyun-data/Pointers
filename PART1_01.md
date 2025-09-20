@@ -70,11 +70,11 @@ ptr가 가리키는 값: 42
 
 int main() {
     int num = 100;
-    int *ptr = &num;
+    int *ptr = &num;  // num의 주소를 ptr에 저장
 
     printf("num 초기 값: %d\n", num);
 
-    *ptr = 200;  // 포인터를 통해 값 변경
+    *ptr = 200;  // ptr가 가리키는 주소(num)에 200을 저장
 
     printf("num 변경된 값: %d\n", num);
 
