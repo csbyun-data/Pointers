@@ -74,12 +74,12 @@ p가 가리키는 값: 5
 #include <stdio.h>
 
 int main() {
-    int *ptr;  // 초기화되지 않음
-
-    *ptr = 100;  // 정의되지 않은 동작, 프로그램 크래시 가능
-    printf("%d\n", *ptr);
-
-    return 0;
+  int *ptr;  // 초기화되지 않음
+  
+  *ptr = 100;  // 정의되지 않은 동작, 프로그램 크래시 가능
+  printf("%d\n", *ptr);
+  
+  return 0;
 }
 ```
 
