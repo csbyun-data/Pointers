@@ -125,7 +125,9 @@ change_by_pointer()는 주소를 전달하므로 원본 값을 직접 바꿀 수
 2. 두 정수의 값을 포인터를 사용해 서로 교환(swap)하는 함수를 작성하세요.
 ```c
 void swap(int *a, int *b) {
-   // 코드 작성
+  int temp = *a;
+  *a = *b;
+  *b = temp;
 }
 ```
 
