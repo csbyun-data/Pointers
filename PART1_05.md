@@ -13,6 +13,28 @@ C 언어에서는 함수에 인자를 전달할 때 기본적으로 Call by Valu
 
 > ⚠️ C 언어는 **Call by Reference를 직접 지원하지 않으며**, 포인터를 사용하여 **참조처럼 동작**하게 만듭니다.  
 > ⚠️ C 언어는 Call by Pointer를 Call by Reference(포인터 이용)의 용어를 사용하며 설명 함
+```c
+// 함수 호출 방식 비교 (요약)
+int x = 10;
+
+f(x);      // Call by Value → x 복사됨
+f(&x);     // Call by Pointer → 주소 전달 (C에서 참조 효과)
+f(x);      // Call by Reference → C++만 가능 (실제 참조 전달)
+```
+```txt
+Call by Value:
++--------+         +--------+
+|   x    | ---->   |   10   |
++--------+         +--------+
+
+함수에서 복사됨
+
+Call by Pointer:
++--------+          +--------+          +--------+
+|   x    |  -->     |   p    |  -->     |   10   |
++--------+          +--------+          +--------+
+주소 전달 → 원본 직접 수정 가능
+```
 
 ### 1.5.1 Call by Value (값에 의한 전달)
 * 변수의 복사본이 함수에 전달됨.
@@ -101,7 +123,7 @@ int main() {
 
 void allocateArray(int **arr, int size) {
   *arr = (int *)malloc(size * sizeof(int));
-  if (arr == NULL) {
+  if (*arr == NULL) {
     printf("메모리 할당 실패\n");
     return 1;
    }
@@ -156,17 +178,58 @@ int main() {
 ✅ 연습 문제
 
 1. int x = 5, y = 10;을 교환하는 swap 함수를 Call by Reference(Pointer 이용)로 작성하세요.
-
+```c
+void swap(int *a, int *b) {
+  int temp = *a;
+  *a = *b;
+  *b = temp;
+}
+// call
+int x = 5, y = 10;
+swap(&x, &y);
+```
 2. int *p를 함수에 넘겨 20을 저장하도록 하세요.
+```c
+void setToTwenty(int *p) {
+  *p = 20;
+}
 
+// call
+int x;
+setToTwenty(&x);
+// x == 20
+```
 3. 함수에서 char *를 동적 할당 받아 "Hello"를 저장하고 출력하세요.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+void createHello(char **str) {
+  *str = (char *)malloc(6);  // "Hello" + '\0'
+  if (*str == NULL) return;
+  strcpy(*str, "Hello");
+}
+
+int main() {
+  char *message = NULL;
+  createHello(&message);
+
+  if (message != NULL) {
+    printf("%s\n", message);
+    free(message);
+  }
+  return 0;
+}
+```
 
 📚 요약
-> * C는 기본적으로 Call by Value.
-> * 포인터를 사용하면 Call by Reference처럼 동작 가능.
-> * C 언어는 Call by Reference를 직접 지원하지 않음
-> * 변수 값을 함수 내에서 변경하려면 주소를 전달해야 함.
-
-* C++에서는 & 참조 연산자를 통해 진짜 Call by Reference 구현 가능
+| 개념              | 설명                   | 예시                 |
+| --------------- | -------------------- | ------------------ |
+| Call by Value   | 값 복사, 원본 변경 불가       | `f(x)`             |
+| Call by Pointer | 주소 전달, 원본 변경 가능      | `f(&x)`            |
+| C에서의 Reference  | 직접 지원 X, 포인터로 우회     | `void f(int *p)`   |
+| 이중 포인터          | 포인터를 가리킴, 동적 할당 등 사용 | `void f(int **p)`  |
+| C++ 참조          | 참조 전달 문법 존재          | `void f(int &ref)` |
 
 * 메모리 할당 및 구조체 처리에도 필수적인 개념.
