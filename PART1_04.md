@@ -7,7 +7,7 @@ int **pp;
 이 경우, pp는 int * 타입의 포인터를 가리키는 포인터입니다.
 따라서 int 값에 도달하려면 **pp 와 같이 두 번 간접 참조를 해야 합니다.
 
-## 1.4.1 왜 이중 포인터가 필요할까?
+### 1.4.1 왜 이중 포인터가 필요할까?
 이중 포인터는 다음과 같은 상황에서 유용합니다:
 
 | 상황                     | 설명                                   |
@@ -63,7 +63,8 @@ int main() {
 
   printf("할당된 값: %d\n", *p);
 
-  free(p);  // 메모리 해제
+  if (p != NULL)
+    free(p);  // 메모리 해제
   return 0;
 }
 ```
@@ -115,9 +116,11 @@ int main() {
     }
 
     // 메모리 해제
-    for (int i = 0; i < rows; i++)
+    for (int i = 0; i < rows; i++) {
+      if (matrix[i] != NULL)
         free(matrix[i]);
-    free(matrix);
+    if (matrix != NULL)
+      free(matrix);
 
     return 0;
 }
