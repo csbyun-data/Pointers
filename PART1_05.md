@@ -12,7 +12,7 @@ C 언어에서는 함수에 인자를 전달할 때 기본적으로 Call by Valu
 | 문법 예시 | `int x;` | `int *px;` | `int &rx;` (C++) |
 
 > ⚠️ C 언어는 **Call by Reference를 직접 지원하지 않으며**, 포인터를 사용하여 **참조처럼 동작**하게 만듭니다.  
-> ⚠️ 주의요함! C 언어에서 Call by Pointer를 Call by Reference(포인터 이용)의 용어를 사용하며 설명 함
+> ⚠️ C 언어는 Call by Pointer를 Call by Reference(포인터 이용)의 용어를 사용하며 설명 함
 
 ### 1.5.1 Call by Value (값에 의한 전달)
 * 변수의 복사본이 함수에 전달됨.
