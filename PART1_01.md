@@ -149,10 +149,10 @@ void swap(int *a, int *b) {
 #include <stdio.h>
 
 int main() {
-    int *p = NULL;
+    int *p = NULL;  // 포인터 초기화: 아직 유효한 주소 없음
 
     if (p != NULL) {
-        printf("p가 가리키는 값: %d\n", *p);  // 안전
+        printf("p가 가리키는 값: %d\n", *p);  // 안전하게 접근
     } else {
         printf("p는 아직 유효한 주소를 가리키지 않습니다.\n");
     }
