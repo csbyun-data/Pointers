@@ -215,16 +215,33 @@ printf("%d", a);
 ```
 2. 두 개의 정수를 더하는 함수를 만들되, 포인터를 사용하여 결과를 호출자에게 전달하시오.
 ```c
-// 함수 정의
+#include <stdio.h>
+
 void add(int a, int b, int *result) {
     *result = a + b;
 }
 
-add( a, b, &result);
+int main() {
+    int x = 3, y = 4, sum = 0;
+    add(x, y, &sum);
+    printf("합계: %d\n", sum);
+    return 0;
+}
 ```
 3. 포인터를 이용해 문자열을 출력하는 코드를 작성하시오.  
   (힌트: char *p = "Hello"; → while (*p) 루프 사용 가능)
+```c
+#include <stdio.h>
 
+int main() {
+    char *p = "Hello";
+    while (*p) {
+        printf("%c ", *p);
+        p++;
+    }
+    return 0;
+}
+```
 📚 요약
 | 항목       | 설명                        |
 | -------- | ------------------------- |
