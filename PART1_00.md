@@ -236,7 +236,7 @@ int main() {
  int main() {
      char *str = "Hello";
      while (*str) {
-         printf("%c ", *p); //putchar(*str)
+         printf("%c ", *str); // or putchar(*str)
          str++;
      }
      return 0;
