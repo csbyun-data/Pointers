@@ -124,6 +124,7 @@ int main() {
 | 이중 해제               | 같은 포인터를 두 번 `free()` 하면 오류 발생     |
 | 잘못된 크기 계산           | 구조체나 포인터 크기 혼동 주의                 |
 
+### 1.9.2 메모리 누수 감지 프로그램 (Valgrind 사용 예시)
 예제 4: 잘못된 메모리 할당
 ```c
 #include <stdio.h>
@@ -143,7 +144,7 @@ int main() {
     return 0;
 }
 ```
-### 1.9.2 메모리 누수 감지 프로그램 (Valgrind 사용 예시)
+
 ```c
 #include <stdio.h>
 #include <stdlib.h>
