@@ -35,31 +35,39 @@ if (ptr == NULL) {
 }
 ```
 
-예제 1: 정수 5개를 동적으로 할당하여 입력/출력
+예제 1: N개의 정수를 입력받아 평균 계산하기
 ```c
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
-  int *arr = (int *)malloc(sizeof(int) * 5);
-  if (arr == NULL) {
+  int N;
+  printf("정수의 개수 N 입력: ");
+  scanf("%d", &N);
+  
+  int *arr = (int *)malloc(sizeof(int) * N);
+  if (!arr) {
     printf("메모리 할당 실패\n");
     return 1;
   }
-
-  printf("정수 5개 입력: ");
-  for (int i = 0; i < 5; i++) {
+  
+  printf("%d개의 정수를 입력하세요:\n", N);
+  for (int i = 0; i < N; i++) {
     scanf("%d", &arr[i]);
   }
-
-  printf("입력한 값: ");
-  for (int i = 0; i < 5; i++) {
-    printf("%d ", arr[i]);
+  
+  int sum = 0;
+  for (int i = 0; i < N; i++) {
+    sum += arr[i];
   }
-
-  free(arr);  // 반드시 해제
+  
+  double avg = (double)sum / N;
+  printf("평균: %.2f\n", avg);
+  
+  free(arr);
   return 0;
 }
+
 ```
 
 예제 2: calloc을 사용하여 초기화 상태 확인
@@ -134,6 +142,51 @@ int main() {
     return 0;
 }
 ```
+### 1.9.2 메모리 누수 감지 프로그램 (Valgrind 사용 예시)
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+void leak_example() {
+  int *data = (int *)malloc(sizeof(int) * 10);
+  if (!data) return;
+
+  for (int i = 0; i < 10; i++) {
+    data[i] = i;
+  }
+
+  // 의도적 누수: free(data); 를 하지 않음
+}
+
+int main() {
+  leak_example();
+  printf("메모리 누수 예제 실행 완료\n");
+  return 0;
+}
+```
+* Valgrind 사용 방법 (Linux/macOS)
+```bash
+gcc -g leak.c -o leak
+valgrind --leak-check=full ./leak
+```
+* Valgrind 결과 예시:
+```php
+==12345== 40 bytes in 1 blocks are definitely lost in loss record 1 of 1
+==12345==    at 0x4C2BBAF: malloc (vg_replace_malloc.c:xxx)
+==12345==    by 0x4011F6: leak_example (leak.c:5)
+==12345==    by 0x40122A: main (leak.c:13)
+```
+* 수정 후
+```
+free(data);  // 누수 방지
+```
+
+📚 정리 요약
+| 문제        | 사용 함수                        | 핵심 기능            | 주의사항                   |
+| --------- | ---------------------------- | ---------------- | ---------------------- |
+| N개 평균 계산  | `malloc`, `free`             | 입력 크기만큼 동적 배열 생성 | 평균 계산 시 `(double)` 사용  |
+| 배열 확장 입력  | `realloc`                    | 기존 배열을 2배 확장     | 실패 시 기존 메모리 해제 필요      |
+| 메모리 누수 점검 | `valgrind`, `malloc`, `free` | 누수 시각화 도구 활용     | 디버깅 필수, `free()` 누락 금지 |
 
 ✅ 연습 문제
 
