@@ -138,6 +138,6 @@ int main() {
 | 포인터를 구조체로 캐스팅      | 반드시 바이트 정렬, 주소 정합성 확인 필요                                     |
 
 * 메모리 레이아웃 시각 도구 (추천)
-> Godbolt Compiler Explorer
-> hexdump, gdb, xxd 등으로 메모리 확인 가능
-> 시뮬레이터: C 구조체 시각화 웹도구 (Visualgo 등)
+> Godbolt Compiler Explorer  
+> hexdump, gdb, xxd 등으로 메모리 확인 가능  
+> 시뮬레이터: C 구조체 시각화 웹도구 (Visualgo 등)  
