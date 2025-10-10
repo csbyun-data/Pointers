@@ -20,7 +20,8 @@
 * 1.7 [포인터와 배열](https://github.com/csbyun-data/Pointers/blob/main/PART1_07.md)  
   * 1.7.1 1차원 배열과 포인터  
   * 1.7.2 2차원 배열과 포인터  
-  * 1.7.3 배열 포인터 및 포인터 배열  
+  * 1.7.3 배열 포인터 및 포인터 배열
+  * 1.7.4 동적 2D 배열과 다차원 배열 관리  
 * 1.8 [포인터와 문자열](https://github.com/csbyun-data/Pointers/blob/main/PART1_08.md)  
   * 1.8.1 문자열 상수와 배열  
   * 1.8.2 문자열과 포인터 관계  
