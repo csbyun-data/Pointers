@@ -25,7 +25,8 @@
   * 1.8.1 문자열 상수와 배열  
   * 1.8.2 문자열과 포인터 관계  
   * 1.8.3 문자열 함수 구현 (strlen, strcpy, strcmp 등)  
-  * 1.8.4 동적 메모리 할당과 문자열 조작  
+  * 1.8.4 동적 메모리 할당과 문자열 조작
+  * 1.8.5 문자열 처리 라이브러리 예제
 * 1.9 [동적 메모리 할당과 해제](https://github.com/csbyun-data/Pointers/blob/main/PART1_09.md)  
 * 1.10 [메모리 할당 실수 방지와 안전한 포인터 사용](https://github.com/csbyun-data/Pointers/blob/main/PART1_10.md)  
   * 1.10.1 Null 포인터 점검  
@@ -52,7 +53,6 @@
   * 2.1.3 연결 리스트 삽입, 삭제 예제  
 * 2.2 [스택과 큐 구현](https://github.com/csbyun-data/Pointers/blob/main/PART2_02.md)  
 * 2.3 [동적 2D 배열과 다차원 배열 관리](https://github.com/csbyun-data/Pointers/blob/main/PART2_03.md)  
-* 2.4 [문자열 처리 라이브러리 예제](https://github.com/csbyun-data/Pointers/blob/main/PART2_04.md)  
 * 2.5 [포인터 기반 버퍼 및 네트워크 데이터 처리](https://github.com/csbyun-data/Pointers/blob/main/PART2_05.md)  
 * 2.6 [메모리 맵 탐색 및 구조체 메모리 관리](https://github.com/csbyun-data/Pointers/blob/main/PART2_06.md)  
   * 2.6.1 구조체 메모리 시각화 예제
