@@ -15,6 +15,8 @@ int **pp = &p;
 
 ### 1.4.1 왜 이중 포인터가 필요할까?
 이중 포인터는 다음과 같은 상황에서 유용합니다:
+> 이중 포인터는 포인터의 주소를 직접 다루기 때문에, 단순한 값 변경뿐 아니라
+> 포인터 자체를 새로운 메모리로 변경할 수 있습니다.
 
 | 사용 상황            | 설명                                                  |
 | ---------------- | --------------------------------------------------- |
@@ -26,6 +28,7 @@ int **pp = &p;
 ```c
 #include <stdio.h>
 
+// char *argv[] → char **argv로 컴파일러가 변환함
 int main(int argc, char **argv) {
     printf("프로그램 이름: %s\n", argv[0]);
 
@@ -76,6 +79,9 @@ num: 10
 예제 2: 단일 포인터 전달 (주소 변경되지 않음)
 * 포인터는 값에 의한 전달(pass by value) 이므로, 함수 내에서 포인터 자체를 바꾸려면 이중 포인터를 사용해야 합니다.
 ```c
+#include <stdio.h>
+#include <stdlib.h>
+
 void wrong_alloc(int *p) {
   p = malloc(sizeof(int)); // 지역 변수 p만 변경됨
   *p = 5;
@@ -86,6 +92,9 @@ int main() {
   wrong_alloc(ptr); // ptr은 여전히 NULL
   printf("%p\n", ptr); // NULL 출력
 }
+
+// 결과
+// (NULL 주소 출력) → 함수 안에서만 메모리 할당되고 main의 ptr은 여전희 NULL
 ```
 
 예제 3: 함수에서 포인터 값 변경하기
@@ -136,43 +145,47 @@ int main() {
 #include <stdlib.h>
 
 int main() {
-    int rows = 2, cols = 3;
+  int rows = 2, cols = 3;
 
-    int **matrix = (int **)malloc(rows * sizeof(int *));
-    if (matrix == NULL) {
-        printf("matrix 메모리 할당 실패\n");
-        return 1;
-    }
-    for (int i = 0; i < rows; i++) {
-        matrix[i] = (int *)malloc(cols * sizeof(int));
-        if (matrix[i] == NULL) {
-            printf("matrix[%d] 메모리 할당 실패\n", i);
-            return 1;
-        }
-    }
-
-    // 값 저장
-    for (int i = 0; i < rows; i++)
-        for (int j = 0; j < cols; j++)
-            matrix[i][j] = i * cols + j;
-
-    // 출력
-    for (int i = 0; i < rows; i++) {
-        for (int j = 0; j < cols; j++) {
-            printf("%d ", matrix[i][j]);
-        }
-        printf("\n");
-    }
-
-    // 메모리 해제
-    for (int i = 0; i < rows; i++) {
-      if (matrix[i] != NULL)
-        free(matrix[i]);
-    }
-    if (matrix != NULL)
+  int **matrix = (int **)malloc(rows * sizeof(int *));
+  if (matrix == NULL) {
+    printf("matrix 메모리 할당 실패\n");
+    return 1;
+  }
+  for (int i = 0; i < rows; i++) {
+    matrix[i] = (int *)malloc(cols * sizeof(int));
+    if (matrix[i] == NULL) {
+      for (int j = 0; j < i; j++)
+        free(matrix[j]);
       free(matrix);
 
-    return 0;
+      printf("matrix[%d] 메모리 할당 실패\n", i);
+      return 1;
+    }
+  }
+
+  // 값 저장
+  for (int i = 0; i < rows; i++)
+    for (int j = 0; j < cols; j++)
+      matrix[i][j] = i * cols + j;
+
+  // 출력
+  for (int i = 0; i < rows; i++) {
+    for (int j = 0; j < cols; j++) {
+      printf("%d ", matrix[i][j]);
+    }
+    printf("\n");
+  }
+
+  // 메모리 해제
+  for (int i = 0; i < rows; i++) {
+    if (matrix[i] != NULL)
+      free(matrix[i]);
+  }
+  if (matrix != NULL)
+    free(matrix);
+
+  return 0;
 }
 ```
 
@@ -192,6 +205,8 @@ char *arr1[3] = {"one", "two", "three"};
 // 이중 포인터: 포인터 하나를 가리키는 포인터
 char **ptr = arr1;
 ```
+* 포인터 배열은 스택에 존재하지만, 각 포인터가 가리키는 문자열은 힙 또는 상수 영역에 존재할 수 있다.
+
 📌 비교: 포인터 배열 vs 이중 포인터
 | 구분        | 포인터 배열 (`char *arr[3]`)  | 이중 포인터 (`char **pp`)       |
 | --------- | ------------------------ | -------------------------- |
@@ -204,13 +219,34 @@ char **ptr = arr1;
 ```c
 int **make_matrix(int rows, int cols) {
     int **m = malloc(rows * sizeof(int *));
+    if (m == NULL) return NULL;
+
     for (int i = 0; i < rows; i++)
         m[i] = malloc(cols * sizeof(int));
     return m;
 }
+
+//..
+int **mat = make_matrix(2, 3);
+mat[0][0] = 1;
 ```
 * int (*m)[cols] 방식(고정 크기 2차원 배열 포인터)과는 다릅니다.
   위 예제는 “각 행이 따로 동적 할당된 독립 블록”입니다.
+
+
+| 항목     | 포인터 배열                   | 이중 포인터              |
+| ------ | ------------------------ | ------------------- |
+| 구조     | 포인터들의 배열                 | 포인터를 가리키는 포인터       |
+| 선언 방식  | `char *arr[3];`          | `char **pp;`        |
+| 메모리 모델 | 스택 배열 (포인터는 힙을 가리킬 수 있음) | 포인터 하나를 가리키는 구조     |
+| 사용 예   | argv, 문자열 테이블 등          | malloc 함수, 포인터 변경 등 |
+
+
+💡 요약
+> * 이중 포인터 (int **pp): 포인터를 가리키는 포인터
+> * 포인터 자체를 수정하고 싶을 때 (함수 내 포인터 수정)
+> * 포인터 배열 처리
+> * 문자열 배열이나 argv 처리 시에도 사용.
   
 ✅ 연습 문제
 
@@ -232,40 +268,34 @@ printf("%d\n", **pp);  // 100
 #include <stdlib.h>
 
 int main() {
-    int *arr = NULL;
-    int **pp = &arr;
+  int *arr = NULL;
+  int **pp = &arr;
 
-    *pp = (int *)malloc(5 * sizeof(int));
-    if (*pp == NULL) {
-        printf("메모리 할당 실패\n");
-        return 1;
-    }
+  *pp = (int *)malloc(5 * sizeof(int));
+  if (*pp == NULL) {
+    printf("메모리 할당 실패\n");
+    return 1;
+  }
+  printf("주소: %p\n", (void*)*pp);
 
-    for (int i = 0; i < 5; i++) {
-        (*pp)[i] = i * 10;
-    }
+  for (int i = 0; i < 5; i++) {
+    (*pp)[i] = i * 10;
+  }
 
-    for (int i = 0; i < 5; i++) {
-        printf("%d ", arr[i]);  // 또는 (*pp)[i]
-    }
-    printf("\n");
+  for (int i = 0; i < 5; i++) {
+    printf("%d ", arr[i]);  // 또는 (*pp)[i]
+  }
+  printf("\n");
 
-    free(arr);
-    return 0;
+  free(arr);
+  return 0;
 }
 ```
+
 3. 포인터 배열과 이중 포인터의 차이점을 비교해보세요.
+```c
+char *arr[2] = {"A", "B"};
+char **pp = arr;
+printf("%s %s\n", arr[0], pp[1]); // 동일 출력
+```
 
-| 항목     | 포인터 배열                   | 이중 포인터              |
-| ------ | ------------------------ | ------------------- |
-| 구조     | 포인터들의 배열                 | 포인터를 가리키는 포인터       |
-| 선언 방식  | `char *arr[3];`          | `char **pp;`        |
-| 메모리 모델 | 스택 배열 (포인터는 힙을 가리킬 수 있음) | 포인터 하나를 가리키는 구조     |
-| 사용 예   | argv, 문자열 테이블 등          | malloc 함수, 포인터 변경 등 |
-
-
-💡 요약
-> * 이중 포인터 (int **pp): 포인터를 가리키는 포인터
-> * 포인터 자체를 수정하고 싶을 때 (함수 내 포인터 수정)
-> * 포인터 배열 처리
-> * 문자열 배열이나 argv 처리 시에도 사용.
