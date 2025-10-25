@@ -183,6 +183,7 @@ int main() {
 | 메모리 누수                                | `malloc`한 행마다 `free` 필요    |
 | 간접 참조 오용 (`*p` vs `**pp`)             | 포인터 대상과 주소 대상 혼동 주의        |
 
+
 ### 1.4.2 포인터 배열 vs 이중 포인터 요약 비교표
 ```c
 // 포인터 배열: 여러 포인터 저장하는 배열
@@ -199,6 +200,18 @@ char **ptr = arr1;
 | 주요 사용처    | 문자열 리스트, 테이블, argv 등     | 함수 인자 전달, 2차원 배열, 포인터 수정 등 |
 | 예시        | `char *fruits[] = {...}` | `char **pp = fruits;`      |
 
+### 1.4.3 동적 2차원 배열(이중 포인터 활용 패턴)
+```c
+int **make_matrix(int rows, int cols) {
+    int **m = malloc(rows * sizeof(int *));
+    for (int i = 0; i < rows; i++)
+        m[i] = malloc(cols * sizeof(int));
+    return m;
+}
+```
+* int (*m)[cols] 방식(고정 크기 2차원 배열 포인터)과는 다릅니다.
+  위 예제는 “각 행이 따로 동적 할당된 독립 블록”입니다.
+  
 ✅ 연습 문제
 
 1. 다음 코드의 출력 결과는?
