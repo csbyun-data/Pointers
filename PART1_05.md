@@ -120,8 +120,8 @@ int main() {
 #include <stdio.h>
 #include <stdlib.h>
 
-void allocateArray(int **arr, int size) {
-  *arr = (int *)malloc(size * sizeof(int));
+int allocateArray(int **arr, int size) {
+  *arr = malloc(size * sizeof(int)); // C++ type code, (int *)malloc(size * sizeof(int));
   if (*arr == NULL) {
     printf("메모리 할당 실패\n");
     return 1;
@@ -129,11 +129,13 @@ void allocateArray(int **arr, int size) {
   for (int i = 0; i < size; i++) {
     (*arr)[i] = i * 10;
   }
+  return 0;
 }
 
 int main() {
   int *numbers = NULL;
-  allocateArray(&numbers, 5);
+  if (allocateArray(&numbers, 5) > 0)
+    return 1;
 
   for (int i = 0; i < 5; i++) {
     printf("%d ", numbers[i]);
