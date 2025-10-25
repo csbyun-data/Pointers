@@ -1,5 +1,5 @@
 ## 1.4 이중 포인터 이해  
-이중 포인터(Double Pointer)는 포인터를 가리키는 포인터입니다.
+이중 포인터(Double Pointer)는 포인터를 가리키는 포인터입니다.  
 즉, 포인터의 주소를 저장하는 포인터입니다.
 | 개념     | 설명                          |
 | ------ | --------------------------- |
@@ -15,7 +15,7 @@ int **pp = &p;
 
 ### 1.4.1 왜 이중 포인터가 필요할까?
 이중 포인터는 다음과 같은 상황에서 유용합니다:
-> 이중 포인터는 포인터의 주소를 직접 다루기 때문에, 단순한 값 변경뿐 아니라
+> 이중 포인터는 포인터의 주소를 직접 다루기 때문에, 단순한 값 변경뿐 아니라  
 > 포인터 자체를 새로운 메모리로 변경할 수 있습니다.
 
 | 사용 상황            | 설명                                                  |
@@ -218,12 +218,12 @@ char **ptr = arr1;
 ### 1.4.3 동적 2차원 배열(이중 포인터 활용 패턴)
 ```c
 int **make_matrix(int rows, int cols) {
-    int **m = malloc(rows * sizeof(int *));
-    if (m == NULL) return NULL;
-
-    for (int i = 0; i < rows; i++)
-        m[i] = malloc(cols * sizeof(int));
-    return m;
+  int **m = malloc(rows * sizeof(int *));
+  if (m == NULL) return NULL;
+  
+  for (int i = 0; i < rows; i++)
+    m[i] = malloc(cols * sizeof(int));
+  return m;
 }
 
 //..
