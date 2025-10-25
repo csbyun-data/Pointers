@@ -21,7 +21,7 @@ int main() {
 
   printf("a의 값: %d\n", a);
   printf("a의 주소: %p\n", (void*)&a); // %p는 포인터(주소) 출력
-
+  // (표준적으로 %p에는 (void*)를 사용하는 것이 권장 됩니다.)
   return 0;
 }
 ```
@@ -41,6 +41,7 @@ int main() {
 
   printf("x의 주소: %p\n", &x);
   printf("y의 주소: %p\n", &y);
+  printf("주소 차이: %td\n", (char *)&y - (char *)&x);
 
   return 0;
 }
@@ -55,7 +56,7 @@ int main() {
 
 int main() {
   int a = 42;
-  int *ptr = &a;  // a의 주소를 p에 저장
+  int *ptr = &a;  // a의 주소를 ptr에 저장
   
   printf("a의 주소: %p\n", &a);
   printf("ptr가 가리키는 주소: %p\n", ptr);
@@ -81,7 +82,7 @@ int main() {
 
     printf("num 초기 값: %d\n", num);
 
-    *ptr = 200;  // ptr가 가리키는 주소(num)에 200을 저장
+    *ptr = 200;  // ptr가 가리키는 주소(num)에 200을 저장, 즉 num = 200; 동일한 효과
 
     printf("num 변경된 값: %d\n", num);
 
@@ -139,6 +140,14 @@ void swap(int *a, int *b) {
   *a = *b;
   *b = temp;
 }
+
+int main() {
+  int a=3, b=5;
+  swap(&a, &b);
+  printf("a=%d, b=%d\n", a, b); // a=5, b=4
+
+  return 0;
+}
 ```
 
 3. 세 개의 정수를 선언하고 각각 포인터를 사용해 주소와 값을 출력해보세요.  
@@ -147,9 +156,9 @@ void swap(int *a, int *b) {
 int a = 1, b = 2, c = 3;
 int *pa = &a, *pb = &b, *pc = &c;
 
-printf("a: %d, 주소: %p\n", *pa, pa);
-printf("b: %d, 주소: %p\n", *pb, pb);
-printf("c: %d, 주소: %p\n", *pc, pc);
+printf("a: %d, 주소: %p, 포인터 크기: %zu\n", *pa, pa, sizeof(pa));
+printf("b: %d, 주소: %p, 포인터 크기: %zu\n", *pb, pb, sizeof(pb));
+printf("c: %d, 주소: %p, 포인터 크기: %zu\n", *pc, pc, sizeof(pc));
 ```
 
 📚 요약
@@ -166,15 +175,16 @@ printf("c: %d, 주소: %p\n", *pc, pc);
 #include <stdio.h>
 
 int main() {
-    int *p = NULL;  // 포인터 초기화: 아직 유효한 주소 없음
+  int *ptr = NULL;  // 포인터 초기화: 아직 유효한 주소 없음
 
-    if (p != NULL) {
-        printf("p가 가리키는 값: %d\n", *p);  // 안전하게 접근
-    } else {
-        printf("p는 아직 유효한 주소를 가리키지 않습니다.\n");
-    }
+  if (ptr != NULL) {
+    printf("ptr가 가리키는 값: %d\n", *ptr);  // 안전하게 접근
+  } else {
+    // NULL 포인터 역참조는 세그먼테이션 오류를 유발할 수 있음    
+    printf("ptr는 아직 유효한 주소를 가리키지 않습니다.\n");
+  }
 
-    return 0;
+  return 0;
 }
 ```
-
+* C++에서는 NULL 대신 nullptr 사용을 권장합니다.
