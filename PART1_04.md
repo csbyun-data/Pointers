@@ -94,7 +94,7 @@ int main() {
 }
 
 // 결과
-// (NULL 주소 출력) → 함수 안에서만 메모리 할당되고 main의 ptr은 여전희 NULL
+// (NULL 주소 출력) → 함수 안에서만 메모리 할당되고 main의 ptr은 여전히 NULL
 ```
 
 예제 3: 함수에서 포인터 값 변경하기
@@ -221,8 +221,14 @@ int **make_matrix(int rows, int cols) {
   int **m = malloc(rows * sizeof(int *));
   if (m == NULL) return NULL;
   
-  for (int i = 0; i < rows; i++)
+  for (int i = 0; i < rows; i++) {
     m[i] = malloc(cols * sizeof(int));
+    if (m[i] == NULL) {
+       free(m[]);
+       free(m);
+       return NULL;
+    }
+  }
   return m;
 }
 
