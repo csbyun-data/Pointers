@@ -207,7 +207,7 @@ int global_var = 100; // 데이터 영역
 int main() {
   int local_var = 10;        // 스택
   int *heap_var = malloc(sizeof(int)); // 힙
-  if (heap_var != NULL) return 1;
+  if (heap_var == NULL) return 1;
   *heap_var = 20;
 
   printf("data, global_var: %p\n", (void*)&global_var);
