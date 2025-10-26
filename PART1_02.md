@@ -132,7 +132,7 @@ void show_address(int *p) {
 
 int main() {
   int num = 123;
-  show_address(&num); //호출 시 &num을 전달하면 포인터 매개변수가 주소를 반는다.
+  show_address(&num); //호출 시 &num을 전달하면 포인터 매개변수가 주소를 받는다.
 
   return 0;
 }
@@ -143,7 +143,7 @@ int main() {
 #include <stdlib.h>
 
 int main() {
-  int *ptr = (int *)malloc(sizeof(int));
+  int *ptr = malloc(sizeof(int)); // (int *)malloc(sizeof(int));
   if (ptr == NULL) {
     printf("메모리 할당 실패\n");
     return 1;
@@ -169,7 +169,7 @@ int main() {
 | 포인터 초기화  | 주소 연산자 `&`를 사용하여 변수의 주소로 초기화   | `p = &x;`                       |
 | 역참조(`*`) | 포인터가 가리키는 주소의 **값**에 접근 또는 수정  | `*p = 10;`, `printf("%d", *p);` |
 | NULL 포인터 | 유효한 주소가 없음을 명시, 반드시 사용 전 검사 필요 | `if (p != NULL)`                |
-| 주의사항     | 초기화되지 않은 포인터는 **절대 사용 금지**, NULL 초기화 습관화     | `int *p = NULL;` → 검사 후 사용      |
+| 주의사항     | 초기화되지 않은 포인터는 **절대 사용 금지**, NULL 초기화 습관화     | `int *p = NULL;`, `int *p = &var;` |
 
 ✅ 연습 문제
 1. 두 개의 int형 변수 a, b를 선언하고, 포인터를 사용해 두 변수의 값을 서로 바꾸는 코드를 작성해보세요.
