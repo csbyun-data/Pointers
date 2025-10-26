@@ -33,7 +33,7 @@ int b;
 ### 1.2.2 포인터 초기화
 * 포인터를 선언만 하고 초기화하지 않으면, **쓰레기 주소(undefined memory)**를 가리켜 프로그램 오류의 원인이 된다.
 > 포인터는 반드시 유효한 메모리 주소 또는 NULL로 초기화해야 합니다.  
-> 포기화되지 않은 포인터는 'dangling pointer'상태로 불안정합니다.
+> 초기화되지 않은 포인터는 'dangling pointer'상태로 불안정합니다.
 
 예제 2 : 안전한 초기화
 ```c
@@ -59,7 +59,7 @@ int main() {
   int *p = &x;
 
   printf("x의 값: %d\n", x);
-  printf("x의 주소: %p\n", (vod*)&x);
+  printf("x의 주소: %p\n", (void*)&x);
   printf("p가 저장한 주소: %p\n", p);
   printf("p가 가리키는 값: %d\n", *p);
 
