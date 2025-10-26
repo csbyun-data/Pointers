@@ -141,7 +141,7 @@ void swap(int *a, int *b) {
 int main() {
   int a=3, b=5;
   swap(&a, &b);
-  printf("a=%d, b=%d\n", a, b); // a=5, b=4
+  printf("a=%d, b=%d\n", a, b); // a=5, b=3
 
   return 0;
 }
