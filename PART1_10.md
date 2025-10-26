@@ -67,8 +67,8 @@ int main() {
   printf("\ncalloc: ");
   for (int i = 0; i < 5; i++) printf("%d ", b[i]);  // 0
 
-  free(a);
-  free(b);
+  free(a); a = NULL;
+  free(b); b = NULL;
   return 0;
 }
 ```
@@ -82,7 +82,7 @@ int main() {
   int *p = (int *)malloc(sizeof(int) * 3);
   p[0] = 100;
 
-  free(p);
+  free(p); p = NULL;
   // printf("%d", p[0]);  // ❌ dangling pointer 오류 발생 가능
 
   p = NULL;  // ✅ 안전하게 무효화
