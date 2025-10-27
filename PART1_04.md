@@ -224,7 +224,8 @@ int **make_matrix(int rows, int cols) {
   for (int i = 0; i < rows; i++) {
     m[i] = malloc(cols * sizeof(int));
     if (m[i] == NULL) {
-       free(m[]);
+       for (int j = 0; j < i; j++)
+         free(m[j]);
        free(m);
        return NULL;
     }
@@ -260,7 +261,7 @@ int a = 100;
 int *p = &a;
 int **pp = &p;
 
-printf("%p\n", pp);    // pp의 주소
+printf("%p\n", (void*)pp);    // pp의 주소
 printf("%p\n", *pp);   // p의 주소 = &a
 printf("%d\n", **pp);  // 100
 ```
