@@ -88,7 +88,8 @@ int main() {
   FILE *fp = fopen("people.txt", "r");
 
   for (int i = 0; i < 2; i++) {
-    fscanf(fp, "%s %d", list[i].name, &list[i].age);
+    if (fscanf(fp, "%19s %d", list[i].name, &list[i].age) != 2)
+    { /* 오류 처리 */ }
   }
 
   fclose(fp);
@@ -126,9 +127,10 @@ int main() {
   Person *list = NULL;
   int count = 0;
 
-  while (!feof(fp)) {
-    list = realloc(list, (count + 1) * sizeof(Person));
-    fscanf(fp, "%s %d", list[count].name, &list[count].age);
+  while (fscanf(fp, "%19s %d", list[count].name, &list[count].age) == 2) {
+    Person *tmp = realloc(list, (count + 1) * sizeof(Person));
+    if (!tmp) { free(list); /* 오류 처리 */ }
+    list = tmp;
     count++;
   }
 
@@ -153,14 +155,16 @@ typedef struct {
 int main() {
   Person people[2] = {{"Alice", 28}, {"Bob", 35}};
   FILE *fp = fopen("people.bin", "wb");
-  fwrite(people, sizeof(Person), 2, fp);
+  size_t written = fwrite(people, sizeof(Person), 2, fp);
+  if (written != 2) { /* 오류 처리 */ }
   fclose(fp);
 
   // 읽기
   Person read_people[2];
   fp = fopen("people.bin", "rb");
-  fread(read_people, sizeof(Person), 2, fp);
-  fclose(fp);
+  size_t read = fread(read_people, sizeof(Person), 2, fp);
+  if (read != 2) { /* 오류 처리 */ }
+  fclose(fp); fp = NULL;
 
   for (int i = 0; i < 2; i++) {
     printf("%s (%d)\n", read_people[i].name, read_people[i].age);
