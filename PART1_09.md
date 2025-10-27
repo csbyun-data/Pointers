@@ -8,12 +8,14 @@
 * 반환 타입은 void*이며, 사용 시 형변환 필요.
 ```c
 int *arr = (int *)malloc(sizeof(int) * 5);
+if(arr == NULL) return 1;  // if (!arr) 사용 가능
 ```
 
 ✅ calloc()
 * malloc과 유사하지만, 초기화를 0으로 자동 수행.
 ```c
 int *arr = (int *)calloc(5, sizeof(int));  // 5개의 int 공간 0으로 초기화
+if(arr == NULL) return 1;  // if (!arr) 사용 가능
 ```
 
 ✅ realloc()
@@ -21,16 +23,21 @@ int *arr = (int *)calloc(5, sizeof(int));  // 5개의 int 공간 0으로 초기�
 * 기존 데이터를 유지하면서 새 공간으로 복사함.
 ```c
 arr = (int *)realloc(arr, sizeof(int) * 10);
+if(arr == NULL) return 1;  // if (!arr) 사용 가능
 ```
 
 ✅ free()
 * malloc이나 calloc으로 할당한 메모리를 해제.
-* free(arr);
+```c
+free(arr);
+arr = NULL;
+```
+* free() 후 포인터를 NULL로 초기화하면 dangling pointer 방지
 
 🔎 메모리 할당 후 반드시 체크할 것!
 ```c
 int *ptr = (int *)malloc(sizeof(int) * 10);
-if (ptr == NULL) {
+if (ptr == NULL) {  // if (!ptr) 동일 표현
     printf("메모리 할당 실패\n");
     exit(1);
 }
@@ -219,5 +226,31 @@ free(data);  // 누수 방지
 1. 사용자로부터 정수 N을 입력받고, N개의 정수를 입력받아 평균을 계산하는 프로그램을 작성해보세요.
 
 2. realloc을 이용해 5개의 정수를 입력받고, 배열을 10개로 확장해 다시 입력받아 전체 출력해보세요.
+```c
+#include <stdio.h>
+#include <stdlib.h>
 
-3. 메모리 누수를 감지하기 위한 프로그램을 작성해보고, valgrind와 같은 도구로 점검해보세요.
+int main() {
+  int *arr = (int *)malloc(sizeof(int) * 5);
+  if(arr == NULL) return 1;
+  for (int i = 0; i < 5; i++)
+    scanf("%d", &arr[i]);
+  
+  int *tmp = (int *)realloc(arr, sizeof(int) * 10);
+  if (!tmp) { free(arr); return 1; }
+  arr = tmp;
+  
+  printf("추가 5개 입력: ");
+  for (int i = 5; i < 10; i++)
+    scanf("%d", &arr[i]);
+  
+  for (int i = 0; i < 10; i++)
+    printf("%d ", arr[i]);
+  free(arr);
+  arr = NULL; // dangling pointer 방지
+
+  return 0;
+}
+```
+
+4. 메모리 누수를 감지하기 위한 프로그램을 작성해보고, valgrind와 같은 도구로 점검해보세요.
