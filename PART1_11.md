@@ -7,10 +7,7 @@
 ```c
 #include <stdio.h>
 
-struct Point {
-  int x;
-  int y;
-};
+struct Point { int x; int y; };
 
 int main() {
   struct Point p1 = {10, 20};
@@ -22,10 +19,8 @@ int main() {
 * . 연산자로 멤버에 접근합니다.
 * struct 키워드 생략하려면 typedef 사용:
 ```c
-typedef struct {
-  int x;
-  int y;
-} Point;
+typedef struct { int x; int y; } Point;
+Point p2 = {30, 40};
 ```
 
 ### 1.11.2 구조체 포인터 선언과 사용
@@ -33,15 +28,11 @@ typedef struct {
 ```c
 #include <stdio.h>
 
-typedef struct {
-  int x;
-  int y;
-} Point;
+typedef struct { int x; int y; } Point;
 
 int main() {
   Point p = {10, 20};
   Point *ptr = &p;
-
   printf("x: %d, y: %d\n", ptr->x, ptr->y);  // -> 연산자 사용
   return 0;
 }
