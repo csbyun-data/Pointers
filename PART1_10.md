@@ -6,7 +6,7 @@
 ✅ 안전한 코드
 ```c
 int *ptr = (int *)malloc(sizeof(int) * 5);
-if (ptr == NULL) {
+if (ptr == NULL) {  // if (!ptr) 동일 표현
   fprintf(stderr, "메모리 할당 실패\n");
   exit(1);
 }
@@ -20,6 +20,7 @@ if (ptr == NULL) {
 for (int i = 0; i < 5; i++) arr[i] = 0;
 
 // 방법 2: calloc 사용
+int *arr1 = malloc(5 * sizeof(int)); // 쓰레기 값
 int *arr = (int *)calloc(5, sizeof(int));  // 자동 0 초기화
 ```
 
@@ -44,11 +45,25 @@ free(ptr);  // 두 번째 호출은 오류
 free(ptr);
 ptr = NULL;
 ```
+```c
+void safe_free(int **p) {
+  if (*p != NULL) {
+    free(*p);
+    *p = NULL;
+  }
+}
+```
 ### 1.10.5 메모리 누수 방지  
 * malloc()으로 메모리를 할당했지만 free()하지 않으면 메모리 누수 발생.
 ✅ 일반적인 해결 방법
-
 함수 종료 전 free() 호출
+```c
+int *data = malloc(100 * sizeof(int));
+if (!data) exit(1);
+// 사용
+free(data);
+data = NULL;
+```
 
 ### 1.10.6 구조화된 자원 관리 방식(RAII, 스마트 포인터 등) 사용
 
@@ -133,6 +148,36 @@ int main() {
     // 사용
     free(data);  // ✅ 반드시 해제
   }
+  return 0;
+}
+```
+
+예제 5: 안전한 동적 메모리 사용 패턴
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main() {
+  int n = 5;
+  
+  // 1. 메모리 할당 + 초기화
+  int *arr = calloc(n, sizeof(int)); // 자동 0 초기화
+  if (!arr) {
+    fprintf(stderr, "메모리 할당 실패\n");
+    return 1;
+  }
+
+  // 2. 배열 사용
+  for (int i = 0; i < n; i++) arr[i] = i * 10;
+
+  // 3. 배열 출력
+  for (int i = 0; i < n; i++) printf("%d ", arr[i]);
+  printf("\n");
+
+  // 4. 안전하게 해제
+  free(arr);
+  arr = NULL; // Dangling pointer 방지
+
   return 0;
 }
 ```
