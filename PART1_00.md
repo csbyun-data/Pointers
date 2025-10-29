@@ -79,12 +79,12 @@ int main() {
 
 int main() {
   int a = 10;
-  int *p = &a;
+  int *p = &a; // int *p; 포인터 선언, p = &a; 포인터 변수 초기화
 
   printf("Before: a = %d\n", a);
   printf("p의 value(address): %p\n", (void*)p);
 
-  *p = 20;  // p가 가리키는 메모리의 값을 변경
+  *p = 20;  // p가 가리키는 메모리의 값을 변경, 역참조
 
   printf("After: a = %d\n", a);  // 20
 
