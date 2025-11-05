@@ -242,7 +242,9 @@ int main() {
 > fgets() 문자열 입력  
 > strtok() 공백 기준 토큰 분리, 첫 호출 시 문자열, 이후 호출 시 NULL 전달  
 > 공백 외에도 strtok(input, " ,.;")처럼 다양한 구분자 가능  
-> 입력 문자열 끝의 개행문자 제거, strlen()으로 확인 후 처리   
+> 입력 문자열 끝의 개행문자 제거, strlen()으로 확인 후 처리
+
+예제 4: 사용자 입력 문자열 토큰화
 ```c
 #include <stdio.h>
 #include <string.h>
@@ -274,9 +276,31 @@ int main() {
   return 0;
 }
 ```
-* CSV 파싱: strtok()로 , 기준 분리
+예제 5: CSV 파싱: strtok()로 , 기준 분리
+```c
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+  char input[100];
+  printf("CSV 입력 (예: apple,banana,grape): ");
+  if (fgets(input, sizeof(input), stdin)) {
+    size_t len = strlen(input);
+    if (len > 0 && input[len - 1] == '\n') input[len - 1] = '\0';
+
+    char *token = strtok(input, ",");
+    while (token) {
+      printf("과일: %s\n", token);
+      token = strtok(NULL, ",");
+    }
+  }
+  return 0;
+}
+```
 * 동적 버퍼: 입력이 매우 길 경우 getline() 또는 malloc + realloc 사용
 * 토큰 개수 카운트: 배열에 저장 후 정렬 가능
+* CSV 파싱 심화 (파일에서 읽기)
 
 📚 정리 요약
 | 문제          | 핵심 개념            | 사용 포인터                  | 주의사항             |
