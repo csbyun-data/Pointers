@@ -113,7 +113,7 @@ int main() {
 
   printf("할당된 값: %d\n", *ptr);
 
-  if (p != NULL) {
+  if (ptr != NULL) {
     free(ptr);  // 메모리 해제
     ptr = NULL;
   }
