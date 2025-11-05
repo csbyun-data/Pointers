@@ -30,16 +30,26 @@ int **pp = &p;
 
 // char *argv[] → char **argv로 컴파일러가 변환함
 int main(int argc, char **argv) {
-    printf("프로그램 이름: %s\n", argv[0]);
+  printf("프로그램 이름: %s\n", argv[0]);
 
-    for (int i = 1; i < argc; i++) {
-        printf("인자 %d: %s\n", i, argv[i]);
-    }
+  for (int i = 1; i < argc; i++) {
+    printf("인자 [%d]: %s\n", i, argv[i]);
+  }
 
-    return 0;
+  return 0;
 }
 ```
+✔ 실행 결과:
+```txt
+$ ./program hello world
+argc = 3
+argv[0] = ./program
+argv[1] = hello
+argv[2] = world
+```
 📌 이 코드는 실제 char *argv[] 가 char **argv 로 해석된다는 걸 실습으로 보여줍니다.
+* argv는 프로그램 실행 시 전달된 인자들을 담은 포인터 배열.
+* argv[i]는 char *타입으로, 문자열을 가리킴.
 
 예제 1: 기본 개념 이해
 ```c
