@@ -197,7 +197,7 @@ int main() {
 
   // strncpy는 최대 n개 복사하지만 널 종료는 보장하지 않음
   strncpy(dest, src, sizeof(dest) - 1);
-  est[sizeof(dest) - 1] = '\0';  // 반드시 종료 문자 추가
+  dest[sizeof(dest) - 1] = '\0';  // 반드시 종료 문자 추가
 
   printf("Copied safely: %s\n", dest);
   return 0;
