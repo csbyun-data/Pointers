@@ -108,19 +108,20 @@ void correct_alloc(int **ptr) {
 }
 
 int main() {
-  int *p = NULL;
-  correct_alloc(&p);
+  int *ptr = NULL;
+  correct_alloc(&ptr);
 
-  printf("할당된 값: %d\n", *p);
+  printf("할당된 값: %d\n", *ptr);
 
   if (p != NULL) {
-    free(p);  // 메모리 해제
-    p = NULL;
+    free(ptr);  // 메모리 해제
+    ptr = NULL;
   }
   return 0;
 }
 ```
 📌 함수에서 이중 포인터를 통해 포인터에 메모리를 할당하고 값을 설정합니다.
+* 메모리 해제 후 ptr = NULL 대입
 
 예제 4: 문자열 포인터 배열
 ```c
