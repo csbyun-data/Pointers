@@ -137,9 +137,31 @@ int main() {
 ```
 설명:
 * fruits는 문자열을 가리키는 포인터들의 배열 → char *[3]
-* pp는 이 배열을 가리키는 이중 포인터 → char **
+* pp는 const char 배열을 가리키는 이중 포인터 → char **
 
-예제 5: 동적 2차원 배열 생성 및 해제
+예제 5: 상수 문자를 가리키는 포인터
+```c
+#include <stdio.h>
+int main() {
+  const char *str1 = "Hello";
+  const char *str2 = "World";
+
+  const char **pp = &str1;
+  printf("%s\n", *pp);  // out: Hello
+
+  *pp = str2;  // pp가 가리키는 포인터를 변경 가능
+  printf("%s\n", *pp);  // out: World
+
+  // **pp = 'X'; // Error!, const char 값 변경 불가
+  return 0;
+}
+```
+* 문자열 배열을 다룰때
+  const char *argv[]
+* 함수에서 문자열 포인터를 수정해야 할때
+  void func(const char **p) → 함수가 포인터를 다른 문자열로 바꿀 수 있
+
+예제 6: 동적 2차원 배열 생성 및 해제
 ```c
 #include <stdio.h>
 #include <stdlib.h>
