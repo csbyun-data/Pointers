@@ -179,9 +179,12 @@ int main() {
   for (int i = 0; i < rows; i++) {
     matrix[i] = (int *)malloc(cols * sizeof(int));
     if (matrix[i] == NULL) {
-      for (int j = 0; j < i; j++)
+      for (int j = 0; j < i; j++) {
         free(matrix[j]);
+        matrix[j] = NULL;
+      }
       free(matrix);
+      matrix = NULL;
 
       printf("matrix[%d] 메모리 할당 실패\n", i);
       return 1;
@@ -203,11 +206,15 @@ int main() {
 
   // 메모리 해제
   for (int i = 0; i < rows; i++) {
-    if (matrix[i] != NULL)
+    if (matrix[i] != NULL) {
       free(matrix[i]);
+      matrix[i] = NULL:
+    }     
   }
-  if (matrix != NULL)
+  if (matrix != NULL) {
     free(matrix);
+    matrix = NULL;
+  }
 
   return 0;
 }
@@ -248,9 +255,12 @@ int **make_matrix(int rows, int cols) {
   for (int i = 0; i < rows; i++) {
     m[i] = malloc(cols * sizeof(int));
     if (m[i] == NULL) {
-       for (int j = 0; j < i; j++)
+       for (int j = 0; j < i; j++) {
          free(m[j]);
+         m[j] = NULL;
+       }
        free(m);
+       m = NULL;
        return NULL;
     }
   }
@@ -317,6 +327,7 @@ int main() {
   printf("\n");
 
   free(arr);
+  arr = NULL;
   return 0;
 }
 ```
