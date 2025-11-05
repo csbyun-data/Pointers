@@ -209,7 +209,7 @@ int main() {
   for (int i = 0; i < rows; i++) {
     if (matrix[i] != NULL) {
       free(matrix[i]);
-      matrix[i] = NULL:
+      matrix[i] = NULL;
     }     
   }
   if (matrix != NULL) {
