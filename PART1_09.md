@@ -4,7 +4,7 @@
 
 ### 1.9.1 malloc(), calloc(), realloc(), free 개요  
 ✅ malloc()
-* 원하는 바이트 크기의 메모리 공간을 힙 영역에 할당.
+* 원하는 바이트 크기의 메모리 공간을 힙 영역에 할당. 초기화 반드시 필요함.
 * 반환 타입은 void*이며, 사용 시 형변환 필요.
 ```c
 int *arr = (int *)malloc(sizeof(int) * 5);
@@ -21,6 +21,7 @@ if(arr == NULL) return 1;  // if (!arr) 사용 가능
 ✅ realloc()
 * 기존에 할당한 메모리 공간의 크기를 확장하거나 축소.
 * 기존 데이터를 유지하면서 새 공간으로 복사함.
+* 실패 시 기존 메모리 유지를 위해 임시 포인터 사
 ```c
 arr = (int *)realloc(arr, sizeof(int) * 10);
 if(arr == NULL) return 1;  // if (!arr) 사용 가능
