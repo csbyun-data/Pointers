@@ -181,6 +181,63 @@ int main() {
 | NULL 포인터 참조  | `strcpy(NULL, src)` 등                     |
 | 읽기 전용 메모리 쓰기 | `char* s = "abc"; s[0] = 'A';` → 오류 발생 가능 |
 
+### 1.8.5 안전한 문자열 처리
+> strncpy() – 안전한 문자열 복사  
+> snprintf() – 안전한 문자열 출력  
+> strncat() - 안전하 문자열 연결  
+* strncpy() 구현
+> NULL 종료문자(`\0`)를 직접 처리해야 합니다.
+```c
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+  char src[] = "Safe Copy Example";
+  char dest[10];
+
+  // strncpy는 최대 n개 복사하지만 널 종료는 보장하지 않음
+  strncpy(dest, src, sizeof(dest) - 1);
+  est[sizeof(dest) - 1] = '\0';  // 반드시 종료 문자 추가
+
+  printf("Copied safely: %s\n", dest);
+  return 0;
+}
+```
+* snprintf() 구현
+> snprintf()는 버퍼 크기 지정, printf(), sprintf()는 길이 제한이 없어 위험합니다.  
+> NULL 종료문자(`\0`) 처리를 해줌
+```c
+#include <stdio.h>
+
+int main() {
+  char buffer[20];
+  int value = 12345;
+
+  snprintf(buffer, sizeof(buffer), "Value: %d", value);
+  printf("Formatted safely: %s\n", buffer);
+
+  return 0;
+}
+```
+* strncat() 구현
+> strncat()은 지정한 길이까지만 문자를 연결  
+> strcat()는 대상 버퍼크기 확인을 안 합니다.
+> 남은 공간 계산: sizeof(dest) - strlen(deest) - 1
+```c
+
+#include <stdio.h>
+#include <string.h>
+
+int main() {
+  char dest[20] = "Hello";
+  char src[] = " World";
+
+  strncat(dest, src, sizeof(dest) - strlen(dest) - 1);
+  printf("Concatenated safely: %s\n", dest);
+
+  return 0;
+}
+```
 
 📚 정리 요약
 | 문제          | 핵심 개념            | 사용 포인터                  | 주의사항             |
