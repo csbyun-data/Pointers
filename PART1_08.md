@@ -39,54 +39,11 @@ int main() {
   return 0;
 }
 ```
-
-### 1.8.3 문자열 함수 구현 (strlen, strcpy, strcmp)  
-✅ strlen 구현
-```c
-int my_strlen(const char *str) {
-  int len = 0;
-  while (*str++) len++;
-  return len;
-}
-```
-✅ strcpy 구현
-```c
-void my_strcpy(char *dest, const char *src) {
-  while (*src) {
-    *dest++ = *src++;
-  }
-  *dest = '\0';
-}
-```
-✅ strcmp 구현
-```c
-int my_strcmp(const char *s1, const char *s2) {
-  while (*s1 && (*s1 == *s2)) {
-    s1++;
-    s2++;
-  }
-  return *(unsigned char *)s1 - *(unsigned char *)s2;
-}
-```
-예제 3: 사용 예
-```c
-#include <stdio.h>
-
-int main() {
-  char str1[20];
-  my_strcpy(str1, "Test");
-  printf("Copied: %s\n", str1);
-  printf("Length: %d\n", my_strlen(str1));
-  printf("Compare: %d\n", my_strcmp("abc", "abd"));
-  return 0;
-}
-```
-
-### 1.8.4 동적 메모리 할당과 문자열 조작  
+### 1.8.3 동적 메모리 할당과 문자열 조작  
 * 문자열을 동적으로 복사하거나 조작할 경우 malloc, free를 사용.
 * 메모리 누수나 Dangling Pointer에 주의해야 함.
 
-예제 4: 문자열 복사 (동적 메모리)
+예제 3: 문자열 복사 (동적 메모리)
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -113,7 +70,7 @@ int main() {
 | 메모리 할당 없이 문자열 복사 | `char *p; strcpy(p, "Hello");` → **Segmentation fault** |
 | 메모리 해제 누락        | `malloc`으로 할당한 메모리 `free`하지 않으면 누수 발생                   |
 
-### 1.8.5 문자열 처리 라이브러리 예제
+### 1.8.4 문자열 처리 라이브러리 예제
 * C 언어의 문자열은 널 종료 문자 \0를 포함한 char 배열입니다.
 * 문자열 관련 처리는 포인터를 많이 사용하며, 대표적인 표준 함수는 다음과 같습니다:
 
