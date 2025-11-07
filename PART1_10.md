@@ -16,7 +16,7 @@ if (ptr == NULL) {  // if (!ptr) 동일 표현
 void* safe_malloc(size_t size) {
   void *ptr = malloc(size);
   if(!ptr) {
-    fprintf(stderr, "메모리 할당 실패\ㅜ");
+    fprintf(stderr, "메모리 할당 실패\n");
     exit(EXIT_FAILURE);
   }
   return ptr;
