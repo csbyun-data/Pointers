@@ -72,7 +72,7 @@ typedef struct {
 
 int main() {
   int count = 3;
-  Person *list = (Person *)malloc(count * sizeof(Person));
+  Person *list = malloc(count * sizeof(Person)); //C++ (Person *)malloc(count * sizeof(Person));
 
   if (!list) {
     printf("메모리 할당 실패\n");
