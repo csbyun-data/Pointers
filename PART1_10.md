@@ -5,12 +5,24 @@
 * 메모리 할당이 실패했을 때 malloc()은 NULL을 반환합니다. 이 포인터를 사용하면 Segmentation Fault가 발생할 수 있습니다.
 ✅ 안전한 코드
 ```c
-int *ptr = (int *)malloc(sizeof(int) * 5);
+int *ptr = malloc(sizeof(int) * 5); // C++ (int *)malloc(sizeof(int) * 5);
 if (ptr == NULL) {  // if (!ptr) 동일 표현
   fprintf(stderr, "메모리 할당 실패\n");
   exit(1);
 }
 ```
+* 반복되는 NULL 체크를 줄이는 safe_malloc Help함수
+```c
+void* safe_malloc(size_t size) {
+  void *ptr = malloc(size);
+  if(!ptr) {
+    fprintf(stderr, "메모리 할당 실패\ㅜ");
+    exit(EXIT_FAILURE);
+  }
+  return ptr;
+}
+```
+
 ### 1.10.2 할당 후 초기화 누락  
 * 동적 메모리를 할당받은 후 값을 초기화하지 않으면, **쓰레기 값(garbage value)** 가 포함되어 있을 수 있습니다.
 
