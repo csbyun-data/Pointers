@@ -157,7 +157,8 @@ int main() {
 ```c
 typedef struct {
   int x;
-  int y;} Point;
+  int y;
+} Point;
 
 Point createPoint(int a, int b) {
   Point p;
