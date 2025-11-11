@@ -158,12 +158,14 @@ int main() {
 typedef struct {
   int x;
   int y;} Point;
+
 Point createPoint(int a, int b) {
   Point p;
   p.x = a;
   p.y = b;
   return p;  // 값 복사
 }
+
 int main() {
   Point pt = createPoint(10, 20);
   printf("(%d, %d)\n", pt.x, pt.y);
@@ -186,6 +188,7 @@ typedef struct
   int x;
   int y;
 } Point;
+
 Point* createPoint(int a, int b)
 {
   Point* p = malloc(sizeof(Point));
