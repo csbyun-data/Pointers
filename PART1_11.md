@@ -52,7 +52,7 @@ int main() {
   Person *p = arr;
 
   for (int i = 0; i < 2; i++) {
-    printf("%s (%d세)\n", (p + i)->name, (p + i)->age);
+    printf("%s %d세\n", (p + i)->name, (p + i)->age);
   }
 
   return 0;
