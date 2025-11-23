@@ -15,14 +15,20 @@
 
 int main() {
   char c = 'A';
-  printf("%c, %p, %c, %p\n", c, (void *)&c, *(char *)&c, (char *)&c+1);
+  char d = 'B';
+  
+  printf("%c, %p, %c\n", c, (void *)&c, *(char *)&c);
+  printf("%c, %p, %c\n", d, (void *)&d, *(char *)&d);
+  printf("%c, %c\n", *(char *)&c, *(char *)&c+1);
 
   return 0;
 }
 ```
 ✔ 실행 결과 (예시):
 ```text
-A, 000000000062FE1F, A, 000000000062FE20
+A, 000000000062FE1F, A
+B, 000000000062FE1E, B
+A, B
 ```
 
 ```c
@@ -31,18 +37,19 @@ A, 000000000062FE1F, A, 000000000062FE20
 int main() {
   int a = 10;
 
-  printf("a의 값: %d, %d\n", a, *&a);
-  printf("a의 주소: %p\n", (void *)&a); // %p는 포인터(주소) 출력
+  printf("a의 값, 주소, 값: %d, %p, %d\n", a, (void *)&a, *(int *)&a);
+  // *(int *)&a == *&a
   // (표준적으로 %p에는 (void *)를 사용하는 것이 권장 됩니다.)
+
   printf("&a+1의 주소: %p\n", (int *)&a+1);
   printf("&a+2의 주소: %p\n", (int *)&a+2);
+  
   return 0;
 }
 ```
 ✔ 실행 결과 (예시):
 ```text
-a의 값: 10, 10
-a의 주소: 000000000062FE1C
+a의 값, 주소, 값: 10, 000000000062FE1C, 10
 &a+1의 주소: 000000000062FE20
 &a+2의 주소: 000000000062FE24
 ```
