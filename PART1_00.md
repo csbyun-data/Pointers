@@ -178,8 +178,8 @@ int main() {
 예제 5: 포인터 타입에 따른 차이
 ```c
 int a = 100;
-int *ip = &a;
-char *cp = (char*)&a;
+int *ip = &a;         // (int *)형 포인터
+char *cp = (char *)&a; // (char *)형 포인터
 
 printf("%d\n", *ip); // 100
 printf("%d\n", (unsigned char)*cp);  // 하위 1바이트만 읽음
