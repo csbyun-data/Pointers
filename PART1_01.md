@@ -57,8 +57,8 @@ int main() {
 
   printf("x의 주소: %p\n", (void *)&x);
   printf("y의 주소: %p\n", (void *)&y);
-  printf("주소 차이 (char): %td\n", (char *)&y - (char *)&x);
-  printf("주소 차이 (int) : %td\n", (int *)&y - (int *)&x);
+  printf("주소 차이 (char): %td\n", (char *)&y - (char *)&x); → 바이트 단위
+  printf("주소 차이 (int) : %td\n", (int *)&y - (int *)&x);   → int 단위
 
   return 0;
 }
