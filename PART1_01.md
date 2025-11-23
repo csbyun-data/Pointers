@@ -15,14 +15,14 @@
 
 int main() {
   char c = 'A';
-  printf("%c, %p, %c\n", c, (void *)&c, *(char *)&c);
+  printf("%c, %p, %c, %p\n", c, (void *)&c, *(char *)&c, (char *)&c+1);
 
   return 0;
 }
 ```
 ✔ 실행 결과 (예시):
 ```text
-A, 000000000062FE1F, A
+A, 000000000062FE1F, A, 000000000062FE20
 ```
 
 ```c
