@@ -12,7 +12,7 @@
 int a = 10;       // 일반 변수 선언
 int *p = &a;      // 변수 a의 주소를 포인터 p에 저장
                   // int *p; p = &a; 를 줄여 쓴 문장
-printf("value=%d, address=%p\n", *p, (void*)p);
+printf("value=%d, address=%p\n", *p, (void *)p);
 ```
 > `&a`: 변수 a의 주소  
 > `*p`: p가 가리키는 주소의 값 (즉, a의 값)  
@@ -40,7 +40,7 @@ printf("value=%d, address=%p\n", *p, (void*)p);
 int main() {
   int x = 42;
   int *ptr = &x;
-  printf("x의 값: %d, %p\n", *ptr, (void*)ptr); // 42
+  printf("x의 값: %d, %p\n", *ptr, (void *)ptr); // 42
 
   return 0;
 }
@@ -53,7 +53,7 @@ int main() {
 주소 얻기
 ```c
 int x = 5;
-printf("x의 주소: %p\n", (void*)&x);
+printf("x의 주소: %p\n", (void *)&x);
 ```
 
 예제 2: 변수의 주소를 출력
@@ -64,7 +64,7 @@ int main() {
   int a = 7;
   float b = 3.14;
 
-  printf("a: %p, b: %p\n", (void*)&a, (void*)&b);
+  printf("a: %p, b: %p\n", (void *)&a, (void *)&b);
 
   return 0;
 }
@@ -82,7 +82,7 @@ int main() {
   int *p = &a; // int *p; 포인터 선언, p = &a; 포인터 변수 초기화
 
   printf("Before: a = %d\n", a);
-  printf("p의 value(address): %p\n", (void*)p);
+  printf("p의 value(address): %p\n", (void *)p);
 
   *p = 20;  // p가 가리키는 메모리의 값을 변경, 역참조
 
