@@ -35,8 +35,7 @@ B, 000000000062FE1E, B
 int main() {
   int a = 10;
 
-  printf("a의 값, 주소, 값: %d, %p, %d\n", a, (void *)&a, *(int *)&a);
-  // *(int *)&a == *&a
+  printf("a의 값, 주소, 값: %d, %p, %d\n", a, (void *)&a, *&a);
   // (표준적으로 %p에는 (void *)를 사용하는 것이 권장 됩니다.)
 
   printf("&a+1의 주소: %p\n", (int *)&a+1);
