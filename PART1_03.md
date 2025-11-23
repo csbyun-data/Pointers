@@ -77,11 +77,19 @@ int main() {
   int *p = arr;
 
   for (int i = 0; i < 5; i++) {
-      printf("arr[%d] = %d\n", i, *(p + i));
+      printf("arr[%d] = %2d, %2d, %2d, %2d\n", i, arr[i], *(arr + i), *(p + i),  p[i]);
   }
 
   return 0;
 }
+```
+✔ 실행 결과 (예시):
+```text
+arr[0] =  5,  5,  5,  5
+arr[1] = 10, 10, 10, 10
+arr[2] = 15, 15, 15, 15
+arr[3] = 20, 20, 20, 20
+arr[4] = 25, 25, 25, 25
 ```
 > *(p + i) 포인터라고 부르고 arr[i] 배열 인덱스라고 합니다.
 > arr[i] == *(arr + i) == *(p + i) == p[i] 완전 동일한 의미
