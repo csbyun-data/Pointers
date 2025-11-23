@@ -36,7 +36,8 @@ int main() {
   int a = 10;
 
   printf("a의 값, 주소, 값: %d, %p, %d\n", a, (void *)&a, *&a);
-  // (표준적으로 %p에는 (void *)를 사용하는 것이 권장 됩니다.)
+  // %p는 반드시 (void*) 유형의 포인터를 받습니다.
+  // 다른 포인터 타입을 전달하면 Undefined Behavior(UB)을 합니다.
 
   printf("&a+1의 주소: %p\n", (int *)&a+1);
   printf("&a+2의 주소: %p\n", (int *)&a+2);
