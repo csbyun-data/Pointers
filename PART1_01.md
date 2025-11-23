@@ -14,9 +14,24 @@
 #include <stdio.h>
 
 int main() {
+  char c = 'A';
+  printf("%c, %p, %c\n", c, (void *)&c, *(char *)&c);
+
+  return 0;
+}
+```
+✔ 실행 결과 (예시):
+```text
+A, 000000000062FE1F, A
+```
+
+```c
+#include <stdio.h>
+
+int main() {
   int a = 10;
 
-  printf("a의 값: %d\n", a);
+  printf("a의 값: %d, %d\n", a, *&a);
   printf("a의 주소: %p\n", (void *)&a); // %p는 포인터(주소) 출력
   // (표준적으로 %p에는 (void *)를 사용하는 것이 권장 됩니다.)
   printf("&a+1의 주소: %p\n", (int *)&a+1);
@@ -26,7 +41,7 @@ int main() {
 ```
 ✔ 실행 결과 (예시):
 ```text
-a의 값: 10
+a의 값: 10, 10
 a의 주소: 000000000062FE1C
 &a+1의 주소: 000000000062FE20
 &a+2의 주소: 000000000062FE24
@@ -68,18 +83,18 @@ int main() {
   int a = 42;
   int *ptr = &a;  // a의 주소를 ptr에 저장
   
-  printf("a의 주소: %p\n", &a);
+  printf("a의 주소: %p\n", (void *)&a);
   printf("ptr가 가리키는 주소: %p\n", ptr);
-  printf("ptr가 가리키는 값: %d\n", *ptr);  // a의 값 출력
+  printf("ptr가 가리키는 값: %d, %d\n", *ptr, *(int *)&a);  // a의 값 출력
   
   return 0;
 }
 ```
 ✔ 실행 결과 (예시):
 ```text
-a의 주소: 0x7ffde6a7d43c
-ptr가 가리키는 주소: 0x7ffde6a7d43c
-ptr가 가리키는 값: 42
+a의 주소: 000000000062FE14
+ptr가 가리키는 주소: 000000000062FE14
+ptr가 가리키는 값: 42, 42
 ```
 * `*ptr`은 ptr이 **가리키는 메모리 주소에 저장된 실제 값** 을 의미합니다.
 
