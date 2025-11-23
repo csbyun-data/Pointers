@@ -247,7 +247,8 @@ int main() {
 
   printf("data, global_var: %p\n", (void*)&global_var);
   printf("stack, local_var : %p\n", (void*)&local_var);
-  printf("heap, heap_var  : %p\n", (void*)heap_var);
+  printf("heap (malloc) block address: %p\n", (void*)heap_var);
+  printf("address of pointer variable(heap_var): %p\n", (void*)&heap_var);
 
   free(heap_var); heap_var = NULL;
 
