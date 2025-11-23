@@ -89,7 +89,7 @@ int main() {
   
   printf("a의 주소: %p\n", (void *)&a);
   printf("ptr가 가리키는 주소: %p\n", ptr);
-  printf("ptr가 가리키는 값: %d, %d\n", *ptr, *(int *)&a);  // a의 값 출력
+  printf("ptr가 가리키는 값: %d, %d\n", *ptr, *&a);  // a의 값 출력
   
   return 0;
 }
