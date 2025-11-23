@@ -69,13 +69,14 @@ int main() {
   return 0;
 }
 ```
-✔ **Windows 64비트 환경(LLP64 모델)**, 실행 결과 (예시): 
+✔ 실행 결과 (예시): 
 ```text
 char의 크기  : 1 byte
 int의 크기   : 4 byte
-long의 크기  : 4 byte  // Linux/macOS(대부분의 UNIX, LP64)에서는: 8 byte
+long의 크기  : 4 byte  
 double의 크기: 8 byte
 ```
+> Windows 64bit(LLP64)는 long=4byte, Linux 64bit(LP64)는 long=8byte  
 
 * 주소 얻기
 ```c
