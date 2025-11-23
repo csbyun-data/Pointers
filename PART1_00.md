@@ -61,10 +61,10 @@ int main() {
   float f = 1.0f;
   double d = 1;
   
-  printf("char의 크기  : %d byte\n", sizeof(c));
-  printf("int의 크기   : %d byte\n", sizeof(x));
-  printf("long의 크기  : %d byte\n", sizeof(l));
-  printf("double의 크기: %d byte\n", sizeof(d));
+  printf("char의 크기  : %zu byte\n", sizeof(c));
+  printf("int의 크기   : %zu byte\n", sizeof(x));
+  printf("long의 크기  : %zu byte\n", sizeof(l));
+  printf("double의 크기: %zu byte\n", sizeof(d));
 
   return 0;
 }
@@ -255,6 +255,8 @@ int main() {
   return 0;
 }
 ```
+> `heap_var`는 스택에 존재하는 포인터 변수이며,
+> `heap_var`가 가리키는 값(`malloc`이 반환한 주소)은 힙의 메모리 블록이다.
 📌 대부분의 시스템에서 스택은 가장 높은 주소 영역에, 그 아래로 힙, 데이터, 코드 순으로 배치됩니다. 
    (하지만 이는 시스템 구조에 따라 달라질 수 있습니다.)
 * 힙과 스택의 성장 방향(스택 ↓ / 힙 ↑)
