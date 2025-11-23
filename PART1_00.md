@@ -73,7 +73,7 @@ int main() {
 ```text
 char의 크기  : 1 byte
 int의 크기   : 4 byte
-long의 크기  : 4 byte
+long의 크기  : 4 byte  // Linux/macOS(대부분의 UNIX, LP64)에서는: 8 byte
 double의 크기: 8 byte
 ```
 
