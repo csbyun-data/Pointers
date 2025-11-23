@@ -17,8 +17,8 @@ int main() {
   char c = 'A';
   char d = 'B';
   
-  printf("%c, %p, %c\n", c, (void *)&c, *(char *)&c); // *(char *)&c == *&c
-  printf("%c, %p, %c\n", d, (void *)&d, *(char *)&d); // *(char *)&d == *&d
+  printf("%c, %p, %c\n", c, (void *)&c, *&c); 
+  printf("%c, %p, %c\n", d, (void *)&d, *&d); 
 
   return 0;
 }
