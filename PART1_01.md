@@ -19,7 +19,6 @@ int main() {
   
   printf("%c, %p, %c\n", c, (void *)&c, *(char *)&c);
   printf("%c, %p, %c\n", d, (void *)&d, *(char *)&d);
-  printf("%c, %c\n", *(char *)&c, *(char *)&c+1);
 
   return 0;
 }
@@ -28,7 +27,6 @@ int main() {
 ```text
 A, 000000000062FE1F, A
 B, 000000000062FE1E, B
-A, B
 ```
 
 ```c
