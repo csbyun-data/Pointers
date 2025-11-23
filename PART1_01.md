@@ -17,15 +17,19 @@ int main() {
   int a = 10;
 
   printf("a의 값: %d\n", a);
-  printf("a의 주소: %p\n", (void*)&a); // %p는 포인터(주소) 출력
-  // (표준적으로 %p에는 (void*)를 사용하는 것이 권장 됩니다.)
+  printf("a의 주소: %p\n", (void *)&a); // %p는 포인터(주소) 출력
+  // (표준적으로 %p에는 (void *)를 사용하는 것이 권장 됩니다.)
+  printf("&a+1의 주소: %p\n", (int *)&a+1);
+  printf("&a+2의 주소: %p\n", (int *)&a+2);
   return 0;
 }
 ```
 ✔ 실행 결과 (예시):
 ```text
 a의 값: 10
-a의 주소: 0x7ffeeb4c5b5c
+a의 주소: 000000000062FE1C
+&a+1의 주소: 000000000062FE20
+&a+2의 주소: 000000000062FE24
 ```
   * 주소 값은 시스템/컴파일러에 따라 달라질 수 있습니다.
 
@@ -36,12 +40,20 @@ a의 주소: 0x7ffeeb4c5b5c
 int main() {
   int x = 5, y = 20;
 
-  printf("x의 주소: %p\n", (void*)&x);
-  printf("y의 주소: %p\n", &y);
-  printf("주소 차이: %td\n", (char *)&y - (char *)&x);
+  printf("x의 주소: %p\n", (void *)&x);
+  printf("y의 주소: %p\n", (void *)&y);
+  printf("주소 차이 (char): %td\n", (char *)&y - (char *)&x);
+  printf("주소 차이 (int) : %td\n", (int *)&y - (int *)&x);
 
   return 0;
 }
+```
+✔ 실행 결과 (예시):
+```text
+x의 주소: 000000000062FE1C
+y의 주소: 000000000062FE18
+주소 차이: -4
+주소 차이: -1
 ```  
 이 예제를 통해 서로 다른 변수는 서로 다른 주소를 갖는다는 것을 확인할 수 있습니다.
 > 주소 차이를 구할 때는 단위가 바이트가 되도록 `char *`로 변환합니다.
