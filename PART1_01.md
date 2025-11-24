@@ -133,7 +133,11 @@ void change_by_value(int x) {
 }
 
 void change_by_pointer(int *ptr) {
-    *ptr = 888;
+  if(ptr == NULL) {
+    printf("잘못된 포인터입니다.\n");
+    return;    
+  }
+  *ptr = 888;
 }
 
 int main() {
