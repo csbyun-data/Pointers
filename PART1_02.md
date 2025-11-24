@@ -66,7 +66,7 @@ int main() {
   printf("x의 값: %d\n", x);
   printf("x의 주소: %p\n", (void*)&x);
   printf("p가 저장한 주소: %p\n", p);
-  printf("p가 가리키는 값: %d\n", *p);
+  printf("p가 가리키는 값: %d, %d\n", *p, *&x);
 
   *p = 20;    // 포인터를 통해 x 값 변경
 
@@ -80,7 +80,7 @@ int main() {
 x의 값: 5
 x의 주소: 0x7ffeefa91abc
 p가 저장한 주소: 0x7ffeefa91abc
-p가 가리키는 값: 5
+p가 가리키는 값: 5, 5
 변경된 x의 값: 20
 ```
 
