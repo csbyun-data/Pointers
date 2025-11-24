@@ -58,11 +58,11 @@ int main() {
   int arr[] = {10, 20, 30, 40};
   int *p = arr;
 
-  printf("현재 값: %d\n", *p);  // 10
+  printf("현재 값: %d, %d, %d\n", *p, *arr, arr[0]);  // 10
   p++;
-  printf("다음 값: %d\n", *p);  // 20
+  printf("다음 값: %d, %d, %d\n", *p, *(arr + 1), arr[1]);  // 20
   p++;
-  printf("또 다음 값: %d\n", *p);  // 30
+  printf("또 다음 값: %d, %d, %d\n", *p, *(arr + 2), arr[2]);  // 30
 
   return 0;
 }
