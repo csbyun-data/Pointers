@@ -122,6 +122,11 @@ int main() {
 ### 1.0.4 포인터가 필요한 이유
 1. 함수 간 데이터 공유 (Call by Reference, 포인터 이용)
 ```c
+int a = 5;     // main(){ int a = 5;} 
+int *p = &a;   // void modify(int *p){} ,  main() { modify(&a);} 변경
+*p = 100;      // modify(int *p) { *p = 100; }
+```
+```c
 void modify(int *p) {
   if (p == NULL) {
     printf("잘못된 포인터입니다.\n");
