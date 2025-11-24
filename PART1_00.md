@@ -128,7 +128,7 @@ int *p = &a;   // void modify(int *p){} ,  main() { modify(&a);} 변경
 ```
 ```c
 void modify(int *p) {
-  if (p == NULL) {
+  if(p == NULL) {
     printf("잘못된 포인터입니다.\n");
     return;    
   }
