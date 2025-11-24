@@ -141,15 +141,15 @@ void change_by_pointer(int *ptr) {
 }
 
 int main() {
-    int data = 100;
+  int data = 100;
 
-    change_by_value(data);
-    printf("값 전달 후: %d\n", data);  // 100
+  change_by_value(data);
+  printf("값 전달 후: %d\n", data);  // 100
 
-    change_by_pointer(&data);
-    printf("포인터 전달 후: %d\n", data);  // 888
+  change_by_pointer(&data);
+  printf("포인터 전달 후: %d\n", data);  // 888
 
-    return 0;
+  return 0;
 }
 ```
 ✔ 출력 결과:
