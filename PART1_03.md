@@ -7,9 +7,9 @@ C 언어에서 포인터는 자료형에 따라 일정 크기만큼 이동합니
 
 예를 들어,
 ```c
-int n = 10;
-int *p= &n;
-p++;  // p = p + 1;
+int narr[3] = {1, 2, 3};
+int *ptr = narr;
+ptr++;  // ptr = ptr + 1;
 ```  
 위 코드는 p를 다음 int 변수(4바이트) 위치로 이동시킵니다. 
 포인터는 자료형 크기만큼 증가/감소합니다.
@@ -22,8 +22,8 @@ p++;  // p = p + 1;
 #include <stdio.h>
 
 int main() {
-  int arr[3] = {1, 2, 3};
-  int *ptr = arr;  // &x[0]
+  int narr[3] = {1, 2, 3};
+  int *ptr = narr;  // &narr[0]
   printf("%p\n", (void*)ptr);   // 0x1000
   printf("%p\n", (void*)(ptr+1));  // 0x1004 (int 4byte 단위 이동)
 
@@ -31,11 +31,11 @@ int main() {
 }
 ```
 ```scss
-arr[0] (0x1000)
-arr[1] (0x1004)
-arr[2] (0x1008)
+narr[0] (0x1000)
+narr[1] (0x1004)
+narr[2] (0x1008)
 ```
-→ int *p = arr; p++ → 0x1004
+→ int *p = narr; p++ → 0x1004
 
 ### 1.3.2 사용 가능한 포인터 연산
 | 연산자    | 설명                             |
