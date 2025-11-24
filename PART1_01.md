@@ -230,7 +230,7 @@ int main() {
 int a = 1, b = 2, c = 3;
 int *pa = &a, *pb = &b, *pc = &c;
 
-printf("a: %d, 주소: %p, 주소 크기: %zu\n", *pa, pa, sizeof(pa));
-printf("b: %d, 주소: %p, 주소 크기: %zu\n", *pb, pb, sizeof(pb));
-printf("c: %d, 주소: %p, 주소 크기: %zu\n", *pc, pc, sizeof(pc));
+printf("a: %d, %d, 주소: %p, 주소 크기: %zu\n", *pa, *&a, pa, sizeof(pa));
+printf("b: %d, %d, 주소: %p, 주소 크기: %zu\n", *pb, *&b, pb, sizeof(pb));
+printf("c: %d, %d, 주소: %p, 주소 크기: %zu\n", *pc, *&c, pc, sizeof(pc));
 ```
