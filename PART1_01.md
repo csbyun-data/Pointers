@@ -206,6 +206,10 @@ printf("%d", x);  // 출력: 75
 2. 두 정수의 값을 포인터를 사용해 서로 바꾸는 swap() 함수를 작성하세요.
 ```c
 void swap(int *a, int *b) {
+  if(a == NULL || b == NULL) {
+    printf("잘못된 포인터입니다.\n");
+    return;    
+  }
   int temp = *a;
   *a = *b;
   *b = temp;
