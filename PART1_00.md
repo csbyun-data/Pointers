@@ -40,7 +40,7 @@ printf("value=%d, address=%p\n", *p, (void *)p);
 int main() {
   int x = 42;
   int *ptr = &x;
-  printf("x의 값: %d, %p\n", *ptr, (void *)ptr); // 42
+  printf("x의 값: %d, %p, %d\n", *ptr, (void *)ptr, *&x); // 42
 
   return 0;
 }
