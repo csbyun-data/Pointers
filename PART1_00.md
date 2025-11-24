@@ -248,7 +248,7 @@ int global_var = 100; // 데이터 영역
 int main() {
   int local_var = 10;        // 스택
   int *heap_var = malloc(sizeof(int)); // 힙
-  if (heap_var == NULL) return 1;
+  if(heap_var == NULL) return 1;
   *heap_var = 20;
 
   printf("data, global_var: %p\n", (void*)&global_var);
@@ -282,7 +282,7 @@ printf("%d", a);  // 15
 #include <stdio.h>
 
 void add(int a, int b, int *result) {
- if (result == NULL) {
+ if(result == NULL) {
     printf("잘못된 포인터입니다.\n");
     return;    
   }
@@ -303,7 +303,7 @@ int main() {
  
  int main() {
     char *str = "Hello";
-    while (*str) { // or while (*str != '\0'), 포인터는 배열처럼 순회 가능하다.
+    while(*str) { // or while (*str != '\0'), 포인터는 배열처럼 순회 가능하다.
         printf("%c ", *str); // or putchar(*str)
         str++;
     }
