@@ -12,7 +12,7 @@
 int a = 10;       // 일반 변수 선언
 int *p = &a;      // 변수 a의 주소를 포인터 p에 저장
                   // int *p; p = &a; 를 줄여 쓴 문장
-printf("value=%d, address=%p\n", *p, (void *)p);
+printf("value=%d, address=%p, value=%d\n", *p, (void *)p, *&a);
 ```
 > `&a`: 변수 a의 주소  
 > `*p`: p가 가리키는 주소의 값 (즉, a의 값)  
