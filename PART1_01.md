@@ -116,7 +116,7 @@ int main() {
 
     *ptr = 200;  // ptr가 가리키는 주소(num)에 200을 저장, 즉 num = 200; 동일한 효과
 
-    printf("num 변경된 값: %d\n", num);
+    printf("num 변경된 값: %d, %d, %d\n", num, *ptr, *&num);
 
     return 0;
 }
