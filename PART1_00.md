@@ -282,14 +282,18 @@ printf("%d", a);  // 15
 #include <stdio.h>
 
 void add(int a, int b, int *result) {
-    *result = a + b;
+ if (result == NULL) {
+    printf("잘못된 포인터입니다.\n");
+    return;    
+  }
+ *result = a + b;
 }
 
 int main() {
-    int x = 3, y = 4, sum = 0;
-    add(x, y, &sum);
-    printf("합계: %d\n", sum);
-    return 0;
+   int x = 3, y = 4, sum = 0;
+   add(x, y, &sum);
+   printf("합계: %d\n", sum);
+   return 0;
 }
 ```
 3. 포인터를 이용해 문자열을 출력하는 코드를 작성하시오.  
@@ -298,12 +302,12 @@ int main() {
  #include <stdio.h>
  
  int main() {
-     char *str = "Hello";
-     while (*str) { // or while (*str != '\0'), 포인터는 배열처럼 순회 가능하다.
-         printf("%c ", *str); // or putchar(*str)
-         str++;
-     }
-     return 0;
+    char *str = "Hello";
+    while (*str) { // or while (*str != '\0'), 포인터는 배열처럼 순회 가능하다.
+        printf("%c ", *str); // or putchar(*str)
+        str++;
+    }
+    return 0;
  }
  ```
 📚 요약
