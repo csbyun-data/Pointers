@@ -11,15 +11,15 @@
 #include <stdio.h>
 
 int main() {
-    int arr[5] = {10, 20, 30, 40, 50};
-    int *ptr = arr;
+  int arr[5] = {10, 20, 30, 40, 50};
+  int *ptr = arr;
 
-    printf("arr[0] = %d\n", arr[0]);     // 배열을 이용한 접근
-    printf("*ptr = %d\n", *ptr);         // 포인터를 이용한 접근
-    printf("*(arr + 2) = %d\n", *(arr + 2)); // 포인터 연산
-    printf("ptr[3] = %d\n", ptr[3]);     // 포인터도 배열처럼 사용 가능
+  printf("arr[0] = %d\n", arr[0]);     // 배열을 이용한 접근
+  printf("*ptr = %d\n", *ptr);         // 포인터를 이용한 접근
+  printf("*(arr + 2) = %d\n", *(arr + 2)); // 포인터 연산
+  printf("ptr[3] = %d\n", ptr[3]);     // 포인터도 배열처럼 사용 가능
 
-    return 0;
+  return 0;
 }
 ```
 * 포인터 요약
@@ -52,12 +52,12 @@ int arr[2][3] = {{1,2,3},{4,5,6}};
 #include <stdio.h>
 
 int main() {
-    int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+  int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 
-    printf("arr[1][2] = %d\n", arr[1][2]);           // 6
-    printf("*(*(arr + 1) + 2) = %d\n", *(*(arr + 1) + 2)); // 6
+  printf("arr[1][2] = %d\n", arr[1][2]);           // 6
+  printf("*(*(arr + 1) + 2) = %d\n", *(*(arr + 1) + 2)); // 6
 
-    return 0;
+  return 0;
 }
 ```
 
@@ -89,14 +89,14 @@ int *p[3]; // int형 포인터 3개를 원소로 가진 배열
 #include <stdio.h>
 
 int main() {
-    int a = 10, b = 20, c = 30;
-    int *p_arr[3] = {&a, &b, &c}; // 포인터 배열
+  int a = 10, b = 20, c = 30;
+  int *p_arr[3] = {&a, &b, &c}; // 포인터 배열
 
-    for (int i = 0; i < 3; i++) {
-        printf("p_arr[%d] = %d\n", i, *p_arr[i]);
-    }
+  for (int i = 0; i < 3; i++) {
+      printf("p_arr[%d] = %d\n", i, *p_arr[i]);
+  }
 
-    return 0;
+  return 0;
 }
 ```
 📌 예제 정리
@@ -111,18 +111,19 @@ for (int i = 0; i < 5; i++) {
 
 2차원 배열을 함수에 전달
 void print2D(int arr[][3], int row) {
-    for (int i = 0; i < row; i++) {
-        for (int j = 0; j < 3; j++) {
-            printf("%d ", arr[i][j]);
-        }
-        printf("\n");
+  for (int i = 0; i < row; i++) {
+    for (int j = 0; j < 3; j++) {
+      printf("%d ", arr[i][j]);
     }
+    printf("\n");
+  }
 }
 
 int main() {
-    int data[2][3] = {{1, 2, 3}, {4, 5, 6}};
-    print2D(data, 2);
-    return 0;
+  int data[2][3] = {{1, 2, 3}, {4, 5, 6}};
+  print2D(data, 2);
+
+  return 0;
 }
 ```
 ### 1.7.4 동적 2D 배열과 다차원 배열 관리
@@ -155,8 +156,8 @@ int main() {
   // 값 할당 및 출력
   for (int i = 0; i < rows; i++) {
     for (int j = 0; j < cols; j++) {
-        arr[i][j] = i * cols + j;
-        printf("%2d ", arr[i][j]);
+      arr[i][j] = i * cols + j;
+      printf("%2d ", arr[i][j]);
     }
     printf("\n");
   }
