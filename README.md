@@ -42,7 +42,9 @@
   * 1.8.3 문자열 함수 구현 (strlen, strcpy, strcmp 등)  
   * 1.8.4 동적 메모리 할당과 문자열 조작
   * 1.8.5 문자열 처리 라이브러리 예제
-* 1.9 [동적 메모리 할당과 해제](https://github.com/csbyun-data/Pointers/blob/main/PART1_09.md)  
+* 1.9 [동적 메모리 할당과 해제](https://github.com/csbyun-data/Pointers/blob/main/PART1_09.md)
+  * 1.9.1 malloc(), calloc(), realloc(), free 개요
+  * 1.9.2 메모리 누수 감지 프로그램 (Valgrind 사용 예시)  * 
 * 1.10 [메모리 할당 실수 방지와 안전한 포인터 사용](https://github.com/csbyun-data/Pointers/blob/main/PART1_10.md)  
   * 1.10.1 Null 포인터 점검  
   * 1.10.2 할당 후 초기화 누락  
