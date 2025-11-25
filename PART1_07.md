@@ -39,7 +39,34 @@ int main() {
 * 2차원 배열은 배열의 배열입니다.
 * 포인터를 이용해 2차원 배열의 요소에 접근할 수 있지만, 포인터의 타입을 정확히 이해해야 합니다.
 ```c
-int arr[2][3] = {{1,2,3},{4,5,6}};
+int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
+```
+예제 2: 2차원 배열과 배열의 크기, 주소, 주소연산
+```c
+#include <stdio.h>
+int main() {
+  int iarr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
+
+  printf("%d, %d, %d\n", sizeof(iarr), sizeof(iarr[0]), sizeof(iarr[1])); // 24, 12, 12, 배열의 크기
+  printf("%x, %x, %x, %x\n", iarr, iarr[0], &iarr[0][0], iarr[1]); // 62fe00, 62fe00, 62fe00, 62fe0c, 배열 주소
+  printf("%x, %x, %x, %x\n", iarr+1, iarr[0]+1, &iarr[0][0]+1, iarr[1]+1); // 62fe0c, 62fe04, 62fe04, 62fe10, 배열주소 연산
+
+  return 1;
+}
+```
+
+예제 3: 2차원 배열과 배열의 이름을 이용한 요소, 값에 접근
+```c
+#include <stdio.h>
+int main() {
+  int iarr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
+
+  printf("%x, %x, %d\n", iarr, *iarr, **iarr);           // 62fe00, 62fe00, 1
+  printf("%x, %x, %d\n", iarr, iarr[0], iarr[0][0]);     // 62fe00, 62fe00, 1
+  printf("%x, %x, %d\n", iarr+1, *(iarr+1), **(iarr+1)); // 62fe0c, 62fe0c, 4
+
+  return 1;
+}
 ```
 
 | 표현                  | 의미                 | 결과                       |
@@ -47,14 +74,15 @@ int arr[2][3] = {{1,2,3},{4,5,6}};
 | `arr[i][j]`         | i행 j열의 요소          | `arr[1][2] == 6`         |
 | `*(*(arr + i) + j)` | 포인터 연산으로 동일한 요소 접근 | `*(*(arr + 1) + 2) == 6` |
 
-예제 2: 2차원 배열과 포인터 접근
+예제 4: 2차원 배열과 포인터 접근
 ```c
 #include <stdio.h>
 
 int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 
-  printf("arr[1][2] = %d\n", arr[1][2]);           // 6
+  printf("arr[1][2] = %d\n", arr[1][2]);                 // 6
+  printf("*(arr[1] + 2) = %d\n", *(arr[1]+2));           // 6
   printf("*(*(arr + 1) + 2) = %d\n", *(*(arr + 1) + 2)); // 6
 
   return 0;
@@ -84,7 +112,7 @@ int (*p)[3]; // 3개의 int를 가진 배열을 가리키는 포인터
 ```c
 int *p[3]; // int형 포인터 3개를 원소로 가진 배열
 ```
-예제 3:
+예제 5:
 ```c
 #include <stdio.h>
 
