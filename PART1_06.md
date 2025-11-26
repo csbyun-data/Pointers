@@ -13,13 +13,13 @@ C 언어에서 포인터는 정확한 메모리 주소를 가리키는 것이 �
 #include <stdio.h>
 
 int main() {
-    int *ptr = NULL;
-
-    if (ptr == NULL) {
-        printf("ptr는 현재 NULL입니다.\n");
-    }
-
-    return 0;
+  int *ptr = NULL;
+  
+  if(ptr == NULL) {
+    printf("ptr는 현재 NULL입니다.\n");
+  }
+  
+  return 0;
 }
 ```
 > 주의: NULL 포인터를 역참조하면 segmentation fault 발생.  
@@ -94,7 +94,7 @@ int main() {
 ```c
 // qsort 함수의 비교 함수 콜백 - void* 사용
 int compare(const void *a, const void *b) {
-    return (*(int *)a - *(int *)b);
+  return (*(int *)a - *(int *)b);
 }
 ```
 
