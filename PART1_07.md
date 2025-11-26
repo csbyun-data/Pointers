@@ -18,8 +18,8 @@ int main() {
   printf("Array index  : %d, %d, %d\n", *&arr[0], *&arr[1], *&arr[2]); // 배열 Index을 이용한 접근
 
   printf("Array index  : %d, %d, %d\n", arr[0], arr[1], arr[2]);       // 배열 Index을 이용한 접근
-  printf("Pointer      : %d, %d, %d\n", *ptr, *(ptr+1), *(ptr+2));     // 포인터를 이용한 접근
   printf("Array name   : %d, %d, %d\n", *arr, *(arr+1), *(arr+2));     // 배열 이름 연산
+  printf("Pointer      : %d, %d, %d\n", *ptr, *(ptr+1), *(ptr+2));     // 포인터를 이용한 접근
   printf("Pointer Index: %d, %d, %d\n", ptr[0], ptr[1], ptr[2]);       // 포인터도 배열처럼 사용 가능
 
   return 0;
