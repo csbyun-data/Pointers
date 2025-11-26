@@ -11,6 +11,14 @@
 int *arr = malloc(sizeof(int) * 5);
 if(arr == NULL) return 1;  // if (!arr) 사용 가능
 ```
+``` c
+// 메모리 할당 실패 처리 함수
+int* safe_malloc(size_t n) {
+    int* ptr = malloc(n);
+    if (!ptr) { perror("malloc failed"); exit(1); }
+    return ptr;
+}
+```
 
 * calloc()
 > malloc과 유사하지만, 초기화를 0으로 자동 수행.
@@ -148,6 +156,33 @@ if (tmp == NULL) {
     return 1;
 }
 arr = tmp;
+```
+
+예제 4: 동적 구조체 활용
+```
+typedef struct {
+  char name[20];
+  int age;
+} Person;
+
+int main() {
+  int N = 3;
+  Person *people = malloc(sizeof(Person) * N);
+  if (!people) return 1;
+
+  for (int i = 0; i < N; i++) {
+    scanf("%s %d", people[i].name, &people[i].age);
+  }
+
+  for (int i = 0; i < N; i++) {
+    printf("%s: %d\n", people[i].name, people[i].age);
+  }
+
+  free(people);
+  people = NULL;
+
+  return 0;
+}
 ```
 
 * 메모리 할당 시 주의사항
