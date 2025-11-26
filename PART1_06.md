@@ -21,7 +21,7 @@ int main() {
     return 0;
 }
 ```
-⚠️ 주의: NULL 포인터를 역참조하면 segmentation fault 발생.
+> 주의: NULL 포인터를 역참조하면 segmentation fault 발생.  
 
 ```c
 // 잘못된 예
@@ -70,8 +70,8 @@ int main() {
   return 0;
 }
 ```
-⚠️ 주의 : void *는 산술 연산이 불가능 (vp++ 불가). 
-    반드시 형변환 후 연산 가능. 예: (int *)vp+1
+> 주의 : void *는 산술 연산이 불가능 (vp++ 불가). 반드시 형변환 후 연산 가능. 예: (int *)vp+1
+
 예제 4:    
 ```c
 #include <stdio.h>
@@ -87,7 +87,7 @@ int main() {
   return 0;
 }
 ```
-📌 void*는 크기를 알 수 없기 때문에 주소 연산(++, --등)이 불가능 합니다.
+> void*는 크기를 알 수 없기 때문에 주소 연산(++, --등)이 불가능 합니다.  
 
 예제 5: 라이브러리/콜백 함수에서 사용
 ```c
@@ -101,12 +101,12 @@ int compare(const void *a, const void *b) {
 * Wild 포인터: 초기화되지 않은 포인터.
 * 쓰레기 값을 가지므로 임의의 메모리를 참조하게 되어 예측할 수 없는 결과 초래.
 
-잘못된 예제 (사용 금지)
+* 잘못된 예제 (사용 금지)  
 ```c
 int *ptr;   // 초기화되지 않음 (wild pointer)
 // *ptr = 100; // 위험! 런타임 오류 발생 가능
 ```
-⚠️ 해결 : 포인터 선언 후 초기화는 필수!
+* 해결 : 포인터 선언 후 초기화는 필수!  
 ```c
 int *ptr = NULL;
 // *ptr = 100; //위험! dereference 금지
@@ -121,16 +121,17 @@ int *ptr = NULL;
 #include <stdlib.h>
 
 int main() {
-    int *ptr = (int *)malloc(sizeof(int));
-    *ptr = 100;
-    free(ptr);  // 메모리 해제
+  int *ptr = (int *)malloc(sizeof(int));
+  *ptr = 100;
+  free(ptr);  // 메모리 해제
 
-    // *ptr = 200; // 위험! 이미 해제된 메모리 접근 (dangling)
-    
-    ptr = NULL; // 이렇게 해제 후 NULL로 초기화해야 안전
-    return 0;
+  // *ptr = 200; // 위험! 이미 해제된 메모리 접근 (dangling)
+  
+  ptr = NULL; // 이렇게 해제 후 NULL로 초기화해야 안전
+  return 0;
 }
 ```
+
 ```c
 int *wild; // 초기화되지 않음 → 위험
 int *dangling;
@@ -138,6 +139,7 @@ dangling = (int*)malloc(sizeof(int));
 free(dangling);
 // 이후 dangling 사용 → 위험한 접근
 ```
+
 * stack 변수 주소를 반환하는 경우도 dangling 포인터 발생 가능
 ```c
 int* func() {
@@ -220,23 +222,24 @@ const int * const p3 = &x;  // 둘 다 ❌
 #include <stdio.h>
 
 void printValue(void *ptr, char type) {
-    switch (type) {
-        case 'i': printf("int: %d\n", *(int *)ptr); break;
-        case 'f': printf("float: %.2f\n", *(float *)ptr); break;
-        case 'c': printf("char: %c\n", *(char *)ptr); break;
-        default:  printf("Unknown type\n");
-    }
+  switch (type) {
+    case 'i': printf("int: %d\n", *(int *)ptr); break;
+    case 'f': printf("float: %.2f\n", *(float *)ptr); break;
+    case 'c': printf("char: %c\n", *(char *)ptr); break;
+    default:  printf("Unknown type\n");
+  }
 }
 
 int main() {
-    int i = 10;
-    float f = 3.14;
-    char c = 'Z';
+  int i = 10;
+  float f = 3.14;
+  char c = 'Z';
 
-    printValue(&i, 'i');
-    printValue(&f, 'f');
-    printValue(&c, 'c');
-    return 0;
+  printValue(&i, 'i');
+  printValue(&f, 'f');
+  printValue(&c, 'c');
+
+  return 0;
 }
 ```
 
@@ -246,19 +249,19 @@ int main() {
 #include <stdlib.h>
 
 int main() {
-    int *ptr = (int *)malloc(sizeof(int));
-    if (ptr == NULL) return 1;
+  int *ptr = (int *)malloc(sizeof(int));
+  if (ptr == NULL) return 1;
 
-    *ptr = 123;
-    printf("값: %d\n", *ptr);
+  *ptr = 123;
+  printf("값: %d\n", *ptr);
 
-    free(ptr);    // 메모리 해제
-    ptr = NULL;   // 포인터 초기화 (dangling 방지)
+  free(ptr);    // 메모리 해제
+  ptr = NULL;   // 포인터 초기화 (dangling 방지)
 
-    return 0;
+  return 0;
 }
 ```
-> 📌 ptr = NULL; 을 하지 않으면 이후 *ptr 사용 시 undefined behavior 발생 가능
+> ptr = NULL; 을 하지 않으면 이후 *ptr 사용 시 undefined behavior 발생 가능
 
 3. 다음 코드의 오류를 설명하세요.
 ```c
