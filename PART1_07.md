@@ -56,6 +56,7 @@ int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 예제 2: 2차원 배열과 배열의 크기, 주소, 주소연산
 ```c
 #include <stdio.h>
+
 int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
 
@@ -69,6 +70,7 @@ int main() {
 예제 3: 2차원 배열과 배열의 이름을 이용한 요소, 값에 접근
 ```c
 #include <stdio.h>
+
 int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
 
