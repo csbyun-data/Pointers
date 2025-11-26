@@ -170,15 +170,15 @@ int main() {
   int arr[2][2] = {{1, 2}, {3, 4}};  // int형 4byte
   int (*ptr)[2] = arr;
 
-  printf("Array index  : %d, %d, %d, %d\n\n", *&arr[0][0], *&arr[0][1], *&arr[1][0], *&arr[1][1]); // 배열 인덱스를 이용한 접근
+  printf("Array index  : %d %d %d %d\n\n", *&arr[0][0], *&arr[0][1], *&arr[1][0], *&arr[1][1]); // 배열 인덱스를 이용한 접근
 
-  printf("Array index  : %d, %d, %d, %d\n", arr[0][0], arr[0][1], arr[1][0], arr[1][1]);        // 배열 인덱스를 이용한 접근
-  printf("Array name   : %d, %d, %d, %d\n", *(*arr), *(*arr)+1), *(*(arr+1)), *(*(arr+1)+1));   // 배열 이름 연산
-  printf("Array index  : %d, %d, %d, %d\n\n", *(arr[0]), *(arr[0]+1), *(arr[1]), *(arr[1]+1));  // 배열 이름 연산
+  printf("Array index  : %d %d %d %d\n", arr[0][0], arr[0][1], arr[1][0], arr[1][1]);        // 배열 인덱스를 이용한 접근
+  printf("Array name   : %d %d %d %d\n", *(*arr), *(*(arr)+1), *(*(arr+1)), *(*(arr+1)+1));   // 배열 이름 연산
+  printf("Array index  : %d %d %d %d\n\n", *(arr[0]), *(arr[0]+1), *(arr[1]), *(arr[1]+1));  // 배열 이름 연산
   
-  printf("Pointer Index: %d, %d, %d, %d\n", ptr[0][0], ptr[0][1], ptr[1][0], ptr[1][1]);        // 포인터도 배열처럼 사용 가능
-  printf("Pointer name : %d, %d, %d, %d\n", *(*ptr), *(*ptr+1), *(*(ptr+1)), *(*(ptr+1)+1));    // 포인터를 이용한 접근
-  printf("Pointer index: %d, %d, %d, %d\n", *(ptr[0]), *(ptr[0]+1), *(ptr[1]), *(ptr[1]+1));    // 배열 이름 연산
+  printf("Pointer Index: %d %d %d %d\n", ptr[0][0], ptr[0][1], ptr[1][0], ptr[1][1]);        // 포인터도 배열처럼 사용 가능
+  printf("Pointer name : %d %d %d %d\n", *(*ptr), *(*ptr+1), *(*(ptr+1)), *(*(ptr+1)+1));    // 포인터를 이용한 접근
+  printf("Pointer index: %d %d %d %d\n", *(ptr[0]), *(ptr[0]+1), *(ptr[1]), *(ptr[1]+1));    // 배열 이름 연산
   
   return 0;
 }
