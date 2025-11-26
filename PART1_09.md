@@ -124,8 +124,12 @@ int main() {
 
   for (int i = 0; i < 3; i++) arr[i] = i + 1;
 
-  arr = realloc(arr, sizeof(int) * 5);
-  if (!arr) return 1;
+  int *tmp =realloc(arr, sizeof(int) * 10);
+  if (tmp == NULL) {
+    free(arr); // 기존 메모리 해제
+    return 1;
+  }
+  arr = tmp;
 
   arr[3] = 4;
   arr[4] = 5;
@@ -137,26 +141,6 @@ int main() {
   free(arr);
   return 0;
 }
-```
-
-* 추가 확장 예시:
-```c
-// 확장 전
-int *arr = malloc(sizeof(int) * 5);
-
-// 확장 후
-arr = realloc(arr, sizeof(int) * 10);
-```
-
-> 개선 포인트: realloc() 실패 시, 원래 메모리가 유지되므로 임시 포인터로 먼저 받는 습관이 좋음  
- 
-```c
-int *tmp = (int *)realloc(arr, sizeof(int) * 10);
-if (tmp == NULL) {
-    free(arr); // 기존 메모리 해제
-    return 1;
-}
-arr = tmp;
 ```
 
 예제 4: 동적 구조체 활용
