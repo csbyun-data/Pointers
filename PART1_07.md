@@ -90,9 +90,9 @@ int main() {
 int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
 
-  printf("%p, %p, %d\n", arr, *arr, **arr);           // 62fe00, 62fe00, 1
-  printf("%p, %p, %d\n", arr, arr[0], arr[0][0]);     // 62fe00, 62fe00, 1
-  printf("%p, %p, %d\n", arr+1, *(arr+1), **(arr+1)); // 62fe0c, 62fe0c, 4
+  printf("%p, %p, %d\n", (void*)arr, (void*)*arr, **arr);           // 62fe00, 62fe00, 1
+  printf("%p, %p, %d\n", (void*)arr, (void*)arr[0], arr[0][0]);     // 62fe00, 62fe00, 1
+  printf("%p, %p, %d\n", (void*)(arr+1), (void*)*(arr+1), **(arr+1)); // 62fe0c, 62fe0c, 4
 
   return 0;
 }
@@ -110,9 +110,9 @@ int main() {
 int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 
-  printf("%p, %p, %p\n", arr, arr[0], arr[1]);       // 62fe00, 62fe00, 62fe0c
-  printf("%p, %p, %p\n", arr+1, arr[0]+1, arr[1]+1); // 62fe0c, 62fe04, 62fe10
-  printf("%p, %p, %p\n", arr+2, arr[0]+2, arr[1]+2); // 62fe18, 62fe08, 62fe14
+  printf("%p, %p, %p\n", (void*)arr, (void*)arr[0], (void*)arr[1]);       // 62fe00, 62fe00, 62fe0c
+  printf("%p, %p, %p\n", (void*)(arr+1), (void*)(arr[0]+1), (void*)(arr[1]+1)); // 62fe0c, 62fe04, 62fe10
+  printf("%p, %p, %p\n", (void*)(arr+2), (void*)(arr[0]+2), (void*)(arr[1]+2)); // 62fe18, 62fe08, 62fe14
 
   return 0;
 }
