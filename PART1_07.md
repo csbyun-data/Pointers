@@ -147,7 +147,7 @@ int (*p)[3]; // 3개의 int를 가진 배열을 가리키는 포인터
 ```c
 int *p[3]; // int형 포인터 3개를 원소로 가진 배열
 ```
-예제 6:
+예제 6: 포인터 배열
 ```c
 #include <stdio.h>
 
@@ -193,7 +193,7 @@ int main() {
 | 3. 1D 배열을 2D처럼 접근 | `int* arr = malloc(row * col * sizeof(int))` |
 
 #### 포인터 배열
-예제 1: 포인터 배열 (행 고정, 열 가변 가능)
+예제 7: 포인터 배열 (행 고정, 열 가변 가능)
 ```C
 #include <stdio.h>
 #include <stdlib.h>
@@ -226,7 +226,7 @@ int main() {
 ```
 
 #### 이중 포인터
-예제 2: 이중 포인터 (int**)
+예제 8: 이중 포인터 (int**)
 ```C
 #include <stdio.h>
 #include <stdlib.h>
@@ -264,7 +264,7 @@ int main() {
 
 #### 1차원 배열로 다차원 배열처럼 사용
 
-예제 3: 1차원 배열로 다차원 배열처럼 사용
+예제 9: 1차원 배열로 다차원 배열처럼 사용
 ```C
 #include <stdio.h>
 #include <stdlib.h>
