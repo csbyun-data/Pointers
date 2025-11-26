@@ -59,8 +59,8 @@ int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 int main() {
   int iarr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
 
-  printf("%d, %d, %d\n", sizeof(iarr), sizeof(iarr[0]), sizeof(iarr[1])); // 24, 12, 12, 배열의 크기
-  printf("%x, %x, %x, %x\n", iarr, iarr[0], &iarr[0][0], iarr[1]); // 62fe00, 62fe00, 62fe00, 62fe0c, 배열 주소
+  printf("%d, %d, %d\n", sizeof(iarr), sizeof(iarr[0]), sizeof(iarr[1]));  // 24, 12, 12, 배열의 크기
+  printf("%x, %x, %x, %x\n", iarr, iarr[0], &iarr[0][0], iarr[1]);         // 62fe00, 62fe00, 62fe00, 62fe0c, 배열 주소
   printf("%x, %x, %x, %x\n", iarr+1, iarr[0]+1, &iarr[0][0]+1, iarr[1]+1); // 62fe0c, 62fe04, 62fe04, 62fe10, 배열주소 연산
 
   return 1;
