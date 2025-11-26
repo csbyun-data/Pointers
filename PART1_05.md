@@ -80,7 +80,7 @@ int main() {
 | Call by Reference(Call by Pointer이용) | 주소를 전달 | ✅ 원본 변경 가능 |
 
 예제 3: 두 수를 교환하는 함수  
-> Call by Value 실패 예제
+* Call by Value 실패 예제
 ```c
 #include <stdio.h>
 
@@ -97,7 +97,7 @@ int main() {
   return 0;
 }
 ```
-> Call by Reference(Pointer 이용) 성공 예제
+* Call by Reference(Pointer 이용) 성공 예제
 ```c
 #include <stdio.h>
 
