@@ -3,39 +3,43 @@
 * 이 기능을 통해 실행 중 필요한 만큼 메모리를 확보하거나 해제할 수 있습니다.
 
 ### 1.9.1 malloc(), calloc(), realloc(), free 개요  
-✅ malloc()
-* 원하는 바이트 크기의 메모리 공간을 힙 영역에 할당. 초기화 반드시 필요함.
-* 반환 타입은 void*이며, 사용 시 형변환 필요.
+* malloc()
+> 원하는 바이트 크기의 메모리 공간을 힙 영역에 할당. 초기화 반드시 필요함.  
+> 반환 타입은 void*이며, 사용 시 형변환 필요.
+
 ```c
-int *arr = (int *)malloc(sizeof(int) * 5);
+int *arr = malloc(sizeof(int) * 5);
 if(arr == NULL) return 1;  // if (!arr) 사용 가능
 ```
 
-✅ calloc()
-* malloc과 유사하지만, 초기화를 0으로 자동 수행.
+* calloc()
+> malloc과 유사하지만, 초기화를 0으로 자동 수행.
+
 ```c
-int *arr = (int *)calloc(5, sizeof(int));  // 5개의 int 공간 0으로 초기화
+int *arr = calloc(5, sizeof(int));  // 5개의 int 공간 0으로 초기화
 if(arr == NULL) return 1;  // if (!arr) 사용 가능
 ```
 
-✅ realloc()
-* 기존에 할당한 메모리 공간의 크기를 확장하거나 축소.
-* 기존 데이터를 유지하면서 새 공간으로 복사함.
-* 실패 시 기존 메모리 유지를 위해 임시 포인터 사
+* realloc()
+> 기존에 할당한 메모리 공간의 크기를 확장하거나 축소.  
+> 기존 데이터를 유지하면서 새 공간으로 복사함.  
+> 실패 시 기존 메모리 유지를 위해 임시 포인터 사용  
+
 ```c
-arr = (int *)realloc(arr, sizeof(int) * 10);
+int *arr = realloc(arr, sizeof(int) * 10);
 if(arr == NULL) return 1;  // if (!arr) 사용 가능
 ```
 
-✅ free()
-* malloc이나 calloc으로 할당한 메모리를 해제.
+* free()
+> malloc이나 calloc으로 할당한 메모리를 해제.
+
 ```c
 free(arr);
 arr = NULL;
 ```
-* free() 후 포인터를 NULL로 초기화하면 dangling pointer 방지
+> free() 후 포인터를 NULL로 초기화하면 dangling pointer 방지  
 
-🔎 메모리 할당 후 반드시 체크할 것!
+* 메모리 할당 후 반드시 체크할 것!
 ```c
 int *ptr = (int *)malloc(sizeof(int) * 10);
 if (ptr == NULL) {  // if (!ptr) 동일 표현
@@ -125,6 +129,7 @@ int main() {
   return 0;
 }
 ```
+
 * 추가 확장 예시:
 ```c
 // 확장 전
@@ -134,8 +139,8 @@ int *arr = (int *)malloc(sizeof(int) * 5);
 arr = (int *)realloc(arr, sizeof(int) * 10);
 ```
 
-📌 개선 포인트:
-* realloc() 실패 시, 원래 메모리가 유지되므로 임시 포인터로 먼저 받는 습관이 좋습니다:
+> 개선 포인트: realloc() 실패 시, 원래 메모리가 유지되므로 임시 포인터로 먼저 받는 습관이 좋음  
+ 
 ```c
 int *tmp = (int *)realloc(arr, sizeof(int) * 10);
 if (tmp == NULL) {
@@ -145,7 +150,8 @@ if (tmp == NULL) {
 arr = tmp;
 ```
 
-⚠️ 메모리 할당 시 주의사항
+* 메모리 할당 시 주의사항
+  
 | 문제                  | 설명                                |
 | ------------------- | --------------------------------- |
 | 메모리 할당 후 NULL 체크 누락 | 시스템이 메모리 부족할 경우 할당 실패할 수 있음       |
@@ -174,7 +180,7 @@ int main() {
     return 0;
 }
 ```
-
+예제 5: 의도적인 누수 점검
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -196,6 +202,7 @@ int main() {
   return 0;
 }
 ```
+
 * Valgrind 사용 방법 (Linux/macOS)
 ```bash
 gcc -g leak.c -o leak
@@ -213,7 +220,8 @@ valgrind --leak-check=full ./leak
 free(data);  // 누수 방지
 ```
 
-📚 정리 요약
+* 정리 요약
+  
 | 항목       | 잘 된 점                                 | 개선 여지                          |
 | -------- | ------------------------------------- | ------------------------------ |
 | 개념 정리    | malloc, calloc, realloc, free 정확하게 설명 | `realloc` 사용 시 임시 포인터 권장       |
@@ -254,4 +262,4 @@ int main() {
 }
 ```
 
-4. 메모리 누수를 감지하기 위한 프로그램을 작성해보고, valgrind와 같은 도구로 점검해보세요.
+3. 메모리 누수를 감지하기 위한 프로그램을 작성해보고, valgrind와 같은 도구로 점검해보세요.
