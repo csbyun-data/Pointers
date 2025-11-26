@@ -90,7 +90,8 @@ int main() {
   double avg = (double)sum / N;
   printf("평균: %.2f\n", avg);  // 부동소수점 평균 결과는 반올림 여부 고려
   
-  free(arr);
+  free(arr); arr = NULL;
+
   return 0;
 }
 ```
@@ -108,7 +109,7 @@ int main() {
       printf("%d ", arr[i]);  // 모두 0으로 출력
   }
 
-  free(arr);
+  free(arr); arr = NULL;
   return 0;
 }
 ```
@@ -138,7 +139,7 @@ int main() {
     printf("%d ", arr[i]);
   }
 
-  free(arr);
+  free(arr); arr = NULL;
   return 0;
 }
 ```
@@ -163,8 +164,7 @@ int main() {
     printf("%s: %d\n", people[i].name, people[i].age);
   }
 
-  free(people);
-  people = NULL;
+  free(people); people = NULL;
 
   return 0;
 }
@@ -196,7 +196,8 @@ int main() {
   scanf("%d", arr);  // ✅ 올바른 할당 후 입력
   printf("입력한 값: %d\n", *arr);
   
-  free(arr);
+  free(arr); arr = NULL;
+
   return 0;
 }
 ```
@@ -275,6 +276,7 @@ int main() {
   
   for (int i = 0; i < 10; i++)
     printf("%d ", arr[i]);
+
   free(arr);
   arr = NULL; // dangling pointer 방지
 
