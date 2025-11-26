@@ -123,12 +123,13 @@ int *ptr = NULL;
 
 int main() {
   int *ptr = (int *)malloc(sizeof(int));
+  if (ptr == NULL) return 1;
   *ptr = 100;
   free(ptr);  // 메모리 해제
 
   // *ptr = 200; // 위험! 이미 해제된 메모리 접근 (dangling)
-  
   ptr = NULL; // 이렇게 해제 후 NULL로 초기화해야 안전
+
   return 0;
 }
 ```
@@ -136,7 +137,10 @@ int main() {
 ```c
 int *wild; // 초기화되지 않음 → 위험
 int *dangling;
+
 dangling = (int*)malloc(sizeof(int));
+if (dangling == NULL) return 1;
+
 free(dangling);
 // 이후 dangling 사용 → 위험한 접근
 ```
@@ -149,7 +153,7 @@ int* func() {
 }
 ```
 
-### 1.6.4 (const * ) 와 ( * const)  
+### 1.6.4 (const * ) 와 ( * const) 유형
 C 언어에서 `const` 키워드는 **값의 변경을 제한**하는 데 사용됩니다.   
 포인터와 함께 사용할 때는 **가리키는 값이 변경 불가능한지**, 또는 **포인터 자체가 변경 불가능한지**에 따라 의미가 달라집니다.   
 
