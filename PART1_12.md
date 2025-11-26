@@ -123,7 +123,7 @@ typedef struct {
 int main() {
   FILE *fp = fopen("people.txt", "r");
   if (!fp) {
-    fprintf(stderr, "파일 열기 실패\n";
+    fprintf(stderr, "파일 열기 실패\n");
     return 1;
   }
 
