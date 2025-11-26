@@ -81,7 +81,7 @@ int main() {
   void *vp = arr;
   // vp++;  오류: void 포인터는 산술 연산 불가
   int *ip = (int *)vp;
-  ip++;
+  ip++;                // 포인터 연산 시 타입 크기 만큼 증가됨
   printf("%d\n", *ip); // 20 출력
 
   return 0;
