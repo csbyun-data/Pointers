@@ -139,6 +139,8 @@ int *p = arr;
 for (int i = 0; i < 5; i++) {
     printf("%d ", *(p + i));
 }
+```
+```c
 
 2차원 배열을 함수에 전달
 void print2D(int arr[][3], int row) {
