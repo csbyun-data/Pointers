@@ -157,7 +157,7 @@ int* func() {
 C 언어에서 `const` 키워드는 **값의 변경을 제한**하는 데 사용됩니다.   
 포인터와 함께 사용할 때는 **가리키는 값이 변경 불가능한지**, 또는 **포인터 자체가 변경 불가능한지**에 따라 의미가 달라집니다.   
 
-#### const int* ptr (포인터 to const)
+#### const int *ptr (포인터 to const)
 * `ptr`은 **const int를 가리키는 포인터**
 * 즉, `*ptr`의 값을 **변경할 수 없음** 하지만 `ptr` 자체는 다른 주소로 **변경 가능**
 ```c
@@ -168,7 +168,7 @@ const int* ptr = &x;
 *ptr = 30;     // ❌ 오류: 값 변경 불가
 ptr = &y;      // ✅ 가능: 다른 주소로 변경 가능
 ```
-#### int* const ptr (const 포인터)
+#### int * const ptr (const 포인터)
 * ptr은 int를 가리키는 상수 포인터
 * 즉, ptr 자체는 다른 주소로 변경 불가 하지만 *ptr의 값은 변경 가능
 ```c
@@ -179,7 +179,7 @@ int* const ptr = &x;
 *ptr = 30;     // ✅ 가능: 값 변경 가능
 ptr = &y;      // ❌ 오류: 주소 변경 불가
 ```
-#### const int* const ptr (상수 포인터 to 상수 값)
+#### const int * const ptr (상수 포인터 to 상수 값)
 * ptr은 const int를 가리키는 상수 포인터
 
 * 즉, *ptr의 값도 변경 불가, ptr 자체도 변경 불가
