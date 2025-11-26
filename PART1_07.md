@@ -160,6 +160,8 @@ int main() {
   return 0;
 }
 ```
+> 문제점: 2차원 배열 구조가 보존되지 않고, 행의 경계가 없어진 연속된 메모리가 된다.
+
 예제 11: 2차원 배열과 2차원 포인터 활용
 ```c
 
@@ -171,7 +173,6 @@ int main() {
   printf("Array index  : %d, %d, %d, %d\n\n", *&arr[0][0], *&arr[0][1], *&arr[1][0], *&arr[1][1]); // 배열 Index을 이용한 접근
 
   printf("Array index  : %d, %d, %d, %d\n", arr[0][0], arr[0][1], arr[1][0], arr[1][1]);        // 배열 Index을 이용한 접근
-  printf("Array name   : %d, %d, %d, %d\n", *(*arr), *(*arr+1), *(*arr+3), *(*arr+4));          // 배열 이름 연산
   printf("Array name   : %d, %d, %d, %d\n", *(*arr), *(*arr+1), *(*(arr+1)), *(*(arr+1)+1));    // 배열 이름 연산
   printf("Array index  : %d, %d, %d, %d\n\n", *(arr[0]), *(arr[0]+1), *(arr[1]), *(arr[1]+1));  // 배열 이름 연산
   
@@ -193,7 +194,7 @@ int main() {
 * 배열 포인터 (Pointer to Array)
 ```c
 int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
-int (*p)[3]; = arr; // 3개의 int를 가진 배열을 가리키는 포인터
+int (*p)[3] = arr; // 3개의 int를 가진 배열을 가리키는 포인터
 ```
 * 배열 포인터의 선언
 ```c
