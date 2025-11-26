@@ -12,13 +12,15 @@
 #include <stdio.h>
 
 int main() {
-  int arr[5] = {10, 20, 30, 40, 50};
+  int arr[5] = {10, 20, 30};
   int *ptr = arr;
 
-  printf("arr[0] = %d\n", arr[0]);     // 배열을 이용한 접근
-  printf("*ptr = %d\n", *ptr);         // 포인터를 이용한 접근
-  printf("*(arr + 2) = %d\n", *(arr + 2)); // 포인터 연산
-  printf("ptr[3] = %d\n", ptr[3]);     // 포인터도 배열처럼 사용 가능
+  printf("Array index  : %d, %d, %d\n", *&arr[0], *&arr[1], *&arr[2]); // 배열 Index을 이용한 접근
+
+  printf("Array index  : %d, %d, %d\n", arr[0], arr[1], arr[2]);       // 배열 Index을 이용한 접근
+  printf("Pointer      : %d, %d, %d\n", *ptr, *(ptr+1), *(ptr+2));     // 포인터를 이용한 접근
+  printf("Array name   : %d, %d, %d\n", *arr, *(arr+1), *(arr+2));     // 배열 이름 연산
+  printf("Pointer Index: %d, %d, %d\n", ptr[0], ptr[1], ptr[2]);       // 포인터도 배열처럼 사용 가능
 
   return 0;
 }
@@ -30,8 +32,8 @@ int main() {
 | `arr`        | `&arr[0]`과 동일 (배열 시작 주소) | `arr == &arr[0]`                 |
 | `arr[i]`     | i번째 요소                   | `arr[2] == 30`                   |
 | `*(arr + i)` | i번째 요소 (포인터 방식 접근)       | `*(arr + 2) == 30`               |
-| `ptr[i]`     | 포인터를 배열처럼 사용             | `ptr = arr; ptr[3] == 40`        |
-| `*(ptr + i)` | 포인터 연산                   | `*(ptr + 4) == 50`               |
+| `ptr[i]`     | 포인터를 배열처럼 사용             | `ptr = arr; ptr[2] == 30`        |
+| `*(ptr + i)` | 포인터 연산                   | `*(ptr + 2) == 30`               |
 
 > 배열 이름은 배열 전체를 나타내는 식별자로, 배열의 첫 번째 요소 주소로 평가될 수 있지만, 재할당은 불가능하다.
 > (arr = ptr; 재할당 불가), 배열 이름 자체가 lvalue가 될 수 없음
