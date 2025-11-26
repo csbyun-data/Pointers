@@ -3,9 +3,10 @@
 
 ### 1.10.1 Null 포인터 점검  
 * 메모리 할당이 실패했을 때 malloc()은 NULL을 반환합니다. 이 포인터를 사용하면 Segmentation Fault가 발생할 수 있습니다.
-✅ 안전한 코드
+
+코드 1: 안전한 코드
 ```c
-int *ptr = malloc(sizeof(int) * 5); // C++ (int *)malloc(sizeof(int) * 5);
+int *ptr = malloc(sizeof(int) * 5); // C++에 사용 형식 (int *)malloc(sizeof(int) * 5);
 if (ptr == NULL) {  // if (!ptr) 동일 표현
   fprintf(stderr, "메모리 할당 실패\n");
   exit(1);
@@ -26,7 +27,7 @@ void* safe_malloc(size_t size) {
 ### 1.10.2 할당 후 초기화 누락  
 * 동적 메모리를 할당받은 후 값을 초기화하지 않으면, **쓰레기 값(garbage value)** 가 포함되어 있을 수 있습니다.
 
-✅ 안전한 초기화 방법
+코드 2: 안전한 초기화 방법
 ```c
 // 방법 1: 수동 초기화
 for (int i = 0; i < 5; i++) arr[i] = 0;
@@ -38,7 +39,7 @@ int *arr = (int *)calloc(5, sizeof(int));  // 자동 0 초기화
 
 ### 1.10.3 해제 후 포인터 사용 금지 (Dangling Pointer)  
 * free()로 메모리를 해제한 후, 해당 포인터를 그대로 사용하면 dangling pointer 오류 발생.
-✅ 해결 방법
+코드 3: 해결 방법
 ```c
 free(ptr);
 ptr = NULL;  // 포인터 무효화 → 사용 시 바로 감지 가능
@@ -46,13 +47,13 @@ ptr = NULL;  // 포인터 무효화 → 사용 시 바로 감지 가능
 ### 1.10.4 이중 해제 방지  
 * free()를 두 번 호출하면 시스템이 예기치 않게 동작하거나 충돌할 수 있습니다.
 
-❌ 잘못된 예
+코드 4: 잘못된 예
 ```c
 free(ptr);
 free(ptr);  // 두 번째 호출은 오류
 ```
 
-✅ 안전한 방법
+코드 5: 안전한 방법
 ```c
 free(ptr);
 ptr = NULL;
@@ -65,9 +66,11 @@ void safe_free(int **p) {
   }
 }
 ```
+
 ### 1.10.5 메모리 누수 방지  
 * malloc()으로 메모리를 할당했지만 free()하지 않으면 메모리 누수 발생.
-✅ 일반적인 해결 방법
+
+예제 6: 일반적인 해결 방법
 함수 종료 전 free() 호출
 ```c
 int *data = malloc(100 * sizeof(int));
