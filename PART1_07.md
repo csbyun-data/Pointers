@@ -112,7 +112,7 @@ int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
   int (*ptr)[3] = arr;
 
-  printf("Array index  : %d, %d, %d, %d\n\n", *&arr[0][0], *&arr[0][1], *&arr[1][1], *&arr[1][1]); // 배열 Index을 이용한 접근
+  printf("Array index  : %d, %d, %d, %d\n\n", *&arr[0][0], *&arr[0][1], *&arr[1][0], *&arr[1][1]); // 배열 Index을 이용한 접근
 
   printf("Array index  : %d, %d, %d, %d\n", arr[0][0], arr[0][1], arr[1][0], arr[1][1]);        // 배열 Index을 이용한 접근
   printf("Array name   : %d, %d, %d, %d\n", *(*arr), *(*arr+1), *(*arr+3), *(*arr+4));          // 배열 이름 연산
