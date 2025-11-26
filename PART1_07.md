@@ -32,7 +32,7 @@ int main() {
   int arr[5] = {10, 20, 30};
   int *ptr = arr;
 
-  printf("Array index  : %d, %d, %d\n", *&arr[0], *&arr[1], *&arr[2]); // 배열 Index을 이용한 접근
+  printf("Array index  : %d, %d, %d\n", *&arr[0], *&arr[1], *&arr[2]); // 배열 인덱스를 이용한 접근
 
   printf("Array index  : %d, %d, %d\n", arr[0], arr[1], arr[2]);       // 배열 Index을 이용한 접근
   printf("Array name   : %d, %d, %d\n", *arr, *(arr+1), *(arr+2));     // 배열 이름 연산
