@@ -139,9 +139,8 @@ int main() {
   return 0;
 }
 ```
-```c
-
 * 2차원 배열을 함수에 전달
+```c
 void print2D(int arr[][3], int row) {
   for (int i = 0; i < row; i++) {
     for (int j = 0; j < 3; j++) {
