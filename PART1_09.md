@@ -94,7 +94,7 @@ int main() {
 }
 ```
 
-예제 2: calloc을 사용하여 초기화 상태 확인
+예제 2: calloc()을 사용하여 초기화 상태 확인
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -112,7 +112,7 @@ int main() {
 }
 ```
 
-예제 3: realloc을 사용하여 배열 확장
+예제 3: realloc()을 사용하여 배열 확장
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -202,17 +202,17 @@ int main() {
 #include <stdlib.h>
 
 int main() {
-    int *arr;
-    // scanf("%d", arr);  // ❌ arr이 메모리 할당되지 않았기 때문에 오류 발생
-
-    arr = (int *)malloc(sizeof(int));
-    if (!arr) return 1;
-
-    scanf("%d", arr);  // ✅ 올바른 할당 후 입력
-    printf("입력한 값: %d\n", *arr);
-
-    free(arr);
-    return 0;
+  int *arr;
+  // scanf("%d", arr);  // ❌ arr이 메모리 할당되지 않았기 때문에 오류 발생
+  
+  arr = (int *)malloc(sizeof(int));
+  if (!arr) return 1;
+  
+  scanf("%d", arr);  // ✅ 올바른 할당 후 입력
+  printf("입력한 값: %d\n", *arr);
+  
+  free(arr);
+  return 0;
 }
 ```
 예제 5: 의도적인 누수 점검
