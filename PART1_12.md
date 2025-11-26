@@ -122,19 +122,34 @@ typedef struct {
 
 int main() {
   FILE *fp = fopen("people.txt", "r");
-  if (!fp) return 1;
+  if (!fp) {
+    fprintf(stderr, "파일 열기 실패\n";
+    return 1;
+  }
 
   Person *list = NULL;
   int count = 0;
 
-  while (fscanf(fp, "%19s %d", list[count].name, &list[count].age) == 2) {
+  while (1) {
     Person *tmp = realloc(list, (count + 1) * sizeof(Person));
-    if (!tmp) { free(list); /* 오류 처리 */ }
+    if (!tmp) {
+      fprintf(stderr, "메모리 할당 실패\n");
+      free(list);
+      fclose(fp);
+
+      return 1;
+    }
     list = tmp;
+
+    if (fscanf(fp, "%19s %d", list[count].name, &list[count].age) != 2) {
+      break; 
+    }
+
     count++;
   }
 
   fclose(fp);
+  fp = NULL;
 
   for (int i = 0; i < count; i++) {
     printf("%s (%d)\n", list[i].name, list[i].age);
@@ -144,6 +159,8 @@ int main() {
   return 0;
 }
 ```
+
+
 
 ### 1.12.6 이진 파일 입출력 + 구조체 저장
 ```c
