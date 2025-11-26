@@ -224,7 +224,7 @@ int main() {
   // 메모리 해제
   for (int i = 0; i < rows; i++) {
     free(arr[i]);
-    arr[i] = NULL:
+    arr[i] = NULL;
   }
   
   return 0;
@@ -264,7 +264,7 @@ int main() {
     arr[i] = NULL;
   }
   free(arr);
-  arr = NULL:
+  arr = NULL;
 
   return 0;
 }
