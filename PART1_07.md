@@ -31,8 +31,6 @@ int main() {
   int arr[5] = {10, 20, 30};
   int *ptr = arr;
 
-  printf("Array index  : %d, %d, %d\n", *&arr[0], *&arr[1], *&arr[2]); // 배열 인덱스를 이용한 접근
-
   printf("Array index  : %d, %d, %d\n", arr[0], arr[1], arr[2]);       // 배열 인덱스를 이용한 접근
   printf("Array name   : %d, %d, %d\n", *arr, *(arr+1), *(arr+2));     // 배열 이름 연산
   printf("Pointer      : %d, %d, %d\n", *ptr, *(ptr+1), *(ptr+2));     // 포인터를 이용한 접근
@@ -160,7 +158,9 @@ int main() {
   return 0;
 }
 ```
-> 문제점: 2차원 배열 구조가 보존되지 않고, 행의 경계가 없어진 연속된 메모리가 된다.
+> 문제점: 2차원 배열 구조가 보존되지 않고, 연속된 메모리가 된다.
+> arr[i][j]처럼 행·열 구분이 사라짐  
+> 원래 타입이 int (*)[2]인데 int*로 바꿔 타입 안정성 상실됨
 
 예제 10: 2차원 배열과 2차원 포인터 활용
 ```c
