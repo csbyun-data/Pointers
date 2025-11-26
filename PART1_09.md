@@ -14,7 +14,7 @@ if(arr == NULL) return 1;  // if (!arr) 사용 가능
 ``` c
 // 메모리 할당 실패 처리 함수
 int* safe_malloc(size_t n) {
-    int* ptr = malloc(n);
+    int *ptr = malloc(n);
     if (!ptr) { perror("malloc failed"); exit(1); }
     return ptr;
 }
@@ -142,10 +142,10 @@ int main() {
 * 추가 확장 예시:
 ```c
 // 확장 전
-int *arr = (int *)malloc(sizeof(int) * 5);
+int *arr = malloc(sizeof(int) * 5);
 
 // 확장 후
-arr = (int *)realloc(arr, sizeof(int) * 10);
+arr = realloc(arr, sizeof(int) * 10);
 ```
 
 > 개선 포인트: realloc() 실패 시, 원래 메모리가 유지되므로 임시 포인터로 먼저 받는 습관이 좋음  
