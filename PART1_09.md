@@ -125,7 +125,7 @@ int main() {
 
   for (int i = 0; i < 3; i++) arr[i] = i + 1;
 
-  int *tmp =realloc(arr, sizeof(int) * 10);
+  int *tmp = realloc(arr, sizeof(int) * 10);
   if (tmp == NULL) {
     free(arr); // 기존 메모리 해제
     return 1;
