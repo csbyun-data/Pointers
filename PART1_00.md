@@ -57,7 +57,7 @@ int main() {
 int main() {
   char c = 'A';
   int x = 1;
-  long l = 1;
+  long l = 1;       // Windows LLP64 (long=4byte), Linux LP64 (long=8byte)
   float f = 1.0f;
   double d = 1;
   
