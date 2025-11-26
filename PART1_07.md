@@ -62,7 +62,7 @@ int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
 
-  printf("%d, %d, %d\n", sizeof(arr), sizeof(arr[0]), sizeof(arr[1]));  // 24, 12, 12, 배열의 크기
+  printf("%zu, %zu, %zu\n", sizeof(arr), sizeof(arr[0]), sizeof(arr[1]));  // 24, 12, 12, 배열의 크기
   printf("%x, %x, %x, %x\n", arr, arr[0], &arr[0][0], arr[1]);         // 62fe00, 62fe00, 62fe00, 62fe0c, 배열 주소
   printf("%x, %x, %x, %x\n", arr+1, arr[0]+1, &arr[0][0]+1, arr[1]+1); // 62fe0c, 62fe04, 62fe04, 62fe10, 배열주소 연산
 
