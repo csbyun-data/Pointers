@@ -141,7 +141,8 @@ ptr = arr; // OK
 
 * 배열 포인터 (Pointer to Array)
 ```c
-int (*p)[3]; // 3개의 int를 가진 배열을 가리키는 포인터
+int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
+int (*p)[3]; = arr; // 3개의 int를 가진 배열을 가리키는 포인터
 ```
 * 포인터 배열 (Array of Pointers)
 ```c
