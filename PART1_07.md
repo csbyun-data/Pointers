@@ -80,7 +80,7 @@ int main() {
   printf("%p %p %p %p\n", arr, arr[0], &arr[0][0], arr[1]);         // 62fe00, 62fe00, 62fe00, 62fe0c, 배열 주소
   printf("%p %p %p %p\n", arr+1, arr[0]+1, &arr[0][0]+1, arr[1]+1); // 62fe0c, 62fe04, 62fe04, 62fe10, 배열주소 연산
 
-  return 1;
+  return 0;
 }
 ```
 예제 5: 2차원 배열과 배열의 이름을 이용한 요소, 값에 접근
@@ -167,20 +167,20 @@ int main() {
 
 #include <stdio.h>
 int main() {
-  int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
-  int (*ptr)[3] = arr;
+  int arr[2][2] = {{1, 2}, {3, 4}};  // int형 4byte
+  int (*ptr)[2] = arr;
 
   printf("Array index  : %d, %d, %d, %d\n\n", *&arr[0][0], *&arr[0][1], *&arr[1][0], *&arr[1][1]); // 배열 인덱스를 이용한 접근
 
   printf("Array index  : %d, %d, %d, %d\n", arr[0][0], arr[0][1], arr[1][0], arr[1][1]);        // 배열 인덱스를 이용한 접근
-  printf("Array name   : %d, %d, %d, %d\n", *(*arr), *(*arr+1), *(*(arr+1)), *(*(arr+1)+1));    // 배열 이름 연산
+  printf("Array name   : %d, %d, %d, %d\n", *(*arr), *(*arr)+1), *(*(arr+1)), *(*(arr+1)+1));   // 배열 이름 연산
   printf("Array index  : %d, %d, %d, %d\n\n", *(arr[0]), *(arr[0]+1), *(arr[1]), *(arr[1]+1));  // 배열 이름 연산
   
   printf("Pointer Index: %d, %d, %d, %d\n", ptr[0][0], ptr[0][1], ptr[1][0], ptr[1][1]);        // 포인터도 배열처럼 사용 가능
-    printf("Pointer name : %d, %d, %d, %d\n", *(*ptr), *(*ptr+1), *(*(ptr+1)), *(*(ptr+1)+1));  // 포인터를 이용한 접근
+  printf("Pointer name : %d, %d, %d, %d\n", *(*ptr), *(*ptr+1), *(*(ptr+1)), *(*(ptr+1)+1));    // 포인터를 이용한 접근
   printf("Pointer index: %d, %d, %d, %d\n", *(ptr[0]), *(ptr[0]+1), *(ptr[1]), *(ptr[1]+1));    // 배열 이름 연산
   
-  return 1;
+  return 0;
 }
 ```
 
@@ -267,7 +267,7 @@ int main() {
   
   // 각 행에 동적 할당
   for (int i = 0; i < rows; i++) {
-    arr[i] = (int*)malloc(cols * sizeof(int));
+    arr[i] = malloc(cols * sizeof(int));
   }
   
   // 값 할당 및 출력
@@ -300,7 +300,7 @@ int main() {
   int **arr;
 
   // 행 포인터 배열 할당
-  arr = (int **)malloc(rows * sizeof(int*));
+  arr = malloc(rows * sizeof(int*));
 
   // 각 행에 열 할당
   for (int i = 0; i < rows; i++) {
@@ -337,7 +337,7 @@ int main() {
 
 int main() {
   int rows = 3, cols = 4;
-  int *arr = (int *)malloc(rows * cols * sizeof(int));
+  int *arr = malloc(rows * cols * sizeof(int));
 
   // 값 할당 및 출력 (2D처럼 접근)
   for (int i = 0; i < rows; i++) {
