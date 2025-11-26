@@ -168,8 +168,9 @@ int main() {
   int *p = arr;
 
   printf("p     : %p\n", p);
-  printf("*p++  : %d\n", *p++);   // 10 출력후 p는 arr+1로 이동, p = arr[1]
-  printf("(*p)++: %d\n", (*p)++); // 20, 값(20) 출력 후, 해당 값이 21로 증가
+  printf("*p++  : %d\n", *p++);      // 10 출력후 p는 arr+1로 이동, p = arr[1]
+  printf("(*p)++: %d\n", (*p)++);    // 20, 값(20) 출력 후, 해당 값이 21로 증가
+  printf("(*p)++ 후 값: %d\n", *p);  // 21
 
   return 0;
 }
