@@ -58,7 +58,7 @@ int main() {
 * 변수의 주소를 함수에 전달 → 포인터를 통해 원래 변수의 값을 변경할 수 있음.
 * C에서는 포인터를 이용해 Call by Reference처럼 동작시킴.
 
-예제 2: Call by Reference (포인터 이용, Call by Pointer)
+예제 2: Call by Reference (포인터 이용)
 ```c
 #include <stdio.h>
 
