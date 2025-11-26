@@ -205,7 +205,7 @@ int main() {
 
 int main() {
   int rows = 3, cols = 4;
-  int* arr[3]; // 정적 포인터 배열
+  int *arr[3]; // 정적 포인터 배열
   
   // 각 행에 동적 할당
   for (int i = 0; i < rows; i++) {
@@ -224,6 +224,7 @@ int main() {
   // 메모리 해제
   for (int i = 0; i < rows; i++) {
     free(arr[i]);
+    arr[i] = NULL:
   }
   
   return 0;
@@ -241,11 +242,11 @@ int main() {
   int **arr;
 
   // 행 포인터 배열 할당
-  arr = (int**)malloc(rows * sizeof(int*));
+  arr = (int **)malloc(rows * sizeof(int*));
 
   // 각 행에 열 할당
   for (int i = 0; i < rows; i++) {
-    arr[i] = (int*)malloc(cols * sizeof(int));
+    arr[i] = (int *)malloc(cols * sizeof(int));
   }
 
   // 값 할당 및 출력
@@ -260,8 +261,10 @@ int main() {
   // 메모리 해제
   for (int i = 0; i < rows; i++) {
     free(arr[i]);
+    arr[i] = NULL;
   }
   free(arr);
+  arr = NULL:
 
   return 0;
 }
@@ -276,7 +279,7 @@ int main() {
 
 int main() {
   int rows = 3, cols = 4;
-  int* arr = (int*)malloc(rows * cols * sizeof(int));
+  int *arr = (int *)malloc(rows * cols * sizeof(int));
 
   // 값 할당 및 출력 (2D처럼 접근)
   for (int i = 0; i < rows; i++) {
@@ -288,6 +291,8 @@ int main() {
   }
 
   free(arr);
+  arr = NULL;
+
   return 0;
 }
 ```
