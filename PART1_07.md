@@ -228,14 +228,14 @@ int main() {
 ```
 
 #### 이중 포인터
-예제 8: 이중 포인터 (int**)
+예제 8: 이중 포인터 (int **)
 ```C
 #include <stdio.h>
 #include <stdlib.h>
 
 int main() {
   int rows = 3, cols = 4;
-  int** arr;
+  int **arr;
 
   // 행 포인터 배열 할당
   arr = (int**)malloc(rows * sizeof(int*));
@@ -337,37 +337,6 @@ int sum2D(int (*arr)[3], int row) {
 int main() {
   int mat[2][3] = {{1, 2, 3}, {4, 5, 6}};
   printf("합계: %d\n", sum2D(mat, 2));  // 출력: 21
-  return 0;
-}
-```
-3. 배열 포인터와 포인터 배열의 차이를 설명하고 각각 예제를 만들어보세요.
-* 포인터 배열 (int *p[3])
-```c
-#include <stdio.h>
-
-int main() {
-  int a = 1, b = 2, c = 3;
-  int *p[3] = {&a, &b, &c};  // 포인터 배열
-
-  for (int i = 0; i < 3; i++) {
-    printf("%d ", *p[i]);  // 출력: 1 2 3
-  }
-  return 0;
-}
-```
-* 배열 포인터 (int (*p)[3])
-```c
-#include <stdio.h>
-
-int main() {
-  int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
-  int (*p)[3] = arr;  // 배열 포인터
-
-  for (int i = 0; i < 2; i++) {
-    for (int j = 0; j < 3; j++) {
-      printf("%d ", p[i][j]);  // 출력: 1 2 3 4 5 6
-    }
-  }
   return 0;
 }
 ```
