@@ -123,7 +123,8 @@ int main() {
 #include <stdlib.h>
 
 int allocateArray(int **arr, int size) {
-  *arr = malloc(size * sizeof(int)); // C++ type code, (int *)malloc(size * sizeof(int));
+  *arr = malloc(size * sizeof(int));
+  // C에서는 캐스팅 필요 없음, C++에서는 (int *)캐스팅 필요.
   if (*arr == NULL) {
     printf("메모리 할당 실패\n");
     return 1;
