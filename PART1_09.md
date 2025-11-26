@@ -157,7 +157,7 @@ int main() {
   if (!people) return 1;
 
   for (int i = 0; i < N; i++) {
-    scanf("%19s %d", people[i].name, &people[i].age);
+    scanf(" %19s %d", people[i].name, &people[i].age);
   }
 
   for (int i = 0; i < N; i++) {
