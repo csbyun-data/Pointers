@@ -34,8 +34,9 @@ if(arr == NULL) return 1;  // if (!arr) 사용 가능
 > 실패 시 기존 메모리 유지를 위해 임시 포인터 사용  
 
 ```c
-int *arr = realloc(arr, sizeof(int) * 10);
-if(arr == NULL) return 1;  // if (!arr) 사용 가능
+int *tmp = realloc(arr, sizeof(int)*10);
+if (tmp == NULL) { free(arr); return 1; }  // if (!tmp) 사용 가능
+arr = tmp;
 ```
 
 * free()
@@ -49,7 +50,7 @@ arr = NULL;
 
 * 메모리 할당 후 반드시 체크할 것!
 ```c
-int *ptr = (int *)malloc(sizeof(int) * 10);
+int *ptr = malloc(sizeof(int) * 10);
 if (ptr == NULL) {  // if (!ptr) 동일 표현
     printf("메모리 할당 실패\n");
     exit(1);
@@ -70,7 +71,7 @@ int main() {
       return 1;
   }
   
-  int *arr = (int *)malloc(sizeof(int) * N);
+  int *arr = malloc(sizeof(int) * N);
   if (!arr) {
     printf("메모리 할당 실패\n");
     return 1;
@@ -100,7 +101,7 @@ int main() {
 #include <stdlib.h>
 
 int main() {
-  int *arr = (int *)calloc(5, sizeof(int));
+  int *arr = calloc(5, sizeof(int));
   if (!arr) return 1;
 
   for (int i = 0; i < 5; i++) {
@@ -118,12 +119,12 @@ int main() {
 #include <stdlib.h>
 
 int main() {
-  int *arr = (int *)malloc(sizeof(int) * 3);
+  int *arr = malloc(sizeof(int) * 3);
   if (!arr) return 1;
 
   for (int i = 0; i < 3; i++) arr[i] = i + 1;
 
-  arr = (int *)realloc(arr, sizeof(int) * 5);
+  arr = realloc(arr, sizeof(int) * 5);
   if (!arr) return 1;
 
   arr[3] = 4;
@@ -171,7 +172,7 @@ int main() {
   if (!people) return 1;
 
   for (int i = 0; i < N; i++) {
-    scanf("%s %d", people[i].name, &people[i].age);
+    scanf("19%s %d", people[i].name, &people[i].age);
   }
 
   for (int i = 0; i < N; i++) {
@@ -205,7 +206,7 @@ int main() {
   int *arr;
   // scanf("%d", arr);  // ❌ arr이 메모리 할당되지 않았기 때문에 오류 발생
   
-  arr = (int *)malloc(sizeof(int));
+  arr = malloc(sizeof(int));
   if (!arr) return 1;
   
   scanf("%d", arr);  // ✅ 올바른 할당 후 입력
@@ -221,7 +222,7 @@ int main() {
 #include <stdlib.h>
 
 void leak_example() {
-  int *data = (int *)malloc(sizeof(int) * 10);
+  int *data = malloc(sizeof(int) * 10);
   if (!data) return;
 
   for (int i = 0; i < 10; i++) {
@@ -275,12 +276,12 @@ free(data);  // 누수 방지
 #include <stdlib.h>
 
 int main() {
-  int *arr = (int *)malloc(sizeof(int) * 5);
+  int *arr = malloc(sizeof(int) * 5);
   if(arr == NULL) return 1;
   for (int i = 0; i < 5; i++)
     scanf("%d", &arr[i]);
   
-  int *tmp = (int *)realloc(arr, sizeof(int) * 10);
+  int *tmp = realloc(arr, sizeof(int) * 10);
   if (!tmp) { free(arr); return 1; }
   arr = tmp;
   
