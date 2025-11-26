@@ -94,11 +94,11 @@ int main() {
 ```c
 #include <stdio.h>
 int main() {
-  int iarr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
+  int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
 
-  printf("%x, %x, %d\n", iarr, *iarr, **iarr);           // 62fe00, 62fe00, 1
-  printf("%x, %x, %d\n", iarr, iarr[0], iarr[0][0]);     // 62fe00, 62fe00, 1
-  printf("%x, %x, %d\n", iarr+1, *(iarr+1), **(iarr+1)); // 62fe0c, 62fe0c, 4
+  printf("%x, %x, %d\n", arr, *arr, **arr);           // 62fe00, 62fe00, 1
+  printf("%x, %x, %d\n", arr, arr[0], arr[0][0]);     // 62fe00, 62fe00, 1
+  printf("%x, %x, %d\n", arr+1, *(arr+1), **(arr+1)); // 62fe0c, 62fe0c, 4
 
   return 1;
 }
@@ -117,8 +117,8 @@ int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 
   printf("arr[1][2] = %d\n", arr[1][2]);                 // 6
-  printf("*(arr[1] + 2) = %d\n", *(arr[1]+2));           // 6
-  printf("*(*(arr + 1) + 2) = %d\n", *(*(arr + 1) + 2)); // 6
+  printf("*(arr[1]+2) = %d\n", *(arr[1]+2));           // 6
+  printf("*(*(arr+1)+2) = %d\n", *(*(arr+1)+2)); // 6
 
   return 0;
 }
