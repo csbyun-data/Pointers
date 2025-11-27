@@ -192,15 +192,14 @@ int main() {
  
 * 배열 포인터 (Pointer to Array)
 ```c
-int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
-int (*p)[3] = arr; // 3개의 int를 가진 배열을 가리키는 포인터
+int arr[3] = {10, 20, 30};
+int (*p)[3] = &arr;
 ```
-* 배열 포인터의 선언
 ```c
-int (*ptr)[3]; // '3개의 int를 가진 배열'을 가리키는 포인터
-int arr[2][3];
-ptr = arr; // OK
-```
+int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
+// 3개의 int를 가진 배열을 가리키는 포인터
+int (*p)[3] = arr;  // int (*p)[3]; p = arr; 줄인 표현
+```  
 > 2차원 배열 함수 전달 시 void f(int arr[][3]) 와 void f(int (*arr)[3])는 동일 표현  
 > ptr + 1 → 다음 행으로 이동 (int[3] 크기만큼)  
 
@@ -224,9 +223,10 @@ int main() {
   return 0;
 }
 ```
-* 예제 12: 2차원 배열을 함수에 전달
+* 예제 12: 배열포인터, 2차원 배열을 함수에 전달
 ```c
 void print2D(int arr[][3], int row) {
+  // 동일 표현, arr[][3] == *arr[3] 
   for (int i = 0; i < row; i++) {
     for (int j = 0; j < 3; j++) {
       printf("%d ", arr[i][j]);
