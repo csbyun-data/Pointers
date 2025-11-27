@@ -4,7 +4,7 @@
 하지만 배열과 포인터는 동일하지 않으며, 구체적인 차이와 사용법을 이해해야 합니다.
 
 ### 1.7.1 1차원 배열과 포인터  
-* 배열의 이름은 해당 배열의 첫 번째 요소의 주소를 가리키는 심볼 입니다.
+* 배열의 이름은 해당 배열의 첫 번째 요소의 주소를 가리키는 식별자입니다.
 * 배열 인덱스 또는 포인터를 통해서든 동일한 방식으로 요소에 접근할 수 있습니다.
 
 예제 1: 포인터로 1차원 배열 요소 접근
@@ -14,7 +14,7 @@ int main() {
   char arr[5] = {'A', 'B', 'C', 'D', 'E'};
   char *ptr = arr;
 
-  // 포인터를 배열처럼 사용
+  // 포인터도 배열과 동일한 표기(ptr[i])로 접근 가능
   printf("%c, %c, %c, %c, %c\n", ptr[0], ptr[1], ptr[2], ptr[3], ptr[4]);     // A, B, C, D, E
   ptr = arr + 4;
   printf("%c, %c, %c, %c, %c\n", ptr[0], ptr[-1], ptr[-2], ptr[-3], ptr[-4]); // E, D, C, B, A
@@ -28,7 +28,7 @@ int main() {
 #include <stdio.h>
 
 int main() {
-  int arr[5] = {10, 20, 30};
+  int arr[3] = {10, 20, 30};
   int *ptr = arr;
 
   printf("Array index  : %d, %d, %d\n", arr[0], arr[1], arr[2]);       // 배열 인덱스를 이용한 접근
@@ -50,7 +50,7 @@ int main() {
 | `*(ptr + i)` | 포인터 연산                   | `*(ptr + 2) == 30`               |
 
 > 배열 이름은 배열 전체를 나타내는 식별자로, 배열의 첫 번째 요소 주소로 평가될 수 있지만, 재할당은 불가능하다.  
-> (arr = ptr; 주소, 재할당 불가), 배열 이름은 ``수정할 수 없는 lvalue(non-modifiable lvalue)``이다.
+> (arr = ptr; 주소, 재할당 불가), 배열 이름은 ``대입할 수 없는 lvalue(non-modifiable lvalue)``표현식이며, 주소를 변경할 수 없다.
 
 * 예제 3: 1차원 배열을 포인터로 순회
 ```c
@@ -69,6 +69,14 @@ for (int i = 0; i < 5; i++) {
 ```c
 int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 ```
+* int arr[2][3]은 다음과 같은 타입 구조를 가진다.
+  
+| 표현         | 의미         | 
+| ------------ | -------------| 
+| `arr`        | `int (*)[3]` |
+| `arr[0]`     | `int [3]`    |
+| `arr[0][0]`  | `int`        |
+
 예제 4: 2차원 배열과 배열의 크기, 주소, 주소연산
 ```c
 #include <stdio.h>
@@ -76,12 +84,17 @@ int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};
 int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
 
-  printf("%zu %zu %zu\n", sizeof(arr), sizeof(arr[0]), sizeof(arr[1]));  // 24, 12, 12, 배열의 크기
-  printf("%p %p %p %p\n", arr, arr[0], &arr[0][0], arr[1]);         // 62fe00, 62fe00, 62fe00, 62fe0c, 배열 주소
-  printf("%p %p %p %p\n", arr+1, arr[0]+1, &arr[0][0]+1, arr[1]+1); // 62fe0c, 62fe04, 62fe04, 62fe10, 배열주소 연산
+  printf("%zu %zu %zu\n", sizeof(arr), sizeof(arr[0]), sizeof(arr[1]));  // 배열의 크기
+  printf("%p %p %p %p\n", (void *)arr, (void *)arr[0], (void *)&arr[0][0], (void *)arr[1]);  // 배열 주소
+  printf("%p %p %p %p\n", arr+1, arr[0]+1, &arr[0][0]+1, arr[1]+1); // 배열주소 연산
 
   return 0;
 }
+```
+```
+24, 12, 12
+62fe00, 62fe00, 62fe00, 62fe0c
+62fe0c, 62fe04, 62fe04, 62fe10
 ```
 예제 5: 2차원 배열과 배열의 이름을 이용한 요소, 값에 접근
 ```c
@@ -90,12 +103,17 @@ int main() {
 int main() {
   int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
 
-  printf("%p, %p, %d\n", (void*)arr, (void*)*arr, **arr);           // 62fe00, 62fe00, 1
-  printf("%p, %p, %d\n", (void*)arr, (void*)arr[0], arr[0][0]);     // 62fe00, 62fe00, 1
-  printf("%p, %p, %d\n", (void*)(arr+1), (void*)*(arr+1), **(arr+1)); // 62fe0c, 62fe0c, 4
+  printf("%p, %p, %d\n", (void*)arr, (void*)*arr, **arr);           
+  printf("%p, %p, %d\n", (void*)arr, (void*)arr[0], arr[0][0]);     
+  printf("%p, %p, %d\n", (void*)(arr+1), (void*)*(arr+1), **(arr+1)); 
 
   return 0;
 }
+```
+```
+62fe00, 62fe00, 1
+62fe00, 62fe00, 1
+62fe0c, 62fe0c, 4
 ```
 
 | 표현                  | 의미                 | 결과                       |
@@ -158,8 +176,7 @@ int main() {
   return 0;
 }
 ```
-> 문제점: 2차원 배열 정보가 사라지고 연속된 int 배열처럼 동작한다
-> arr[i][j]처럼 행·열 구분이 사라짐  
+> 문제점: 2차원 배열의 행/열 정보가 사라져 단순 연속된 int 배열처럼 동작한다
 > 원래 타입이 `int (*)[2]`인데 `int *`로 바꿔 타입 안정성 상실됨
 
 예제 10: 2차원 배열과 2차원 포인터 활용
@@ -185,15 +202,26 @@ int main() {
 ```
 
 ### 1.7.3 배열 포인터 vs 포인터 배열
-| 구분     | 선언             | 설명                         | 메모리 구조     | 용도                   |  
-| ------ | -------------- | ------------------------------- | -------------- | ---------------------- |  
-| 배열 포인터 | `int (*p)[3];` | 정수 3개짜리 배열 하나를 가리킴 | 배열 한 덩어리를 가리킴  | 2차원 배열, 배열 매개변수로 자주 사용 |  
-| 포인터 배열 | `int *p[3];`   | 정수 포인터 3개를 원소로 갖는 배열 | 포인터 3개 (각각 따로) | 여러 변수의 주소 저장           |  
+| 구분     | 선언             | 설명                         | 용도                   |  
+| -------- | ---------------- |---------------------------- | ---------------------- |  
+| 배열 포인터 | `int (*p)[3];` | 정수 3개짜리 배열 하나를 가리킴 | 2차원 배열, 배열 매개변수로 자주 사용 |  
+| 포인터 배열 | `int *p[3];`   | 정수 포인터 3개를 원소로 갖는 배열 | 여러 변수의 주소 저장           |  
  
 * 배열 포인터 (Pointer to Array)
 ```c
 int arr[3] = {10, 20, 30};
 int (*p)[3] = &arr;
+```
+예제 11: int (*)[4] 배열
+```c
+int main(void) {
+  int a[4] = {10, 20, 30, 40};
+  int (*p)[4] = &a;     // p는 int[4] 배열을 가리키는 포인터
+
+  printf("%d, %d\n", (*p)[0], (*p)[3]); // 10, 40
+
+  return 0;
+}
 ```
 ```c
 int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
@@ -201,28 +229,8 @@ int arr[2][3] = {{1, 2, 3}, {4, 5, 6}};  // int형 4byte
 int (*p)[3] = arr;  // int (*p)[3]; p = arr; 줄인 표현
 ```  
 > 2차원 배열 함수 전달 시 void f(int arr[][3]) 와 void f(int (*arr)[3])는 동일 표현  
-> ptr + 1 → 다음 행으로 이동 (int[3] 크기만큼)  
+> ptr + 1 → 다음 행으로 이동 (int[3] 크기만큼)
 
-* 포인터 배열 (Array of Pointers)
-```c
-int a = 10, b = 20, c = 30;
-int *p[3] = {&a, &b, &c}; // int형 포인터 3개를 원소로 가진 배열
-```
-예제 11: 포인터 배열
-```c
-#include <stdio.h>
-
-int main() {
-  int a = 10, b = 20, c = 30;
-  int *p_arr[3] = {&a, &b, &c}; // 포인터 배열
-
-  for (int i = 0; i < 3; i++) {
-      printf("p_arr[%d] = %d\n", i, *p_arr[i]);
-  }
-
-  return 0;
-}
-```
 * 예제 12: 배열포인터, 2차원 배열을 함수에 전달
 ```c
 void print2D(int arr[][3], int row) {
@@ -242,6 +250,38 @@ int main() {
   return 0;
 }
 ```
+* 포인터 배열 (Array of Pointers)
+```c
+int a = 10, b = 20, c = 30;
+int *p[3] = {&a, &b, &c}; // int형 포인터 3개를 원소로 가진 배열
+```
+예제 13: 포인터 배열
+```c
+#include <stdio.h>
+
+int main() {
+  int a = 10, b = 20, c = 30;
+  int *p_arr[3] = {&a, &b, &c}; // 포인터 배열
+
+  for (int i = 0; i < 3; i++) {
+      printf("p_arr[%d] = %d\n", i, *p_arr[i]);
+  }
+
+  return 0;
+}
+```
+```c
+#include <stdio.h>
+
+int main(void) {
+  const char *words[3] = { "apple", "banana", "cherry"};
+
+  for( int i = 0; i < 3; ++i) {
+    printf("%s (len=%zu)\n", words[i], strlen(words[i]));
+  }
+  return 0;
+}
+```
 
 ### 1.7.4 동적 2D 배열과 다차원 배열 관리
 * 정적인 2차원 배열(int arr[3][4])은 크기가 고정되어 있지만,
@@ -256,7 +296,7 @@ int main() {
 | 3. 1D 배열을 2D처럼 접근 | `int *arr = malloc(row * col * sizeof(int))` |
 
 #### 1. 포인터 배열
-예제 13: 포인터 배열 (행 고정, 열 가변 가능)
+예제 14: 포인터 배열 (행 고정, 열 가변 가능)
 ```C
 #include <stdio.h>
 #include <stdlib.h>
@@ -290,7 +330,7 @@ int main() {
 ```
 
 #### 2. 이중 포인터
-예제 14: 이중 포인터 (int **)
+예제 15: 이중 포인터 (int **)
 ```C
 #include <stdio.h>
 #include <stdlib.h>
@@ -330,7 +370,7 @@ int main() {
 
 #### 3. 1차원 배열로 다차원 배열처럼 사용
 
-예제 15: 1차원 배열로 다차원 배열처럼 사용
+예제 16: 1차원 배열로 다차원 배열처럼 사용
 ```C
 #include <stdio.h>
 #include <stdlib.h>
