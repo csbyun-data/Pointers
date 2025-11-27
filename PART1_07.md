@@ -226,7 +226,7 @@ int main() {
 * 예제 12: 배열포인터, 2차원 배열을 함수에 전달
 ```c
 void print2D(int arr[][3], int row) {
-  // 동일 표현, arr[][3] == *arr[3] 
+  // 동일 표현, arr[][3] == (*arr)[3] 
   for (int i = 0; i < row; i++) {
     for (int j = 0; j < 3; j++) {
       printf("%d ", arr[i][j]);
