@@ -271,6 +271,7 @@ int main() {
 }
 ```
 ```c
+// char *포인터들의 배열, 문자열의 목록
 #include <stdio.h>
 
 int main(void) {
