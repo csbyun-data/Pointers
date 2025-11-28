@@ -33,15 +33,22 @@ typedef struct { int x; int y; } Point;
 int main() {
   Point p = {10, 20};
   Point *ptr = &p;
-  printf("x: %d, y: %d\n", ptr->x, ptr->y);  // -> 연산자 사용
+  Point **pptr = &ptr;
+
+  printf(" %d, %d\n", p.x, p.y);  
+  printf(" %d, %d, %d, %d\n", ptr->x, ptr->y, (*ptr).x, (*ptr).y);
+  printf(" %d, %d, %d, %d\n", (*pptr)->x, (*pptr)->y, (**pptr).x, (**pptr).y);
+
   return 0;
 }
 ```
-* ptr->x는 (*ptr).x와 동일합니다.
+> ptr->x는 (*ptr).x와 동일합니다.
 
 ### 1.11.3 구조체 배열과 포인터
-* 구조체 배열 선언과 접근
+* 구조체 배열, 요소 접근
 ```c
+#include <stdio.h>
+
 typedef struct {
   char name[20];
   int age;
@@ -52,7 +59,31 @@ int main() {
   Person *p = arr;
 
   for (int i = 0; i < 2; i++) {
-    printf("%s %d세\n", (p + i)->name, (p + i)->age);
+    printf("%s %d, ", arr[i].name, arr[i].age);
+    printf("%s %d, ", (arr+i)->name, (arr+i)->age);
+    printf("%s %d\n", (*(arr+i)).name, (*(arr+i)).age);
+  }
+
+  return 0;
+}
+```
+* 구조체 배열 과 포인터 산술 연산 접근
+```c
+#include <stdio.h>
+
+typedef struct {
+  char name[20];
+  int age;
+} Person;
+
+int main() {
+  Person arr[2] = {{"Alice", 25}, {"Bob", 30}};
+  Person *p = arr;
+
+  for (int i = 0; i < 2; i++) {
+    printf("%s %d, ", p[i].name, p[i].age);
+    printf("%s %d, ", (p+i)->name, (p+i)->age);
+    printf("%s %d\n", (*(p+i)).name, (*(p+i)).age);
   }
 
   return 0;
