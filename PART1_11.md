@@ -45,7 +45,7 @@ int main() {
 > ptr->x는 (*ptr).x와 동일합니다.
 
 ### 1.11.3 구조체 배열과 포인터
-* 구조체 배열, 요소 접근
+* 구조체 1차원 배열, 요소 접근
 ```c
 #include <stdio.h>
 
@@ -67,7 +67,7 @@ int main() {
   return 0;
 }
 ```
-* 구조체 배열 과 포인터 산술 연산 접근
+* 구조체 1차원 배열 과 포인터 산술 연산 접근
 ```c
 #include <stdio.h>
 
@@ -89,7 +89,36 @@ int main() {
   return 0;
 }
 ```
-* 구조체 배열은 포인터 산술 연산과 함께 자주 사용됩니다.
+> 구조체 배열은 포인터 산술 연산과 함께 자주 사용됩니다.
+
+* 구조체 2차원 배열과 포인터 산술 연산 접근
+```c
+#include <stdio.h>
+
+typedef struct {
+  int x;
+  int y;
+} Point;
+
+int main() {
+  Point arr[2][2] = {{{0, 0}, {1, 1}}, {{2, 2}, {3, 3}}};
+  Point (*ptr)[2] = arr;
+
+  printf("%d %d %d, ", **arr, *arr[0], *arr[1]);
+  printf("%p %p %p\n", (void *)arr, (void *)arr[0], (void *)arr[1]);
+  
+  printf("%d %d %d, ", **(arr+1), *(arr[0]+1), *(arr[1]+1));
+  printf("%p %p %p\n\n", (void *)(arr+1), (void *)(arr[0]+1), (void *)(arr[1]+1));
+
+  printf("%d %d %d, ", **ptr, *ptr[0], *ptr[1]);
+  printf("%p %p %p\n", (void *)ptr, (void *)ptr[0], (void *)ptr[1]);
+  
+  printf("%d %d %d, ", **(ptr+1), *(ptr[0]+1), *(ptr[1]+1));
+  printf("%p %p %p\n", (void *)(ptr+1), (void *)(ptr[0]+1), (void *)(ptr[1]+1));
+
+  return 0;
+}  
+```
 
 ### 1.11.4 동적 구조체 배열 생성 및 해제
 ```c
