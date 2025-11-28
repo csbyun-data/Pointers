@@ -16,11 +16,30 @@ int main() {
 }
 ```
 
-* . 연산자로 멤버에 접근합니다.
+> . 연산자로 멤버에 접근합니다.  
+
 * struct 키워드 생략하려면 typedef 사용:
 ```c
 typedef struct { int x; int y; } Point;
 Point p2 = {30, 40};
+```
+* 구조체의 포인터 멤버변수
+```c
+#include <stdio.h>
+typedef struct {
+  char *pcarr;
+  int *piarr;
+} Data;
+
+int main() {
+  char carr[3] = {'A', 'B', 'C'};
+  int iarr[3] = {10, 20, 30};
+
+  Data s1 = { carr, iarr};
+
+  printf("%c %c %c\n", s1.pcarr[0], s1.pcarr[1], s1.pcarr[2]);
+  printf("%d %d %d\n", s1.piarr[0], s1.piarr[1], s1.piarr[2]);
+}
 ```
 
 ### 1.11.2 구조체 포인터 선언과 사용
@@ -204,7 +223,7 @@ int main() {
   return 0;
 }
 ```
-### 1.11.6 구조체를 반환과 포인터를 반환하는 방식
+### 1.11.6 구조체를 반환과  포인터 구조체를 반환하는 방식
 * 구조체를 값으로 반환
 > 장점  
 > 메모리 관리가 간단 (함수 내부에서 자동 할당 → 반환 시 복사)  
