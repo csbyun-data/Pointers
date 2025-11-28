@@ -95,7 +95,7 @@ void insert_front(struct Node** head_ref, int new_data) {
 }
 ```
 
-삭제 함수 예제 (값을 기준으로 삭제):
+* 삭제 함수 예제 (값을 기준으로 삭제):
 ```C
 void delete_node(struct Node** head_ref, int key) {
   struct Node* temp = *head_ref;
