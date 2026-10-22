@@ -1,105 +1,193 @@
-## 1.12 파일 입출력과 포인터
-* 파일 입출력은 데이터를 영구 저장하거나 외부에서 불러올 때 필요하며, 포인터는 이 과정에서 핵심 역할을 합니다.
-* 특히 파일 포인터 (FILE *) 는 C의 표준 라이브러리 stdio.h에서 정의되어 있으며, fopen(), fread(), fwrite() 등 함수와 함께 사용됩니다.
+## 1.13 함수 포인터
 
-### 1.12.1 파일 포인터 개념
-* FILE *fp: 파일을 가리키는 포인터
-* fopen(): 파일을 열고, 파일 포인터 반환
-* fclose(): 파일을 닫음
+### 1.13.1 함수 포인터 개념
 
-예제 1: 텍스트 파일 열기
+예제 1: 함수 포인터 사용
 ```c
 #include <stdio.h>
 
+void func(void);
+
 int main() {
-  FILE *fp = fopen("sample.txt", "r");
-  
-  if (fp == NULL) {
-    printf("파일을 열 수 없습니다.\n");
-    return 1;
-  }
-  
-  fclose(fp);
+  void (* funcPointer)(void) = func();  //함수 포인터 변수 선언
+  funcPointer();
+
   return 0;
+}
+
+void func(void) {
+  printf(" Function Pointer Ex.\n");
 }
 ```
 
-### 1.12.2 텍스트와 바이너리 파일 입출력
+예제 2: 함수 포인터 사용
+```
+#include <stdio.h>
+#pragma warning(disable:4996)
 
-* 텍스트 쓰기 모드: "w"
-```c
-FILE *fp = fopen("output.txt", "w");
-fprintf(fp, "Hello, world!\n");
-fclose(fp);
+void func1(void);
+void func2(void);
+void func3(void);
+
+int main(void) {
+  void (* func)(void) = NULL;
+  int menu;
+
+  while(1) {
+    printf("[0] Quit, [1] Func1, [2] Func2, [3]Func3 - ");
+    scanf("%d", &menu);
+
+    if(menu < 0 || menu > 3)
+      continue;
+    if(menu == 0)
+      break;
+    switch(menu) {
+      case 1: func = func1; break;
+      case 2: func = func2; break;
+      case 3: func = func3; break;
+      default :
+    }
+    func();
+  }
+}
+void func1(void) {
+  printf("func1 ex\n");
+}
+void func2(void) {
+  printf("func2 ex\n");
+}
+void func3(void) {
+  printf("func3 ex\n");
+}
 ```
 
-* 텍스트 읽기 모드: "r"
-```c
-char buffer[100];
-FILE *fp = fopen("output.txt", "r");
-fgets(buffer, sizeof(buffer), fp);
-printf("%s", buffer);
-fclose(fp);
+예제 3: 함수 포인터 배열 사용
+```
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+void func1(void);
+void func2(void);
+void func3(void);
+
+int main(void) {
+  void (* funcArray[])(void) = {func1, func2, func3 }; //함수 포인터 배열 선언, []갯수는 컴파일시 3 입력
+  int menu;
+
+  while(1) {
+    printf("[0] Quit, [1] Func1, [2] Func2, [3]Func3 - ");
+    scanf("%d", &menu);
+
+    if(menu < 0 || menu > 3)
+      continue;
+    if(menu == 0)
+      break;
+    funcArray[menu-1]();  //함수 실행
+  }
+}
+
+void func1(void) {
+  printf("func1 ex\n");
+}
+void func2(void) {
+  printf("func2 ex\n");
+}
+void func3(void) {
+  printf("func3 ex\n");
+}
+```
+예제 4: typedef 사용, 함수 포인터 배열 사용
+```
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+void func1(void);
+void func2(void);
+void func3(void);
+
+typedef void (* func_t)(void);
+
+int main(void) {
+  func_t funcArray[3] = {func1, func2, func3 }; //함수 포인터 배열 선언, []갯수는 컴파일시 3 입력
+  int menu;
+
+  while(1) {
+    printf("[0] Quit, [1] Func1, [2] Func2, [3]Func3 - ");
+    scanf("%d", &menu);
+
+    if(menu < 0 || menu > 3)
+      continue;
+    if(menu == 0)
+      break;
+    funcArray[menu-1]();  //함수 실행
+  }
+}
+
+void func1(void) {
+  printf("func1 ex\n");
+}
+void func2(void) {
+  printf("func2 ex\n");
+}
+void func3(void) {
+  printf("func3 ex\n");
+}
 ```
 
-* 바이너리 파일 쓰기
+### 1.13.2 함수 포인터를 구조체 멤버로 접근
+
+* 구조체 멤버 사용
 ```c
-FILE *fp = fopen("data.bin", "wb");
-int nums[3] = {1, 2, 3};
-fwrite(nums, sizeof(int), 3, fp);
-fclose(fp);
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+typedef struct _OBJECT {
+  char model[32];
+  int type;
+  char size; //Small, Medium, Large
+} OBJECT;
+
+void inObject(OBJECT* pObj);
+void outObject(const OBJECT* pObj);
+
+int main(void) {
+  OBJECT obj;
+
+  inObject(&obj);
+  outObject(&obj);
+
+  return 0;
+}
+
+void inObject(OBJECT* pObj) {
+  printf("[입력]\n");
+  printf("Model: ");
+  scanf("%s", pObj->model);
+
+  printf("Type: ");
+  scanf("%d", &pObj->type);  fflush(stdin);
+
+  printf("Size: ");
+  scanf("%c", &pObj->size);
+}
+
+void outObject(const OBJECT* pObj) {
+  printf("[output]\n");
+  printf("Model: %s\n", pObj->model);
+  printf("Type: %d\n", pObj->price);
+  printf("Size: %c\n", pObj->size);
+}
 ```
 
-* 바이너리 파일 읽기
-```c
-FILE *fp = fopen("data.bin", "rb");
-int nums[3];
-fread(nums, sizeof(int), 3, fp);
-fclose(fp);
-```
 
 ### 1.12.3 구조체 배열과 파일 연동
 * 구조체 배열을 텍스트 파일에 저장
 ```c
-#include <stdio.h>
-
-typedef struct {
-  char name[20];
-  int age;
-} Person;
-
-int main() {
-  Person list[2] = {{"Kim", 25}, {"Lee", 30}};
-  FILE *fp = fopen("people.txt", "w");
-
-  for (int i = 0; i < 2; i++) {
-    fprintf(fp, "%s %d\n", list[i].name, list[i].age);
-  }
-
-  fclose(fp);
-  return 0;
 }
 ```
 
 * 저장된 구조체 데이터를 읽어오기
 ```c
-int main() {
-  Person list[2];
-  FILE *fp = fopen("people.txt", "r");
-
-  for (int i = 0; i < 2; i++) {
-    if (fscanf(fp, "%19s %d", list[i].name, &list[i].age) != 2)
-    { /* 오류 처리 */ }
-  }
-
-  fclose(fp);
-
-  for (int i = 0; i < 2; i++) {
-    printf("%s (%d)\n", list[i].name, list[i].age);
-  }
-
-  return 0;
-}
 ```
 
 ### 1.12.4 파일 입출력 오류 처리  
@@ -108,96 +196,3 @@ int main() {
 > 파일 경로, 권한 확인
 > fscanf()나 fgets()의 반환값 체크
 > fflush(stdin) 사용은 비표준 ⇒ 사용 지양
-
-### 1.12.5 동적 구조체 배열 + 파일 입출력  
-* 구조체 개수 모를 때 realloc() 활용
-```c
-#include <stdio.h>
-#include <stdlib.h>
-
-typedef struct {
-  char name[20];
-  int age;
-} Person;
-
-int main() {
-  FILE *fp = fopen("people.txt", "r");
-  if (!fp) {
-    fprintf(stderr, "파일 열기 실패\n");
-    return 1;
-  }
-
-  Person *list = NULL;
-  int count = 0;
-
-  while (1) {
-    Person *tmp = realloc(list, (count + 1) * sizeof(Person));
-    if (!tmp) {
-      fprintf(stderr, "메모리 할당 실패\n");
-      free(list);
-      fclose(fp);
-
-      return 1;
-    }
-    list = tmp;
-
-    if (fscanf(fp, "%19s %d", list[count].name, &list[count].age) != 2) {
-      break; 
-    }
-
-    count++;
-  }
-
-  fclose(fp);
-  fp = NULL;
-
-  for (int i = 0; i < count; i++) {
-    printf("%s (%d)\n", list[i].name, list[i].age);
-  }
-
-  free(list);
-  return 0;
-}
-```
-
-
-
-### 1.12.6 이진 파일 입출력 + 구조체 저장
-```c
-typedef struct {
-  char name[20];
-  int age;
-} Person;
-
-int main() {
-  Person people[2] = {{"Alice", 28}, {"Bob", 35}};
-  FILE *fp = fopen("people.bin", "wb");
-  size_t written = fwrite(people, sizeof(Person), 2, fp);
-  if (written != 2) { /* 오류 처리 */ }
-  fclose(fp);
-
-  // 읽기
-  Person read_people[2];
-  fp = fopen("people.bin", "rb");
-  size_t read = fread(read_people, sizeof(Person), 2, fp);
-  if (read != 2) { /* 오류 처리 */ }
-  fclose(fp); fp = NULL;
-
-  for (int i = 0; i < 2; i++) {
-    printf("%s (%d)\n", read_people[i].name, read_people[i].age);
-  }
-
-  return 0;
-}
-```
-
-📚 요약
-| 기능     | 함수                                | 포인터 관련     |
-| ------ | --------------------------------- | ---------- |
-| 파일 열기  | `fopen()`                         | `FILE *fp` |
-| 파일 닫기  | `fclose()`                        | 포인터 해제     |
-| 텍스트 쓰기 | `fprintf()`                       | 문자열/값 출력   |
-| 텍스트 읽기 | `fscanf()`, `fgets()`             | 입력 버퍼 필요   |
-| 이진 쓰기  | `fwrite()`                        | 구조체 배열 저장  |
-| 이진 읽기  | `fread()`                         | 구조체 배열 복원  |
-| 메모리 관리 | `malloc()`, `realloc()`, `free()` | 포인터 필수     |
