@@ -234,3 +234,181 @@ void outObject(const OBJECT* pObj) {
   printf("Size: %c\n", pObj->size);
 }
 ```
+### 1.13.3 함수 포인터 반환
+
+* 함수포인터 반환, typedef 사용
+```c
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+typedef void (* func_t)(void);
+void func1(void);
+void func2(void);
+void func3(void);
+
+func_t getFunctionPointer(int idx);
+
+int main(void) {
+  int menu;
+  void (* func)(void) = NULL;
+
+  while(1) {
+    printf("[0] Quit, [1] Func1, [2] Func2, [3]Func3 - ");
+    scanf("%d", &menu);
+
+    if(menu < 0 || menu > 3)
+      continue;
+    if(menu == 0)
+      break;
+
+    func = getFunctionPointer(menu);
+    func();
+  }
+
+  return 0;
+}
+
+void func1(void) {
+  printf("func1 ex\n");
+}
+void func2(void) {
+  printf("func2 ex\n");
+}
+void func3(void) {
+  printf("func3 ex\n");
+}
+
+func_t getFunctionPointer(int idx) {
+  void (* func)(void) = NULL;
+
+  switch(idx) {
+    case 1: func = func1; break;
+    case 2: func = func2; break;
+    case 3: func = func3; break;
+  }
+  return func;
+}
+```
+* 구조체, 함수 포인터 배열 멤버 사용
+```c
+func_t getFunctionPointer(int idx) {
+  void (* funcArray[])(void) = {func1, func2, func3};
+  return funcArray[idx-1];
+}
+```
+### 1.13.4 함수 포인터를 매개변수로 받는 함수
+* 함수 포인터 매개변수
+```c
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+void func1(void);
+void proxyFunc(void (*func)(void));
+
+int main(void) {
+  int i;
+
+  for(i == 0; i < 3; i++)
+    proxyFunc(func1);
+
+  return 0;
+}
+
+void func1(void) {
+  printf("func1 ex\n");
+}
+
+void proxyFunc(void (* func)(void)) {
+  func();
+}
+```
+
+* 함수포인터를 매개변수로 받는 함수, typedef 사용
+```c
+typedef void (* func)(void);
+void proxyFunc(func_t func);
+```
+
+* 매개 변수가 있는 함수 포인터 사용
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#pragma warning(disable:4996)
+
+typedef void (* func_t)(int*, int);
+
+void func1(int * array, int size);
+void func2(int * array, int size);
+void func3(int * array, int size);
+
+void proxyFunction(func_t func, int* array, int size);
+
+int main(void) {
+  int array[10];
+  int menu;
+
+  while(1) {
+    printf("[0] Quit, [1] Func1, [2] Func2, [3]Func3 - ");
+    scanf("%d", &menu);
+
+    if(menu < 0 || menu > 3)
+      continue;
+    if(menu == 0)
+      break;
+    switch(menu) {
+      case 1: proxyFunction(func1, array, 10); break;
+      case 2: proxyFunction(func2, array, 10); break;
+      case 3: proxyFunction(func3, array, 10); break;
+    }
+  }
+}
+void func1(int * array, int size) {
+  int i;
+  for(i=0; i < size; i++)
+    array[i] = rand()%100;
+}
+
+void func2(int * array, int size) {
+  int i;
+  for(i = 0; i < size; i++)
+    array[i] *= 2;
+}
+
+void func3(int * array, int size) {
+  int i;
+  for(i = 0; i < size; i++)
+    printf("%3d", array[i]);
+  printf("\n");
+}
+
+void proxyFunction(func_t func, int* array, int size) {
+  func(array, size);
+}
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
