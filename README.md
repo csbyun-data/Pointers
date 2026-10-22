@@ -64,7 +64,11 @@
   * 1.12.3 구조체 배열과 파일 연동  
   * 1.12.4 파일 입출력 오류 처리
 * 1.13 [함수 포인터](https://github.com/csbyun-data/Pointers/blob/main/PART1_13.md)
-
+  * 1.13.1 함수포인터 개념
+  * 1.13.2 함수 포인터를 구조체 멤버로 접근
+  * 1.13.3 함수 포인터 반환
+  * 1.13.4 함수 포인터를 매개변수로 받는 함수
+    
 ### Part 2. C언어 포인터 실전 예제
 * 2.1 [연결 리스트 구현](https://github.com/csbyun-data/Pointers/blob/main/PART2_01.md)  
   * 2.1.1 자기 참조 구조체 이해  
