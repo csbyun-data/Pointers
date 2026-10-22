@@ -337,9 +337,9 @@ void proxyFunc(func_t func);
 
 typedef void (* func_t)(int*, int);
 
-void func1(int * array, int size);
-void func2(int * array, int size);
-void func3(int * array, int size);
+void func1(int* array, int size);
+void func2(int* array, int size);
+void func3(int* array, int size);
 
 void proxyFunction(func_t func, int* array, int size);
 
@@ -385,8 +385,56 @@ void proxyFunction(func_t func, int* array, int size) {
   func(array, size);
 }
 ```
+* 매개 변수가 있는 함수 포인터 배열 사용
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#pragma warning(disable:4996)
 
+void func1(int* pn);
+void func2(int* pn);
+void func3(int* pn);
 
+void proxyFunction(void (* func)(int*), int* array, int size);
+
+int main(void) {
+  void (* funcArray[3])(int*) = {func1, func2, func3};
+
+  int array[10] = {0};
+  int menu;
+
+  while(1) {
+    printf("[0] Quit, [1] Func1, [2] Func2, [3]Func3 - ");
+    scanf("%d", &menu);
+
+    if(menu < 0 || menu > 3)
+      continue;
+    if(menu == 0)
+      break;
+    proxyFunction(funcArray[menu-1], array, 10);
+
+    if(menu == 3)
+      printf("\n");
+  }
+}
+void func1(int *pn) {
+    *pn = rand()%100;
+}
+
+void func2(int *pn) {
+    *pn *= 2;
+}
+
+void func3(int *pn) {
+  printf("%4d", *pn);
+}
+
+void proxyFunction(void (* func)(int*), int* array, int size) {
+  int i;
+  for(i = 0; i < size; i++)
+    func(array+i);
+}
+```
 
 
 
