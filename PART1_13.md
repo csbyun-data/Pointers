@@ -418,11 +418,11 @@ int main(void) {
   }
 }
 void func1(int *pn) {
-    *pn = rand()%100;
+  *pn = rand()%100;
 }
 
 void func2(int *pn) {
-    *pn *= 2;
+  *pn *= 2;
 }
 
 void func3(int *pn) {
