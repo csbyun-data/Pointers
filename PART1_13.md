@@ -189,8 +189,8 @@ typedef struct _OBJECT {
   int type;
   char size; //Small, Medium, Large
 
-  void (* inObj)(struct _OBJECT*);
-  void (* outObj)(const struct _OBJECT*);
+  void (* inObject)(struct _OBJECT*);
+  void (* outObject)(const struct _OBJECT*);
 } OBJECT;
 
 void initObject(OBJECT* pObj);
@@ -201,16 +201,18 @@ void outObject(const OBJECT* pObj);
 int main(void) {
   OBJECT obj;
 
-  inObject(&obj);
-  outObject(&obj);
+  initObject(&obj);
+
+  obj.inObject(&obj);
+  obj.outObject(&obj);
 
   return 0;
 }
 void initObject(OBJECT* pObj) {
   memset(pObj, 0, sizeof(OBJECT));
 
-  pObj->inObj = inObject;
-  pObj->outObj = outObject;
+  pObj->inObject = inObject;
+  pObj->outObject = outObject;
 }
 
 void inObject(OBJECT* pObj) {
