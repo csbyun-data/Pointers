@@ -136,7 +136,7 @@ void func3(void) {
 
 ### 1.13.2 함수 포인터를 구조체 멤버로 접근
 
-* 구조체 멤버 사용
+* 구조체, 전역 함수 사용
 ```c
 #include <stdio.h>
 #pragma warning(disable:4996)
@@ -174,25 +174,61 @@ void inObject(OBJECT* pObj) {
 void outObject(const OBJECT* pObj) {
   printf("[output]\n");
   printf("Model: %s\n", pObj->model);
-  printf("Type: %d\n", pObj->price);
+  printf("Type: %d\n", pObj->type);
   printf("Size: %c\n", pObj->size);
 }
 ```
 
-
-### 1.12.3 구조체 배열과 파일 연동
-* 구조체 배열을 텍스트 파일에 저장
+* 구조체, 함수 포인터 멤버 사용
 ```c
+#include <stdio.h>
+#pragma warning(disable:4996)
+
+typedef struct _OBJECT {
+  char model[32];
+  int type;
+  char size; //Small, Medium, Large
+
+  void (* inObj)(struct _OBJECT*);
+  void (* outObj)(const struct _OBJECT*);
+} OBJECT;
+
+void initObject(OBJECT* pObj);
+
+void inObject(OBJECT* pObj);
+void outObject(const OBJECT* pObj);
+
+int main(void) {
+  OBJECT obj;
+
+  inObject(&obj);
+  outObject(&obj);
+
+  return 0;
+}
+void initObject(OBJECT* pObj) {
+  memset(pObj, 0, sizeof(OBJECT));
+
+  pObj->inObj = inObject;
+  pObj->outObj = outObject;
+}
+
+void inObject(OBJECT* pObj) {
+  printf("[입력]\n");
+  printf("Model: ");
+  scanf("%s", pObj->model);
+
+  printf("Type: ");
+  scanf("%d", &pObj->type);  fflush(stdin);
+
+  printf("Size: ");
+  scanf("%c", &pObj->size);
+}
+
+void outObject(const OBJECT* pObj) {
+  printf("[output]\n");
+  printf("Model: %s\n", pObj->model);
+  printf("Type: %d\n", pObj->type);
+  printf("Size: %c\n", pObj->size);
 }
 ```
-
-* 저장된 구조체 데이터를 읽어오기
-```c
-```
-
-### 1.12.4 파일 입출력 오류 처리  
-* 오류 체크 포인트
-> FILE *fp == NULL: 파일 열기 실패
-> 파일 경로, 권한 확인
-> fscanf()나 fgets()의 반환값 체크
-> fflush(stdin) 사용은 비표준 ⇒ 사용 지양
