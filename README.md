@@ -68,6 +68,7 @@
   * 1.13.2 함수 포인터를 구조체 멤버로 접근
   * 1.13.3 함수 포인터 반환
   * 1.13.4 함수 포인터를 매개변수로 받는 함수
+  * 1.13.5 quick sort 활용
     
 ### Part 2. C언어 포인터 실전 예제
 * 2.1 [연결 리스트 구현](https://github.com/csbyun-data/Pointers/blob/main/PART2_01.md)  
