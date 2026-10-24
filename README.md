@@ -126,4 +126,3 @@
 
 ### 부록
 * A. [포인터 관련 주요 함수 요약](https://github.com/csbyun-data/Pointers/blob/main/Appendix_A.md)  
-* B. [실습 문제 및 예제 코드](https://github.com/csbyun-data/Pointers/blob/main/Appendix_B.md)  
