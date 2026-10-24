@@ -532,3 +532,74 @@ int comparePage(const void* p1, const void* p2){
   return (pb1->page - pb2->page);
 }
 ```
+### 1.13.6 qsort(), bsearch() 활용
+* 구조체 배열을 quick Sorting, 이진검색
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#pragma warning(disable:4996)
+
+enum { ARRAY_SIZE = 20};
+
+typedef struct {
+  char title[32];
+  int price;
+  int page;
+} BOOK;
+
+void initBooks(BOOK* books, int size);
+void printBooks(BOOK* books, int size);
+int compareTitle(const void* p1, const void* p2);
+
+int main(void) {
+  BOOK books[ARRAY_SIZE];
+  BOOK input;
+  BOOK* find = NULL;
+
+  initBooks(books, ARRAY_SIZE);
+
+  qsort(books, ARRAY_SIZE, sizeof(books[0]), compareTitle);
+  printBooks(books, ARRAY_SIZE);
+
+  printf("[Exit] quit\n");
+
+  while(1) {
+    printf("제목 : ");
+    gets(input.title); fflush(stdin);
+
+    if(strcmp(input.title, "quit") == 0)
+      break;
+
+    find = bsearch(&input, books, ARRAY_SIZE, sizeof(books[0]), compareTitle);
+    if(find != NULL)
+      printf("Result : %s %d %d\n", find->title, find->price, find->page);
+    else
+      printf("Result : 없음\n");
+  }
+  return 0;
+}
+
+void initBooks(BOOK* books, int size) {
+  BOOK books_1[3] =
+  { "AAAA", 3200, 890,
+    "BBBB", 1600, 425,
+    "CCCC", 3400, 1074 };
+  int i;
+  for(i = 0; i < size; i++)
+    books[i] = books_1[i%3];
+}
+
+void printBooks(BOOK* books, int size) {
+  int i;
+  for(i = 0; i < size; i++)
+    printf("%-30s %5d %4d\n", books[i].title, books[i].price, books[i].page);
+  printf("\n");
+}
+
+int compareTitle(const void* p1, const void* p2) {
+  BOOK* pb1 = (BOOK*) p1, * pb2 = (BOOK*) p2;
+  return strcmp(pb1->title, pb2->title);
+}
+
+```
