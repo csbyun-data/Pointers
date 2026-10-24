@@ -12,14 +12,14 @@
 int** arr = new int*[3];  // 1차원 배열 할당
 
 for (int i = 0; i < 3; ++i) {
-    arr[i] = new int[4];  // 2차원 배열 각 행 할당
+  arr[i] = new int[4];  // 2차원 배열 각 행 할당
 }
 ```
 
 * 할당한 만큼 정확히 해제 필요
 ```cpp
 for (int i = 0; i < 3; ++i) {
-    delete[] arr[i];
+  delete[] arr[i];
 }
 delete[] arr;
 ```
@@ -38,7 +38,7 @@ std::cout << **pp << std::endl;  // 10
   이중 포인터는 포인터를 변경하거나, 동적 메모리 할당된 포인터를 함수 안에서 수정할 때 사용
 ```cpp
 void allocate(int** p) {
-    *p = new int(100);
+  *p = new int(100);
 }
 
 int* ptr = nullptr;
@@ -52,7 +52,7 @@ delete ptr;
   다중 포인터는 내부 포인터부터 해제 후 외부 포인터 해제
 ```cpp
 for (int i = 0; i < 3; ++i) {
-    delete[] arr[i];  // 내부 배열 해제
+  delete[] arr[i];  // 내부 배열 해제
 }
 delete[] arr;         // 외부 배열 해제
 ```
