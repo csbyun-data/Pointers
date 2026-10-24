@@ -1,43 +1,43 @@
-🔹 4.1 초기화 누락 문제  
-✅ 개요
+## 4.1 초기화 누락 문제  
+  C/C++에서 포인터를 선언만 하고 초기화하지 않으면,
+  해당 포인터는 임의의 메모리 주소를 가리키게 됩니다.
+  → 이를 역참조하면 예기치 않은 동작, 세그멘테이션 오류(Segmentation Fault) 발생
 
-C/C++에서 포인터를 선언만 하고 초기화하지 않으면,
-해당 포인터는 임의의 메모리 주소를 가리키게 됩니다.
-→ 이를 역참조하면 예기치 않은 동작, 세그멘테이션 오류(Segmentation Fault) 발생
-
-✅ 잘못된 예: 초기화하지 않은 포인터
+### 4.1.1 잘못된 예: 초기화하지 않은 포인터
 ```cpp
 #include <iostream>
 
 int main() {
-    int* p;        // 초기화하지 않음
-    *p = 100;      // ❌ 정의되지 않은 동작 (쓰레기 주소 접근)
-    return 0;
+  int* p;        // 초기화하지 않음
+  *p = 100;      // ❌ 정의되지 않은 동작 (쓰레기 주소 접근)
+  return 0;
 }
 ```
 출력 (또는 실행 결과):
 ```
 Segmentation fault (core dumped)
 ```
-✅ 올바른 사용 예 ①: 명시적 초기화
+
+### 4.1.2 올바른 사용 예 ①: 명시적 초기화
 ```cpp
 int* p = nullptr;   // 안전한 초기화
 
 if (p) {
-    *p = 100;       // 실행되지 않음
+  *p = 100;       // 실행되지 않음
 }
 ```
 
 nullptr은 어떤 유효한 메모리도 가리키지 않음을 명시
 
-✅ 올바른 사용 예 ②: 유효한 주소로 초기화
+### 4.1.3 올바른 사용 예 ②: 유효한 주소로 초기화
 ```cpp
 int a = 42;
 int* p = &a;
 
 std::cout << *p << std::endl;  // 출력: 42
 ````
-✅ 실수 방지 요령
+
+### 4.1.4 실수 방지 요령
 | 상황              | 대처 방법                       |
 | --------------- | --------------------------- |
 | 포인터 선언          | 항상 `nullptr` 또는 유효한 주소로 초기화 |
@@ -50,22 +50,22 @@ std::cout << *p << std::endl;  // 출력: 42
 
 * C++11 이상에서는 nullptr을 사용해 타입 안전한 null 포인터 표현
 
-✅ 예제: 함수에서 안전한 포인터 처리
+### 4.1.5 함수에서 안전한 포인터 처리
 ```cpp
 void printValue(int* ptr) {
-    if (ptr != nullptr) {
-        std::cout << "Value: " << *ptr << std::endl;
-    } else {
-        std::cout << "Null pointer passed.\n";
-    }
+  if (ptr != nullptr) {
+    std::cout << "Value: " << *ptr << std::endl;
+  } else {
+    std::cout << "Null pointer passed.\n";
+  }
 }
 
 int main() {
-    int* p = nullptr;
-    printValue(p);  // 안전
+  int* p = nullptr;
+  printValue(p);  // 안전
 }
 ```
-📌 요약
+### 4.1.6 요약
 | 항목 | 설명                         |
 | -- | -------------------------- |
 | 문제 | 포인터를 초기화하지 않으면 쓰레기 값 보유    |
