@@ -436,27 +436,99 @@ void proxyFunction(void (* func)(int*), int* array, int size) {
 }
 ```
 
+### 1.13.5 quick sort 활용
+* 구조체 배열을 Sorting
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
+#pragma warning(disable:4996)
 
+enum { ARRAY_SIZE = 20};
+enum {QUIT, TITLE, PRICE, PAGE, MENU_COUNT};
 
+typedef struct {
+  char title[32];
+  int price;
+  int page;
+} BOOK;
 
+void initBooks(BOOK* books, int size);
+int selectMenu(void);
+void printBooks(BOOK* books, int size);
 
+int compareTitle(const void* p1, const void* p2);
+int comparePrice(const void* p1, const void* p2);
+int comparePage(const void* p1, const void* p2);
 
+int main(void) {
+  int (* compareFuncs[])(const void*, const void*) = {NULL, compareTitle, comparePrice, comparePage};
+  BOOK books[ARRAY_SIZE];
+  int select;
 
+  initBooks(books, ARRAY_SIZE);
 
+  printf("[정렬 이전]\n");
+  printBooks(books, ARRAY_SIZE);
 
+  while(1) {
+    select = selectMenu();
 
+    if(select == QUIT)
+      break;
+    qsort(books, ARRAY_SIZE, sizeof(books[0]), compareFuncs[select]);
+    printBooks(books, ARRAY_SIZE);
+  }
+  return 0;
+}
 
+void initBooks(BOOK* books, int size) {
+  BOOK books_1[3] =
+  { "AAAA", 3200, 890,
+    "BBBB", 1600, 425,
+    "CCCC", 3400, 1074 };
+  int i;
+  for(i = 0; i < size; i++)
+    books[i] = books_1[i%3];
+}
 
+int selectMenu(void) {
+  char menu[32];
+  int index = -1;
 
+  do {
+    printf("[Menu] quit, title, price, page -");
+    scanf("%s", menu);
+    fflush(stdin);
 
+    if(strcmp(menu, "quit") == 0 ) index = QUIT;
+    if(strcmp(menu, "title") == 0 ) index = TITLE;
+    if(strcmp(menu, "price") == 0 ) index = PRICE;
+    if(strcmp(menu, "page") == 0 ) index = PAGE;
+  }
+  while( index < 0 || index >= MENU_COUNT);
 
+  return index;
+}
 
+void printBooks(BOOK* books, int size) {
+  int i;
+  for(i = 0; i < size; i++)
+    printf("%-30s %5d %4d\n", books[i].title, books[i].price, books[i].page);
+  printf("\n");
+}
 
-
-
-
-
-
-
-
+int compareTitle(const void* p1, const void* p2) {
+  BOOK* pb1 = (BOOK*) p1, * pb2 = (BOOK*) p2;
+  return strcmp(pb1->title, pb2->title);
+}
+int comparePrice(const void* p1, const void* p2){
+  BOOK* pb1 = (BOOK*) p1, * pb2 = (BOOK*) p2;
+  return (pb1->price - pb2->price);
+}
+int comparePage(const void* p1, const void* p2){
+  BOOK* pb1 = (BOOK*) p1, * pb2 = (BOOK*) p2;
+  return (pb1->page - pb2->page);
+}
+```
