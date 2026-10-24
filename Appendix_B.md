@@ -1,6 +1,6 @@
 ## 부록 B: 실습 문제 및 예제 코드  
 ### B.1 기본 포인터 연습  
-🔹 문제 1: 포인터를 사용한 값 교환 함수
+* 문제 1: 포인터를 사용한 값 교환 함수
 ```cpp
 void swap(int* a, int* b);
 
@@ -13,7 +13,7 @@ std::cout << "x=" << x << ", y=" << y << std::endl;
 * 포인터를 통해 함수 내에서 원본 변수 값을 변경, Call by Reference 유사 구현
 
 ### B.2 동적 메모리 할당  
-🔹 문제 2: 사용자 입력으로 정수 N개를 저장하고 평균 계산
+* 문제 2: 사용자 입력으로 정수 N개를 저장하고 평균 계산
 ```cpp
 int n;
 std::cin >> n;
@@ -35,7 +35,7 @@ delete[] arr;
 * new[] / delete[] 연습, 유효성 검사 추가 가능
 
 ### B.3 문자열과 포인터
-🔹 문제 3: strlen() 함수 직접 구현
+* 문제 3: strlen() 함수 직접 구현
 ```cpp
 int my_strlen(const char* str) {
     int len = 0;
@@ -46,7 +46,7 @@ int my_strlen(const char* str) {
 * 문자열 종료 조건 '\0'까지 반복, const char* 사용
 
 ### B.4 이중 포인터  
-🔹 문제 4: 이중 포인터로 배열 생성 및 해제
+* 문제 4: 이중 포인터로 배열 생성 및 해제
 ```cpp
 int rows = 3, cols = 4;
 int** matrix = new int*[rows];
@@ -68,7 +68,7 @@ delete[] matrix;
 * 동적 2차원 배열 구조, 메모리 해제 순서 중요
 
 ### B.5 구조체와 포인터
-🔹 문제 5: 구조체 포인터를 사용한 멤버 접근
+* 문제 5: 구조체 포인터를 사용한 멤버 접근
 ```cpp
 struct Student {
     char name[20];
@@ -86,7 +86,7 @@ delete s;
 * -> 연산자 사용, 동적 구조체 할당/해제
 
 ### B.6 연결 리스트 구현  
-🔹 문제 6: 단순 연결 리스트 노드 삽입
+* 문제 6: 단순 연결 리스트 노드 삽입
 ```cpp
 struct Node {
     int data;
